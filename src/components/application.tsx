@@ -4,26 +4,35 @@ if (process.env.BROWSER) {
 
 import * as React from "react";
 import { connect } from "react-redux";
-import { bindActionCreators } from "redux";
 
-export interface IApplicationProps { params: {}; route: {}; }
+import Design from "./design.tsx";
+import Form from "./form.tsx";
+import Navbar from "./navbar.tsx";
 
-class Application extends React.Component<{}, {}> {
+export interface IApplicationProps {
+  params: { mode: string };
+  route: {};
+  test: string;
+}
+
+
+export class Application extends React.Component<IApplicationProps, {}> {
   public render() {
+    const { mode } = this.props.params;
     return (
-      <div className="application-container">Go to `/hello/"your name"/` to see react router working</div>
+      <div className="application-container">
+        <Navbar />
+        <Form />
+        {mode && mode.toLowerCase() === "design" ? <Design /> : ""}
+      </div>
     );
   }
-
 }
 
-function mapStateToProps(state: any) {
-  return {
-  };
-}
 
-function mapDispatchToProps(dispatch: any) {
-    return bindActionCreators({}, dispatch);
-}
+interface IReduxState { test: string; }
 
-export default connect<{}, {}, IApplicationProps> (mapStateToProps, mapDispatchToProps)(Application);
+const mapStateToProps = (state: IReduxState) => ({ test: "Hello"});
+
+
+export default connect(mapStateToProps)(Application);

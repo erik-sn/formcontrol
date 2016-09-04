@@ -1,24 +1,23 @@
 
 import { expect } from "chai";
 import * as sinon from "sinon";
-
-import Hello from "../../src/components/hello.tsx";
 import { sRender } from "../test_helper.tsx";
+import Navbar from "../../src/components/navbar.tsx";
 
-describe("Lets write tests!" , () => {
+describe("Navbar" , () => {
 
-  describe("Hello" , () => {
+  describe("Navbar" , () => {
     let component: any;
     const props = {
       params: {
-        name: "hello world",
+        mode: "design",
       },
     };
     const state = {};
 
 
     beforeEach(() => {
-      component = sRender(Hello, props, state);
+      component = sRender(Navbar, props, state);
     });
 
     it("renders something", () => {

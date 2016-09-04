@@ -17,7 +17,9 @@ global["HTMLElement"] = global["window"].HTMLElement;
 
 
 export function sRender(ComponentClass: any, props = {}, state= {}, store= {}) {
-  return shallow(<ComponentClass {...props} store={store} />);
+  return shallow(
+      <ComponentClass {...props} store={store} />
+  );
 }
 
 export function fRender(ComponentClass: any, props = {}, state = {}) {
