@@ -1,7 +1,15 @@
+@import '/node_modules/react-grid-layout/css/styles.css';
+@import '/node_modules/react-resizable/css/styles.css';
+
 $primary: #333;
 $secondary: whitesmoke;
 
 body {
   margin: 0px;
   font-family: 'PT Sans', sans-serif;
+}
+
+.react-grid-item {
+  border: 1px solid #999;
+  
 }

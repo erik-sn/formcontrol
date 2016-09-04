@@ -1,0 +1,12 @@
+@import 'style';
+
+.formpanel-container {
+  display: flex;
+  user-select: none;
+}
+
+.formpanel-input-container input {
+  margin: 0% 5%;
+  width: 90%;
+  user-select: none;
+}

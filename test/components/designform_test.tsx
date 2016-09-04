@@ -21,6 +21,10 @@ describe("Design Form" , () => {
       expect(component).to.exist;
     });
 
+    it("should contain a grid layout", () => {
+      expect(component.find(".react-grid-layout")).to.exist;
+    });
+
   });
 
 });
