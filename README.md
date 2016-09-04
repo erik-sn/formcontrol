@@ -1,15 +1,19 @@
-# React/Redux Boilerplate
+# Form Control
 
-React/Redux boilerplate that includes the (optional) use of TypeScript
+### A CRUD application to end CRUD applications (sort of)
 
-###Features
-- [React.js](https://facebook.github.io/react/)
-- [Redux](https://github.com/reactjs/redux)
-- [TypeScript](https://www.typescriptlang.org/index.html)
-- [Webpack](https://webpack.github.io/)
-- [React Router](https://github.com/reactjs/react-router)
-- [Hot Reloading](https://github.com/gaearon/react-hot-loader)
-- [Isomorphic/Server Side Rendering](http://nerds.airbnb.com/isomorphic-javascript-future-web-apps/)
-- [Mocha/Chai/Enzyme/Sinon Testing](https://mochajs.org/)
-- [SASS](http://sass-lang.com/)
-- [TSLint/TSLint-React](https://palantir.github.io/tslint/)
+CRUD stands for create-update-delete; the three most basic functions
+you can operate on data with. Instead of creating many CRUD applications
+that all have a similar function (data entry and analysis), this is an attempt
+to create one application that allows users to generate their own forms and
+provide an interface to export, display, plot, and analyze the data that is put in.
+
+#### Motivation
+At work we have a lot of data, and a lot of that data is manually input. Right now
+we have Excel spreadsheets stacked high and growing higher that people use to insert
+this data. There is increased demand to move these
+data entry applications into more purpose-built applications. So instead of building
+an equally high stack of CRUD apps, lets try to build just one.
+
+#### Technology
+The core technologies are React/Redux and TypeScript.
