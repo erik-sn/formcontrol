@@ -22,7 +22,6 @@ describe("Application" , () => {
     });
 
     it("renders something", () => {
-      console.log(component.debug());
       expect(component).to.exist;
     });
 

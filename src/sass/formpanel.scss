@@ -24,7 +24,14 @@
   user-select: none;
 }
 
+/* Actual input field for specified inputs */
+.formpanel-input {
+  border: none;
+  width: 90%;
+}
+
 .formpanel-description-container {
   font-size: 0.75rem;
   margin: 0% 5%;
+  padding: 5px;
 }

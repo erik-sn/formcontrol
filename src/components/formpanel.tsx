@@ -5,18 +5,37 @@ if (process.env.BROWSER) {
 import * as React from "react";
 
 export interface IFormPanelProps {
-  label: string;
   type: string;
-  description: string;
+  label?: string;
+  description?: string;
   className?: string;
  }
 
-export default class FormPanel extends React.Component<IFormPanelProps, {}> {
+export interface IFormPanelState {
+  label?: string;
+  description?: string;
+ }
+
+ export interface IChangeEvent {
+  target: { value: string};
+ }
+
+export default class FormPanel extends React.Component<IFormPanelProps, IFormPanelState> {
+
+  constructor(props: IFormPanelProps) {
+    super(props);
+    this.state = {
+      label: props.label || "",
+      description: props.description || "",
+    }
+    this.updateLabel = this.updateLabel.bind(this);
+    this.updateDescription = this.updateDescription.bind(this);
+  }
 
   public getType(type: string, label: string): JSX.Element {
     switch (type) {
       case "input":
-        return <input type="text" value="" placeholder={`Value for ${label}`} disabled />;
+        return <input type="text" value="" placeholder={`Value for ${label ? label : "..."}`} disabled />;
       case "select":
         return <select disabled />;
       default:
@@ -24,15 +43,40 @@ export default class FormPanel extends React.Component<IFormPanelProps, {}> {
     }
   }
 
+  public updateLabel(e: IChangeEvent): void {
+    this.setState({ label: e.target.value });
+  }
+
+  public updateDescription(e: IChangeEvent): void {
+    this.setState({ description: e.target.value });
+  }
+
   public render() {
-    const { label, type, description } = this.props;
+    const { type } = this.props;
+    const { label, description } = this.state;
     return (
       <div className="formpanel-container">
-          <div className="formpanel-label-container">{label}</div>
+          <div className="formpanel-label-container">
+            <input
+              type="text"
+              className="formpanel-input"
+              value={label}
+              onChange={this.updateLabel}
+              placeholder="Enter Label..."
+            />
+          </div>
           <div className="formpanel-input-container">
             {this.getType(type, label)}
           </div>
-          <div className="formpanel-description-container">{description}</div>
+          <div className="formpanel-description-container">
+            <input
+              type="text"
+              className="formpanel-input"
+              value={description}
+              onChange={this.updateDescription}
+              placeholder="Enter Description..."
+            />
+          </div>
       </div>
     );
   }
