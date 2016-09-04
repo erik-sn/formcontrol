@@ -22,11 +22,13 @@ describe("Application" , () => {
     });
 
     it("renders something", () => {
+      console.log(component.debug());
       expect(component).to.exist;
     });
 
-    it("has a design component", () => {
-      expect(component.find("Design")).to.have.length(1);
+    it("has design components", () => {
+      expect(component.find("DesignPanel")).to.have.length(1);
+      expect(component.find("DesignForm")).to.have.length(1);
     });
 
     it("has a navbar", () => {
@@ -34,7 +36,7 @@ describe("Application" , () => {
     });
 
     it("has a form component", () => {
-      expect(component.find("Form")).to.have.length(1);
+      expect(component.find("Form")).to.have.length(0);
     });
 
 
@@ -53,8 +55,9 @@ describe("Application" , () => {
       component = sRender(Application, props, state);
     });
 
-    it("does NOT has a design component", () => {
-      expect(component.find("Design")).to.have.length(0);
+    it("does NOT have design components", () => {
+      expect(component.find("DesignPanel")).to.have.length(0);
+      expect(component.find("DesignForm")).to.have.length(0);
     });
 
     it("renders something", () => {

@@ -24,6 +24,14 @@ describe("Navbar" , () => {
       expect(component).to.exist;
     });
 
+    it("has all expected containers", () => {
+      expect(component.find(".navbar-inner-container")).to.have.length(4);
+      expect(component.find("#navbar-icon-container")).to.have.length(1);
+      expect(component.find("#navbar-title-container")).to.have.length(1);
+      expect(component.find("#navbar-settings-container")).to.have.length(1);
+      expect(component.find("#navbar-profile-container")).to.have.length(1);
+    });
+
 
   });
 

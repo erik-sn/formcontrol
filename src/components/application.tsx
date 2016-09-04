@@ -5,7 +5,8 @@ if (process.env.BROWSER) {
 import * as React from "react";
 import { connect } from "react-redux";
 
-import Design from "./design.tsx";
+import DesignForm from "./designform.tsx";
+import DesignPanel from "./designpanel.tsx";
 import Form from "./form.tsx";
 import Navbar from "./navbar.tsx";
 
@@ -22,8 +23,7 @@ export class Application extends React.Component<IApplicationProps, {}> {
     return (
       <div className="application-container">
         <Navbar />
-        <Form />
-        {mode && mode.toLowerCase() === "design" ? <Design /> : ""}
+        {mode && mode.toLowerCase() === "design" ? <div><DesignForm /><DesignPanel /></div> : <Form />}
       </div>
     );
   }
