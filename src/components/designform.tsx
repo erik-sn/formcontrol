@@ -21,9 +21,15 @@ export default class DesignForm extends React.Component<IDesignProps, {}> {
           breakpoints={{lg: 1200, md: 996, sm: 768, xs: 480, xxs: 0}}
           cols={{lg: 12, md: 10, sm: 6, xs: 4, xxs: 2}}
         >
-          <GridWrapper key="test1" data-grid={{x: 0, y: 0, w: 1, h: 2}}><FormPanel label="test1"  type="input"/></GridWrapper>
-          <GridWrapper key="test2" data-grid={{x: 1, y: 0, w: 3, h: 2, minW: 2, maxW: 4}}><FormPanel label="test1"  type="input"/></GridWrapper>
-          <GridWrapper key="test3" data-grid={{x: 4, y: 0, w: 1, h: 2}}><FormPanel label="test1"  type="input"/></GridWrapper>
+          <GridWrapper key="test1" data-grid={{x: 0, y: 0, w: 1, h: 3}}>
+            <FormPanel label="test1" description="this is an input" type="input"/>
+          </GridWrapper>
+          <GridWrapper key="test2" data-grid={{x: 1, y: 0, w: 3, h: 3, minW: 2, maxW: 4}}>
+            <FormPanel label="test1" description="another input" type="input"/>
+          </GridWrapper>
+          <GridWrapper key="test3" data-grid={{x: 4, y: 0, w: 1, h: 3}}>
+            <FormPanel label="test1" description="a third" type="input"/>
+          </GridWrapper>
         </ResponsiveReactGridLayout>
       </div>
     );

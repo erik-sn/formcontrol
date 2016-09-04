@@ -1,12 +1,30 @@
 @import 'style';
 
 .formpanel-container {
-  display: flex;
   user-select: none;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.formpanel-label-container {
+  flex: 1 1 auto;
+  padding: 5px;
+  margin: 0% 5%;
+  font-size: 1.5rem;
+}
+
+.formpanel-intput-container {
+  flex: 1 1 auto;
 }
 
 .formpanel-input-container input {
   margin: 0% 5%;
   width: 90%;
   user-select: none;
+}
+
+.formpanel-description-container {
+  font-size: 0.75rem;
+  margin: 0% 5%;
 }
