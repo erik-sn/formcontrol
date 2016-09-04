@@ -1,5 +1,22 @@
 @import 'style';
 
+/* Design Panel Styles */
+.design-panel-container {
+
+  h3 {
+    text-align: center;
+  }
+
+
+  color: $secondary;
+}
+
+
+/* Design Form Styles */
+.react-grid-item {
+  border: 1px solid #999;
+}
+
 .formpanel-container {
   user-select: none;
 
@@ -28,6 +45,7 @@
 .formpanel-input {
   border: none;
   width: 90%;
+  background: none;
 }
 
 .formpanel-description-container {

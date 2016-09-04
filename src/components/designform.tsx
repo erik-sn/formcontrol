@@ -1,3 +1,4 @@
+
 import * as React from "react";
 const Responsive = require("react-grid-layout").Responsive; // typescript definitions not available
 const WidthProvider = require("react-grid-layout").WidthProvider;
@@ -34,5 +35,4 @@ export default class DesignForm extends React.Component<IDesignProps, {}> {
       </div>
     );
   }
-
 }

@@ -1,4 +1,5 @@
 if (process.env.BROWSER) {
+  require("../sass/application.scss");
   require("../sass/style.scss");
 }
 
@@ -16,14 +17,26 @@ export interface IApplicationProps {
   test: string;
 }
 
+export interface IApplicationState {
+  design: JSX.Element;
+}
 
-export class Application extends React.Component<IApplicationProps, {}> {
+export class Application extends React.Component<IApplicationProps, IApplicationState> {
+
+  constructor(props: IApplicationProps) {
+    super(props);
+    this.state = {
+      design: <div className="design-container"><DesignForm /><DesignPanel /></div>,
+    };
+  }
+
   public render() {
     const { mode } = this.props.params;
+    const { design } = this.state;
     return (
       <div className="application-container">
         <Navbar />
-        {mode && mode.toLowerCase() === "design" ? <div><DesignForm /><DesignPanel /></div> : <Form />}
+        {mode && mode.toLowerCase() === "design" ? design : <Form /> }
       </div>
     );
   }
