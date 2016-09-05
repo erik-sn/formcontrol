@@ -45,11 +45,15 @@ export default class Input extends React.Component<Props, {}> {
           <g><path d="M7.41 15.41l4.59-4.58 4.59 4.58 1.41-1.41-6-6-6 6z"/></g>
         );
       case "cancel":
-        const d: string = `M12 2c-5.53 0-10 4.47-10 10s4.47 10 10 10 10-4.47 10-10-4.47-10-10-10zm5 13.59l-1.41 
+        const cancel: string = `M12 2c-5.53 0-10 4.47-10 10s4.47 10 10 10 10-4.47 10-10-4.47-10-10-10zm5 13.59l-1.41 
                       1.41-3.59-3.59-3.59 3.59-1.41-1.41 3.59-3.59-3.59-3.59 1.41-1.41 3.59 3.59 3.59-3.59 
                       1.41 1.41-3.59 3.59 3.59 3.59z`;
         return (
-          <g><path d={d} /></g>
+          <g><path d={cancel} /></g>
+        );
+      case "settings":
+        return (
+          <g><path d="M19.43 12.98c.04-.32.07-.64.07-.98s-.03-.66-.07-.98l2.11-1.65c.19-.15.24-.42.12-.64l-2-3.46c-.12-.22-.39-.3-.61-.22l-2.49 1c-.52-.4-1.08-.73-1.69-.98l-.38-2.65c-.03-.24-.24-.42-.49-.42h-4c-.25 0-.46.18-.49.42l-.38 2.65c-.61.25-1.17.59-1.69.98l-2.49-1c-.23-.09-.49 0-.61.22l-2 3.46c-.13.22-.07.49.12.64l2.11 1.65c-.04.32-.07.65-.07.98s.03.66.07.98l-2.11 1.65c-.19.15-.24.42-.12.64l2 3.46c.12.22.39.3.61.22l2.49-1c.52.4 1.08.73 1.69.98l.38 2.65c.03.24.24.42.49.42h4c.25 0 .46-.18.49-.42l.38-2.65c.61-.25 1.17-.59 1.69-.98l2.49 1c.23.09.49 0 .61-.22l2-3.46c.12-.22.07-.49-.12-.64l-2.11-1.65zm-7.43 2.52c-1.93 0-3.5-1.57-3.5-3.5s1.57-3.5 3.5-3.5 3.5 1.57 3.5 3.5-1.57 3.5-3.5 3.5z"></path></g>
         );
       default:
         return undefined;
@@ -57,9 +61,7 @@ export default class Input extends React.Component<Props, {}> {
   }
 
   public click() {
-    const { id, onClick } = this.props;
-    console.log(id);
-    onClick(id);
+    this.props.onClick(this.props.id);
   }
 
   public render() {
@@ -72,7 +74,7 @@ export default class Input extends React.Component<Props, {}> {
     };
 
     return (
-      <div className="formcontrol-icon" onClick={this.click}>
+      <div className={`formcontrol-icon formcontrol-icon-${icon}`} onClick={this.click}>
         <svg
           viewBox="0 0 24 24"
           preserveAspectRatio="xMidYMid meet"

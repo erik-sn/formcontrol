@@ -14,25 +14,39 @@ import {  removePanel, updatePanels } from "../actions/actions.tsx";
 import { DesignReducer, Layout, Panel, ReducerAction, ReduxState } from "../utils/interfaces.tsx";
 import Input from "./inputs/input.tsx";
 import GridWrapper from "./utility/gridwrapper.tsx";
+import Modal from "./utility/modal.tsx";
 
-interface Props { 
+interface Props {
   design: DesignReducer;
   panels: Array<Panel>;
   updatePanels: (panels: Array<Panel>) => ReducerAction;
   removePanel: (id: string) => ReducerAction;
 }
 
-interface State {  }
+interface State {
+  showModal?: boolean;
+  modal?: JSX.Element;
+ }
 
 export class DesignForm extends React.Component<Props, State> {
 
   constructor(props: Props) {
     super(props);
     this.state = {
+      showModal: false,
+      modal: undefined,
     };
     this.updateLayouts = this.updateLayouts.bind(this);
+    this.closePanel = this.closePanel.bind(this);
   }
 
+  /**
+   * Return a JSX component with a label based on the type parameter
+   * 
+   * @param {string} type - type of the component
+   * @param {string} label - label that should be applied to the generated component
+   * @returns {JSX.Element}
+   */
   public getType(type: string, label: string): JSX.Element {
     switch (type) {
       case "input":
@@ -44,7 +58,62 @@ export class DesignForm extends React.Component<Props, State> {
     }
   }
 
-  public processPanels(panels: Array<Panel>) {
+  /**
+   * Called when a user clicks the close button on a panel. Opens a modal
+   * with a dialogue and asks for their confirmation. If the user confirms
+   * the redux action removePanel is called with the specified parameter id.
+   * 
+   * If the user denies then nothing happens. After any user input showModal is
+   * set to false and the modal should close.
+   * 
+   * @param {string} id
+   */
+  public closePanel(id: string) {
+    // generate a message string and response function for a modal
+    const message: string = "Are you sure you want to close this panel?";
+    const response: (response: boolean) => void = (input) => {
+      if (input) {
+        this.props.removePanel(id);
+      }
+      this.setState({ showModal: false });
+    };
+    this.showModal(message, response);
+  }
+
+  /**
+   * Generate a modal component with a specified input and response
+   * 
+   * @param {string} message
+   * @param {(response: boolean) => void} response
+   */
+  public showModal(message: string, response: (response: boolean) => void): void {
+    const modal: JSX.Element = (
+      <Modal message={message} response={response} />
+    );
+    this.setState({ modal, showModal: true });
+  }
+
+
+  /**
+   * Map over panel objects and return JSX components. These components
+   * are of types:
+   * - Input
+   * - Select/Combobox
+   * - Radio
+   * - Checkbox
+   * - Buttons
+   * 
+   * It is necessary to wrap the child components in a GridWrapper due to the
+   * react-grid-layout library. Due to the way the library works custom children
+   * do not have all of the library props passed to them, so the GridWrapper acts
+   * as a container for them.
+   * 
+   * See: https://github.com/STRML/react-grid-layout/issues/14
+   * 
+   * @param {Array<Panel>} panels
+   * @returns {Array<JSX.Element>}
+   */
+  public processPanels(panels: Array<Panel>): Array<JSX.Element> {
     return panels.map((panel, index) => {
       const child = this.getType(panel.type, panel.id);
       if (!child) {
@@ -52,7 +121,7 @@ export class DesignForm extends React.Component<Props, State> {
       }
       return (
         <GridWrapper
-          close={this.props.removePanel}
+          close={this.closePanel}
           id={panel.id}
           key={`${panel.id}`}
           data-grid={panel.layout}
@@ -74,11 +143,13 @@ export class DesignForm extends React.Component<Props, State> {
   }
 
   public render() {
+    const { showModal, modal } = this.state;
     const { panels } = this.props;
     return (
       <div className="design-form-container">
+        {showModal ? modal : ""}
         <ResponsiveReactGridLayout
-          onLayoutChange={this.updateLayouts} 
+          onLayoutChange={this.updateLayouts}
           className="layout"
           rowHeight={30}
           width={1200}

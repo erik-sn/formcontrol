@@ -48,8 +48,6 @@
   padding-left: 10px;
   margin: 0% 5%;
   width: 85%;
-  background: none;
-  border: none;
 }
 
 .react-grid-item {
@@ -57,15 +55,30 @@
   border: 1px solid $primary;
   background: $secondary;
 
-  .formcontrol-icon {
+
+  .formcontrol-icon svg:hover {
+    color: $secondary;
+    cursor: pointer;
+    transition: 0.1s ease-in-out;
+  }
+
+  .formcontrol-icon-cancel {
     position: fixed;
     top: 1px;
     right: 1px;
+    color: $primary;
+    transition: 0.25s ease-in-out;
   }
 
-  .formcontrol-icon:hover {
-    cursor: pointer;
+  .formcontrol-icon-settings {
+    position: fixed;
+    top: 1px;
+    left: 1px;
+    color: $primary;
+    
+    transition: 0.25s ease-in-out;
   }
+
 }
 
 .formpanel-container {
@@ -79,6 +92,8 @@
 /* Styling related to Input component */
 .formpanel-input-container {
 
+  margin-top: 10px;
+
   div {
     flex: 1 1 auto;
 
@@ -89,12 +104,17 @@
 
   .input-label-container input {
     font-size: 1.5rem;
+    background: none;
+    border: none;
   }
+
   .input-container input {
     font-size: 1rem;
   }
   .input-description-container input {
     font-size: 0.75rem;
+    background: none;
+    border: none;
   }
 
 

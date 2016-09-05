@@ -74,5 +74,8 @@ export interface InputState {
  * @interface ChangeEvent
  */
 export interface ChangeEvent {
-  target: { value: string};
+  target: {
+    value?: string
+    innerHTML?: string;
+  };
 }
