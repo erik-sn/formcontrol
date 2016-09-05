@@ -1,17 +1,26 @@
 
 import { expect } from "chai";
+import * as React from "react";
 import * as sinon from "sinon";
 
-import ConnectedApplication, { Application } from "../../src/components/application.tsx";
+import { Application, Props } from "../../src/components/application.tsx";
 import { sRender } from "../test_helper.tsx";
+
 
 describe("Application" , () => {
 
   describe("Application in design mode" , () => {
     let component: any;
-    const props = {
+    const props: Props = {
       params: {
         mode: "design",
+      },
+      route: {},
+      display: {
+        modal: {
+          showModal: false,
+          modal: undefined,
+        },
       },
     };
     const state = {};
@@ -38,13 +47,33 @@ describe("Application" , () => {
       expect(component.find("Form")).to.have.length(0);
     });
 
+    it("has modal only if showModal is true", () => {
+      expect(component.find(".modal-container")).to.have.length(0);
+      console.log(component.find("application-container"));
+      const newProps = props;
+      newProps.display.modal = {
+        showModal: true,
+        modal: <div className="modal-container" />,
+      };
+      component = sRender(Application, newProps, state);
+      expect(component.find(".modal-container")).to.have.length(1);
+    });
+
 
   });
 
   describe("Application in input mode" , () => {
     let component: any;
-    const props = {
+    const props: Props = {
       params: {
+        mode: "input",
+      },
+      route: {},
+      display: {
+        modal: {
+          showModal: false,
+          modal: undefined,
+        },
       },
     };
     const state = {};

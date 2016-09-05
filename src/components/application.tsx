@@ -5,25 +5,25 @@ if (process.env.BROWSER) {
 import * as React from "react";
 import { connect } from "react-redux";
 
+import { ReduxState, DisplayReducer } from "../utils/interfaces.tsx";
 import DesignForm from "./designform.tsx";
 import DesignPanel from "./designpanel.tsx";
 import Form from "./form.tsx";
 import Navbar from "./navbar.tsx";
 
-interface IReduxState { test: string; }
-interface IApplicationProps {
+export interface Props {
   params: { mode: string };
   route: {};
-  test: string;
+  display: DisplayReducer;
 }
 
-interface IApplicationState {
+export interface State {
   design: JSX.Element;
 }
 
-export class Application extends React.Component<IApplicationProps, IApplicationState> {
+export class Application extends React.Component<Props, State> {
 
-  constructor(props: IApplicationProps) {
+  constructor(props: Props) {
     super(props);
     this.state = {
       design: <div className="design-container"><DesignForm /><DesignPanel /></div>,
@@ -31,17 +31,23 @@ export class Application extends React.Component<IApplicationProps, IApplication
   }
 
   public render() {
+    const { modal } = this.props.display;
     const { mode } = this.props.params;
     const { design } = this.state;
     return (
-      <div className="application-container">
-        <Navbar />
-        {mode && mode.toLowerCase() === "design" ? design : <Form /> }
+      <div>
+        {modal.showModal ? modal.modal : ""}
+        <div className="application-container" style={modal.showModal ? { opacity: "0.4"} : { opacity: "1"}} >
+          <Navbar />
+          {mode && mode.toLowerCase() === "design" ? design : <Form /> }
+        </div>
       </div>
     );
   }
 }
 
-const mapStateToProps = (state: IReduxState) => ({ test: "Hello"});
+const mapStateToProps = (state: ReduxState) => ({
+  display: state.display,
+});
 
 export default connect(mapStateToProps)(Application);

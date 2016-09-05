@@ -2,12 +2,20 @@
  * Redux Interfaces
  *********************************************/
 
-export interface ReduxState { 
+export interface ReduxState {
   design: DesignReducer;
+  display: DisplayReducer;
 }
 
 export interface DesignReducer {
   panels: Array<Panel>;
+}
+
+export interface DisplayReducer {
+  modal: {
+    showModal: boolean;
+    modal: JSX.Element
+  };
 }
 
 export interface ReducerAction {

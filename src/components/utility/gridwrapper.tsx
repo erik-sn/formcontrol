@@ -7,6 +7,7 @@ interface IProps {
   key: string;
   id: string;
   close: (id: string) => void;
+  settings: (id: string) => void;
 }
 
 export default class GridWrapper extends React.Component<IProps, {}> {
@@ -20,7 +21,7 @@ export default class GridWrapper extends React.Component<IProps, {}> {
     return (
       <div {...this.props}>
           <Icon onClick={this.props.close} id={this.props.id} size={20} icon="cancel" />
-          <Icon onClick={this.props.close} id={this.props.id} size={20} icon="settings" />
+          <Icon onClick={this.props.settings} id={this.props.id} size={20} icon="settings" />
           {newChildren}
       </div>
     );

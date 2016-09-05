@@ -10,7 +10,7 @@ import * as _ from "lodash";
 import * as React from "react";
 import { connect } from "react-redux";
 
-import {  removePanel, updatePanels } from "../actions/actions.tsx";
+import {  removePanel, updatePanels, showModal, hideModal } from "../actions/actions.tsx";
 import { DesignReducer, Layout, Panel, ReducerAction, ReduxState } from "../utils/interfaces.tsx";
 import Input from "./inputs/input.tsx";
 import GridWrapper from "./utility/gridwrapper.tsx";
@@ -21,6 +21,8 @@ interface Props {
   panels: Array<Panel>;
   updatePanels: (panels: Array<Panel>) => ReducerAction;
   removePanel: (id: string) => ReducerAction;
+  showModal: (modal: JSX.Element) => ReducerAction;
+  hideModal: () => ReducerAction;
 }
 
 interface State {
@@ -68,29 +70,21 @@ export class DesignForm extends React.Component<Props, State> {
    * 
    * @param {string} id
    */
-  public closePanel(id: string) {
+  public closePanel(id: string): void {
     // generate a message string and response function for a modal
     const message: string = "Are you sure you want to close this panel?";
     const response: (response: boolean) => void = (input) => {
       if (input) {
         this.props.removePanel(id);
       }
-      this.setState({ showModal: false });
+      this.props.hideModal();
     };
-    this.showModal(message, response);
+    console.log(message, response);
+    this.props.showModal(<Modal message={message} response={response} />);
   }
 
-  /**
-   * Generate a modal component with a specified input and response
-   * 
-   * @param {string} message
-   * @param {(response: boolean) => void} response
-   */
-  public showModal(message: string, response: (response: boolean) => void): void {
-    const modal: JSX.Element = (
-      <Modal message={message} response={response} />
-    );
-    this.setState({ modal, showModal: true });
+  public showSettings(id: string): void {
+    console.log(id);
   }
 
 
@@ -103,9 +97,9 @@ export class DesignForm extends React.Component<Props, State> {
    * - Checkbox
    * - Buttons
    * 
-   * It is necessary to wrap the child components in a GridWrapper due to the
-   * react-grid-layout library. Due to the way the library works custom children
-   * do not have all of the library props passed to them, so the GridWrapper acts
+   * It is necessary to wrap the child components in a GridWrapper. Due to the way 
+   * the react-grid-layoutlibrary works custom children do not have all of the library 
+   * props passed to them, so the GridWrapper acts
    * as a container for them.
    * 
    * See: https://github.com/STRML/react-grid-layout/issues/14
@@ -122,6 +116,7 @@ export class DesignForm extends React.Component<Props, State> {
       return (
         <GridWrapper
           close={this.closePanel}
+          settings={this.showSettings}
           id={panel.id}
           key={`${panel.id}`}
           data-grid={panel.layout}
@@ -167,4 +162,4 @@ const mapStateToProps = (state: ReduxState) => ({
   panels: state.design.panels,
 });
 
-export default connect(mapStateToProps, { updatePanels, removePanel })(DesignForm);
+export default connect(mapStateToProps, { updatePanels, removePanel, showModal, hideModal })(DesignForm);

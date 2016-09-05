@@ -1,4 +1,5 @@
-import { ADD_PANEL, CLEAR_PANELS, REMOVE_PANEL, UPDATE_PANELS } from "./constants.tsx";
+import { ADD_PANEL, CLEAR_PANELS, HIDE_MODAL, REMOVE_PANEL, SHOW_MODAL,
+  UPDATE_PANELS  } from "./constants.tsx";
 
 import { Panel, ReducerAction  } from "../utils/interfaces.tsx";
 
@@ -29,3 +30,24 @@ export function updatePanels(panels: Array<Panel>): ReducerAction {
     type: UPDATE_PANELS,
   };
 }
+
+export function showModal(modal: JSX.Element): ReducerAction {
+  return {
+    payload: {
+        showModal: true,
+        modal,
+      },
+    type: SHOW_MODAL,
+  };
+}
+
+export function hideModal(): ReducerAction {
+  return {
+    payload: {
+        showModal: false,
+        undefined,
+      },
+    type: HIDE_MODAL,
+  };
+}
+

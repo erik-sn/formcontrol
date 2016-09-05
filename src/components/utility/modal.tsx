@@ -1,3 +1,7 @@
+if (process.env.BROWSER) {
+  require("../../sass/modal.scss");
+}
+
 import * as React from "react";
 
 import { ChangeEvent } from "../../utils/interfaces.tsx";
@@ -33,8 +37,8 @@ export default class DesignPanelItem extends React.Component<Props, {}> {
       <div className="modal-container">
         <div className="message-container">{message}</div>
         <div className="response-container">
-          <div onClick={this.respond} className="confirm-button">Yes</div>
-          <div onClick={this.respond} className="deny-button">No</div>
+          <button onClick={this.respond} className="modal-button confirm-button">Yes</button>
+          <button onClick={this.respond} className="deny-button">No</button>
         </div>
       </div>
     );
