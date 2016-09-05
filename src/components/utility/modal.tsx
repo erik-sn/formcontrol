@@ -6,7 +6,7 @@ import * as React from "react";
 
 import { ChangeEvent } from "../../utils/interfaces.tsx";
 
-interface Props {
+export interface Props {
   response: (response: boolean) => void;
   message: string;
  }
@@ -38,7 +38,7 @@ export default class DesignPanelItem extends React.Component<Props, {}> {
         <div className="message-container">{message}</div>
         <div className="response-container">
           <button onClick={this.respond} className="modal-button confirm-button">Yes</button>
-          <button onClick={this.respond} className="deny-button">No</button>
+          <button onClick={this.respond} className="modal-button deny-button">No</button>
         </div>
       </div>
     );

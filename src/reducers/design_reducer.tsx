@@ -1,4 +1,4 @@
-import { ADD_PANEL, REMOVE_PANEL, CLEAR_PANELS, UPDATE_PANELS } from "../actions/constants.tsx";
+import { ADD_PANEL, CLEAR_PANELS,  REMOVE_PANEL, UPDATE_PANELS } from "../actions/constants.tsx";
 
 import { DesignReducer, ReducerAction } from "../utils/interfaces.tsx";
 
@@ -18,7 +18,7 @@ export default function (state = INITIAL_STATE, action: ReducerAction) {
 
     case CLEAR_PANELS:
       return {
-        panels: [],
+        panels: INITIAL_STATE.panels,
       };
 
     case UPDATE_PANELS:
