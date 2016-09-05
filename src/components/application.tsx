@@ -1,5 +1,4 @@
 if (process.env.BROWSER) {
-  require("../sass/application.scss");
   require("../sass/style.scss");
 }
 

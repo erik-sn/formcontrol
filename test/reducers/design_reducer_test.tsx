@@ -21,44 +21,24 @@ describe("Design Reducers" , () => {
   });
 
   it("should add a design panel", () => {
-    expect(
-      reducer({ panels: [panels[0]]}, { type: types.ADD_PANEL, payload: panels[1]})
-    ).to.deep.equal(
-      {
-        panels,
-      }
-    )
+    const result = reducer({ panels: [panels[0]]}, { type: types.ADD_PANEL, payload: panels[1]});
+    expect(result).to.deep.equal({panels,})
   });
 
 
   it("should remove a panel based on its id", () => {
-    expect(
-      reducer({ panels }, { type: types.REMOVE_PANEL, payload: "b1"})
-    ).to.deep.equal(
-      {
-        panels: [panels[1]],
-      }
-    )
+    const result = reducer({ panels }, { type: types.REMOVE_PANEL, payload: { id: "b1" }})
+    expect(result.panels).to.deep.equal([panels[1]]);
   });
 
   it("should remove a design panel", () => {
-    expect(
-      reducer({ panels }, { type: types.CLEAR_PANELS, payload: undefined})
-    ).to.deep.equal(
-      {
-        panels: [],
-      }
-    )
+    const result = reducer({ panels }, { type: types.CLEAR_PANELS, payload: undefined});
+    expect(result).to.deep.equal({panels: [],})
   });
 
   it("should update all panels", () => {
-    expect(
-      reducer({panels: []}, { type: types.UPDATE_PANELS, payload: panels})
-    ).to.deep.equal(
-      {
-        panels: panels,
-      }
-    )
+    const result = reducer({panels: []}, { type: types.UPDATE_PANELS, payload: panels})
+    expect(result).to.deep.equal({ panels: panels,});
   });
 
 });

@@ -11,12 +11,13 @@ import * as _ from "lodash";
 import Input from "./inputs/input.tsx";
 import GridWrapper from "./utility/gridwrapper.tsx";
 import { Panel, ReduxState, DesignReducer, Layout, ReducerAction } from "../utils/interfaces.tsx";
-import { updatePanels } from "../actions/actions.tsx";
+import { updatePanels, removePanel } from "../actions/actions.tsx";
 
 interface Props { 
   design: DesignReducer;
   panels: Array<Panel>;
   updatePanels: (panels: Array<Panel>) => ReducerAction;
+  removePanel: (id: string) => ReducerAction;
 }
 
 interface State {  }
@@ -50,7 +51,11 @@ export class DesignForm extends React.Component<Props, State> {
       const child = this.getType(panel.type, panel.id)
       if (!child) return undefined;
       return (
-        <GridWrapper key={`${panel.id}`} data-grid={panel.layout}>
+        <GridWrapper
+          close={() => this.props.removePanel(panel.id)}
+          key={`${panel.id}`}
+          data-grid={panel.layout}
+        >
           {child}
         </GridWrapper>
       );
@@ -61,7 +66,7 @@ export class DesignForm extends React.Component<Props, State> {
   public updateLayouts(layouts: any) {
     const { panels, updatePanels } = this.props;
     const combined: Array<Panel> = panels.map(panel => {
-      panel.layout = layouts.find((layout: Layout) => layout.i === panel.id);
+      panel.layout = _.find(layouts, (layout: Layout) => layout.i === panel.id);
       return panel;
     });
     updatePanels(combined);
@@ -91,4 +96,4 @@ const mapStateToProps = (state: ReduxState) => ({
   panels: state.design.panels,
 });
 
-export default connect(mapStateToProps, { updatePanels })(DesignForm);
+export default connect(mapStateToProps, { updatePanels, removePanel })(DesignForm);

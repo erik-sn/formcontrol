@@ -13,7 +13,7 @@ export default function (state = INITIAL_STATE, action: ReducerAction) {
 
     case REMOVE_PANEL:
       return {
-        panels: state.panels.filter(panel => panel.id !== action.payload),
+        panels: state.panels.filter(panel => panel.id !== action.payload.id),
       }
 
     case CLEAR_PANELS:

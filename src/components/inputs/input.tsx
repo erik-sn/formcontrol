@@ -46,23 +46,21 @@ export default class Input extends React.Component<Props, InputState> {
   public render() {
     const { label, description } = this.state;
     return (
-     <div className="formpanel-container">
-        <div className="formpanel-input-label">
+     <div className="formpanel-input-container">
+        <div className="input-label-container">
           <input
             type="text"
-            className="formpanel-input"
             value={label}
             onChange={this.updateLabel}
             placeholder="Enter Label..."
           />
         </div>
-        <div className="formpanel-input-container">
+        <div className="input-container">
           <input type="text" value="" placeholder={`Value for ${label ? label : "..."}`} disabled />
         </div>
-        <div className="formpanel-input-description">
+        <div className="input-description-container">
           <input
             type="text"
-            className="formpanel-input"
             value={description}
             onChange={this.updateDescription}
             placeholder="Enter Description..."

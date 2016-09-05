@@ -8,3 +8,9 @@ body {
   margin: 0px;
   font-family: 'PT Sans', sans-serif;
 }
+
+@mixin shadow($h: 0px, $v: 0px, $b: 3px, $s: 3px, $color: $primary) {
+  -webkit-box-shadow: $h $v $b $s $color;
+  -moz-box-shadow:    $h $v $b $s $color;
+  box-shadow:         $h $v $b $s $color;
+}
