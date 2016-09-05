@@ -8,6 +8,7 @@ export interface ReduxState {
 export interface DesignReducer {
   panels: Array<Panel>;
 }
+
 export interface ReducerAction {
   type: string;
   payload: Object;
@@ -18,7 +19,6 @@ export interface ReducerAction {
  */
 export interface Panel {
   type: string;
-  payload: Object;
 }
 
 /**

@@ -27,7 +27,7 @@ describe("Application" , () => {
 
     it("has design components", () => {
       expect(component.find("DesignPanel")).to.have.length(1);
-      expect(component.find("DesignForm")).to.have.length(1);
+      expect(component.find("Connect(DesignForm)")).to.have.length(1);
     });
 
     it("has a navbar", () => {
