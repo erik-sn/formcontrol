@@ -4,13 +4,13 @@
 .design-panel-container {
     color: $secondary;
 
-  h3 {
+  h2 {
     text-align: center;
   }
 
   .panel-item {
     padding: 10px;
-    font-size: 1.25rem;
+    font-size: 1.15rem;
     cursor: pointer;
     transition: 0.1s ease-in-out;
   }
@@ -19,6 +19,12 @@
     color: $primary;
     background: $secondary;
     transition: 0.15s ease-in-out;
+  }
+
+  #design-panel-clear {
+    font-size: 1.25rem;
+    padding: 20px;
+    text-align: center;
   }
 
 }

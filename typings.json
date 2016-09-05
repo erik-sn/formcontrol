@@ -7,6 +7,7 @@
     "express-serve-static-core": "registry:dt/express-serve-static-core#4.0.0+20160829034835",
     "jquery": "registry:dt/jquery#1.10.0+20160704162008",
     "jsdom": "registry:dt/jsdom#2.0.0+20160316155526",
+    "lodash": "registry:dt/lodash#4.14.0+20160830145422",
     "mime": "registry:dt/mime#0.0.0+20160316155526",
     "mocha": "registry:dt/mocha#2.2.5+20160720003353",
     "morgan": "registry:dt/morgan#1.7.0+20160524142355",

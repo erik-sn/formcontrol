@@ -5,7 +5,10 @@ import * as interfaces from "../../src/utils/interfaces.tsx";
 
 describe("Design Reducers" , () => {
 
-  const panels = [{ id: "b1", type: "input" }, { id: "b2", type: "select"},];
+  const panels = [
+    { id: "b1", type: "input", layout: {x: 0, y: 0, w: 1, h: 3 }, }, 
+    { id: "b2", type: "select", layout: {x: 0, y: 0, w: 1, h: 3 }, },
+  ];
 
   it("should return the initial state", () => {
     expect(
@@ -47,6 +50,17 @@ describe("Design Reducers" , () => {
       }
     )
   });
+
+  it("should update all panels", () => {
+    expect(
+      reducer({panels: []}, { type: types.UPDATE_PANELS, payload: panels})
+    ).to.deep.equal(
+      {
+        panels: panels,
+      }
+    )
+  });
+
 });
 
 

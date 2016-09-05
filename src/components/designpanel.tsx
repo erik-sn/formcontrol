@@ -3,9 +3,13 @@ import DesignPanelItem from "./designpanel_item.tsx";
 import { connect } from "react-redux";
 import { Panel, ReducerAction, ReduxState } from "../utils/interfaces.tsx";
 import { generateId } from "../utils/functions.tsx";
-import { addPanel } from "../actions/actions.tsx";
+import { addPanel, clearPanels } from "../actions/actions.tsx";
 
-interface Props { addPanel: (panel: Panel) => ReducerAction }
+interface Props { 
+  addPanel: (panel: Panel) => ReducerAction;
+  clearPanels: () => ReducerAction;
+}
+
 
 export class DesignPanel extends React.Component<Props, {}> {
 
@@ -18,6 +22,7 @@ export class DesignPanel extends React.Component<Props, {}> {
     const panel: Panel = {
       id: generateId(),
       type: type.toLowerCase(),
+      layout: {x: 0, y: 0, w: 1, h: 3 }, 
     }
     this.props.addPanel(panel);
   }
@@ -31,10 +36,12 @@ export class DesignPanel extends React.Component<Props, {}> {
   }
 
   public render() {
+    const { clearPanels } = this.props;
     return (
       <div className="design-panel-container">
-        <h3>Configure a Component</h3>
+        <h2>Form Configuration</h2>
         {this.generateElements()}
+        <div onClick={() => clearPanels()} id="design-panel-clear" className="panel-item">Clear Panels</div>
       </div>
     );
   }
@@ -46,4 +53,4 @@ const mapStateToProps = (state: ReduxState) => ({
 });
 
 
-export default connect(mapStateToProps, { addPanel })(DesignPanel);
+export default connect(mapStateToProps, { addPanel, clearPanels })(DesignPanel);

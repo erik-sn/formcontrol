@@ -20,6 +20,15 @@ export interface ReducerAction {
 export interface Panel {
   id?: string;
   type: string;
+  layout: Layout;
+}
+
+export interface Layout {
+  w: number;
+  h: number;
+  x: number;
+  y: number;
+  i?: string;
 }
 
 /**

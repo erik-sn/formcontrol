@@ -4,22 +4,34 @@ if (process.env.BROWSER) {
 const Responsive = require("react-grid-layout").Responsive; // typescript definitions not available
 const WidthProvider = require("react-grid-layout").WidthProvider;
 const ResponsiveReactGridLayout = WidthProvider(Responsive);
-
 import * as React from "react";
 import { connect } from "react-redux";
-import { Panel, ReduxState, DesignReducer } from "../utils/interfaces.tsx";
+import * as _ from "lodash";
+
 import Input from "./inputs/input.tsx";
 import GridWrapper from "./utility/gridwrapper.tsx";
+import { Panel, ReduxState, DesignReducer, Layout, ReducerAction } from "../utils/interfaces.tsx";
+import { updatePanels } from "../actions/actions.tsx";
 
+interface Props { 
+  design: DesignReducer;
+  panels: Array<Panel>;
+  updatePanels: (panels: Array<Panel>) => ReducerAction;
+}
 
-interface Props { design: DesignReducer, panels: Array<Panel>; }
+interface State {  }
 
-export class DesignForm extends React.Component<Props, {}> {
+export class DesignForm extends React.Component<Props, State> {
 
   constructor(props: Props) {
     super(props);
     this.state = {
     };
+    this.updateLayouts = this.updateLayouts.bind(this);
+  }
+
+  public shouldComponentUpdate(nextProps: Props, nextState: State) {
+    return true; 
   }
 
   public getType(type: string, label: string): JSX.Element {
@@ -38,7 +50,7 @@ export class DesignForm extends React.Component<Props, {}> {
       const child = this.getType(panel.type, panel.id)
       if (!child) return undefined;
       return (
-        <GridWrapper key={`${index}`} data-grid={{x: 0, y: 0, w: 1, h: 3}}>
+        <GridWrapper key={`${panel.id}`} data-grid={panel.layout}>
           {child}
         </GridWrapper>
       );
@@ -46,11 +58,22 @@ export class DesignForm extends React.Component<Props, {}> {
     .filter(panel => panel !== undefined);
   }
 
+  public updateLayouts(layouts: any) {
+    const { panels, updatePanels } = this.props;
+    const combined: Array<Panel> = panels.map(panel => {
+      panel.layout = layouts.find((layout: Layout) => layout.i === panel.id);
+      return panel;
+    });
+    updatePanels(combined);
+  }
+
   public render() {
     const { panels } = this.props;
+    console.log(panels);
     return (
       <div className="design-form-container">
         <ResponsiveReactGridLayout
+          onLayoutChange={this.updateLayouts} 
           className="layout"
           rowHeight={30}
           width={1200}
@@ -68,4 +91,4 @@ const mapStateToProps = (state: ReduxState) => ({
   panels: state.design.panels,
 });
 
-export default connect(mapStateToProps)(DesignForm);
+export default connect(mapStateToProps, { updatePanels })(DesignForm);

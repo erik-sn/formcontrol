@@ -1,4 +1,4 @@
-import { ADD_PANEL, REMOVE_PANEL, CLEAR_PANELS } from "./constants.tsx";
+import { ADD_PANEL, REMOVE_PANEL, CLEAR_PANELS, UPDATE_PANELS } from "./constants.tsx";
 
 import { ReducerAction, Panel } from "../utils/interfaces.tsx";
 
@@ -16,10 +16,16 @@ export function removePanel(id: string): ReducerAction {
   };
 }
 
-
 export function clearPanels(): ReducerAction {
   return {
     payload: undefined,
     type: CLEAR_PANELS,
+  };
+}
+
+export function updatePanels(panels: Array<Panel>): ReducerAction {
+  return {
+    payload: panels,
+    type: UPDATE_PANELS,
   };
 }

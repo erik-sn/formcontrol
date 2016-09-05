@@ -7,17 +7,18 @@ describe("Actions" , () => {
 
   describe("Design Actions" , () => {
 
+    const panels: Array<interfaces.Panel> = [
+      { id: "b1", type: "input", layout: {x: 0, y: 0, w: 1, h: 3 }, }, 
+      { id: "b2", type: "select", layout: {x: 0, y: 0, w: 1, h: 3 }, },
+    ];
+
     it("should create an action to add a panel", () => {
-      const panel = { 
-        id: "b1",
-        type: "input",
-      };
       const expectedAction = {
-        payload: panel,
+        payload: panels[0],
         type: types.ADD_PANEL,
       }
-      expect(actions.addPanel(panel).type).to.equal(expectedAction.type)
-      expect(actions.addPanel(panel).payload).to.equal(expectedAction.payload)
+      expect(actions.addPanel(panels[0]).type).to.equal(expectedAction.type)
+      expect(actions.addPanel(panels[0]).payload).to.equal(expectedAction.payload)
     });
 
     it("should create an action to delete a panel", () => {
@@ -34,6 +35,14 @@ describe("Actions" , () => {
         type: types.CLEAR_PANELS,
       }
       expect(actions.clearPanels()).deep.equal(expectedAction)
+    });
+
+    it("should create an action to update panels with their layout", () => {
+      const expectedAction: any = {
+        payload: panels,
+        type: types.UPDATE_PANELS,
+      }
+      expect(actions.updatePanels(panels)).deep.equal(expectedAction)
     });
 
   });
