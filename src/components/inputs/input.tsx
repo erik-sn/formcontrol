@@ -1,4 +1,4 @@
-import { IChangeEvent } from "../../../src/utils/interfaces.tsx";
+import { ChangeEvent } from "../../../src/utils/interfaces.tsx";
 import * as React from "react";
 
 export interface IInputProps {
@@ -23,11 +23,11 @@ export default class Input extends React.Component<IInputProps, IInputState> {
     this.updateDescription = this.updateDescription.bind(this);
   }
 
-  public updateLabel(e: IChangeEvent): void {
+  public updateLabel(e: ChangeEvent): void {
     this.setState({ label: e.target.value });
   }
 
-  public updateDescription(e: IChangeEvent): void {
+  public updateDescription(e: ChangeEvent): void {
     this.setState({ description: e.target.value });
   }
 
@@ -35,7 +35,7 @@ export default class Input extends React.Component<IInputProps, IInputState> {
     const { label, description } = this.state;
     return (
      <div className="formpanel-container">
-        <div className="formpanel-label-container">
+        <div className="formpanel-input-label">
           <input
             type="text"
             className="formpanel-input"
@@ -47,7 +47,7 @@ export default class Input extends React.Component<IInputProps, IInputState> {
         <div className="formpanel-input-container">
           <input type="text" value="" placeholder={`Value for ${label ? label : "..."}`} disabled />
         </div>
-        <div className="formpanel-description-container">
+        <div className="formpanel-input-description">
           <input
             type="text"
             className="formpanel-input"

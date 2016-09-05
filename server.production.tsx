@@ -10,7 +10,7 @@ import { renderToString } from "react-dom/server";
 import { RouterContext, match } from "react-router";
 import { Provider } from "react-redux";
 
-import reducers from "./src/reducers/";
+import reducers from "./src/reducers/root.tsx";
 import routes from "./src/routes/";
 
 

@@ -4,7 +4,7 @@ import * as  React from "react";
 import  * as ReactDOM from "react-dom";
 import { Provider } from "react-redux";
 import { createStore } from "redux";
-import reducers from "../src/reducers/";
+import reducers from "../src/reducers/root.tsx";
 
 declare const global: any;
 const doc = jsdom.jsdom("<!doctype html><html><body></body></html>");

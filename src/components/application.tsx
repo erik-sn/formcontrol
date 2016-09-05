@@ -11,13 +11,14 @@ import DesignPanel from "./designpanel.tsx";
 import Form from "./form.tsx";
 import Navbar from "./navbar.tsx";
 
-export interface IApplicationProps {
+interface IReduxState { test: string; }
+interface IApplicationProps {
   params: { mode: string };
   route: {};
   test: string;
 }
 
-export interface IApplicationState {
+interface IApplicationState {
   design: JSX.Element;
 }
 
@@ -42,10 +43,6 @@ export class Application extends React.Component<IApplicationProps, IApplication
   }
 }
 
-
-interface IReduxState { test: string; }
-
 const mapStateToProps = (state: IReduxState) => ({ test: "Hello"});
-
 
 export default connect(mapStateToProps)(Application);

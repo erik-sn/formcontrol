@@ -1,7 +1,9 @@
 import { combineReducers } from "redux";
 
+import DesignReducer from "./design_reducer.tsx";
+
 const rootReducer = combineReducers({
-  state: (state = {}) => state,
+  design: DesignReducer,
 });
 
 export default rootReducer;

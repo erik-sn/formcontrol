@@ -1,19 +1,48 @@
-
-import * as React from "react";
+if (process.env.BROWSER) {
+  require("../sass/design.scss");
+}
 const Responsive = require("react-grid-layout").Responsive; // typescript definitions not available
 const WidthProvider = require("react-grid-layout").WidthProvider;
 const ResponsiveReactGridLayout = WidthProvider(Responsive);
 
-import FormPanel from "./formpanel.tsx";
+import * as React from "react";
+import { connect } from "react-redux";
+import { Panel, ReduxState, DesignReducer } from "../utils/interfaces.tsx";
+import Input from "./inputs/input.tsx";
 import GridWrapper from "./utility/gridwrapper.tsx";
 
-export interface IDesignProps {  }
-export interface IPanel { label: string; type: string; dataGrid: Object; }
 
-export default class DesignForm extends React.Component<IDesignProps, {}> {
+interface Props { design: DesignReducer, panels: Array<Panel>; }
+
+export class DesignForm extends React.Component<Props, {}> {
+
+  constructor(props: Props) {
+    super(props);
+    this.state = {
+    };
+  }
+
+  public getType(type: string, label: string): JSX.Element {
+    switch (type) {
+      case "input":
+        return <Input description="" label={label} />;
+      case "select":
+        return <select disabled />;
+      default:
+        return <div />;
+    }
+  }
+
+  public processPanels(panels: Array<Panel>) {
+    return panels.map(panel => (
+      <GridWrapper key="test1" data-grid={{x: 0, y: 0, w: 1, h: 3}}>
+        {this.getType("input", "label1")}
+      </GridWrapper>
+    ));
+  }
 
   public render() {
-
+    const { design } = this.props;
     return (
       <div className="design-form-container">
         <ResponsiveReactGridLayout
@@ -22,17 +51,15 @@ export default class DesignForm extends React.Component<IDesignProps, {}> {
           breakpoints={{lg: 1200, md: 996, sm: 768, xs: 480, xxs: 0}}
           cols={{lg: 12, md: 10, sm: 6, xs: 4, xxs: 2}}
         >
-          <GridWrapper key="test1" data-grid={{x: 0, y: 0, w: 1, h: 3}}>
-            <FormPanel label="Label1" type="input"/>
-          </GridWrapper>
-          <GridWrapper key="test2" data-grid={{x: 1, y: 0, w: 3, h: 3, minW: 2, maxW: 4}}>
-            <FormPanel label="Label2" type="input"/>
-          </GridWrapper>
-          <GridWrapper key="test3" data-grid={{x: 4, y: 0, w: 1, h: 3}}>
-            <FormPanel label="Label3" type="input"/>
-          </GridWrapper>
+          {this.processPanels(design.panels)}
         </ResponsiveReactGridLayout>
       </div>
     );
   }
 }
+
+const mapStateToProps = (state: ReduxState) => ({ 
+  design: state.design
+});
+
+export default connect(mapStateToProps)(DesignForm);
