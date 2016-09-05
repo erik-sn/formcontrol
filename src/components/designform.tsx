@@ -4,14 +4,14 @@ if (process.env.BROWSER) {
 const Responsive = require("react-grid-layout").Responsive; // typescript definitions not available
 const WidthProvider = require("react-grid-layout").WidthProvider;
 const ResponsiveReactGridLayout = WidthProvider(Responsive);
+import * as _ from "lodash";
 import * as React from "react";
 import { connect } from "react-redux";
-import * as _ from "lodash";
 
+import {  removePanel, updatePanels } from "../actions/actions.tsx";
+import { DesignReducer, Layout, Panel, ReducerAction, ReduxState } from "../utils/interfaces.tsx";
 import Input from "./inputs/input.tsx";
 import GridWrapper from "./utility/gridwrapper.tsx";
-import { Panel, ReduxState, DesignReducer, Layout, ReducerAction } from "../utils/interfaces.tsx";
-import { updatePanels, removePanel } from "../actions/actions.tsx";
 
 interface Props { 
   design: DesignReducer;
@@ -49,7 +49,9 @@ export class DesignForm extends React.Component<Props, State> {
   public processPanels(panels: Array<Panel>) {
     return panels.map((panel, index) => {
       const child = this.getType(panel.type, panel.id)
-      if (!child) return undefined;
+      if (!child) {
+        return undefined;
+      }
       return (
         <GridWrapper
           close={() => this.props.removePanel(panel.id)}

@@ -1,8 +1,7 @@
 {
-  "extends": ["tslint:latest", "tslint-react"],
-  "rules": {
-    // enable tslint-react rules here
-    "jsx-no-lambda": true,
-    "no-prefix": true
-  }
+    "extends": ["tslint:latest", "tslint-react"],
+    "rules": {
+        "interface-name": [ false ],
+        "object-literal-sort-keys": false
+    }
 }
