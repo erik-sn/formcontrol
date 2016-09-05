@@ -4,6 +4,7 @@ import * as React from "react";
 interface Props {
   icon: string;
   size: any;
+  id: string;
   style?: Object;
   onClick: (id: string) => void;
 }
@@ -11,13 +12,30 @@ interface Props {
 // From https://dmfrancisco.github.io/react-icons/
 export default class Input extends React.Component<Props, {}> {
 
+  constructor(props: Props) {
+    super(props);
+    this.click = this.click.bind(this);
+  }
+
+  /**
+   * Combine icon styles object with any custom styles descended from props
+   * 
+   * @param {...any[]} args
+   * @returns
+   */
   public _mergeStyles(...args: any[]) {
     // This is the m function from "CSS in JS" and can be extracted to a mixin
     return _.assign({}, ...args);
   }
 
-  public renderGraphic() {
-    switch (this.props.icon) {
+  /**
+   * Return an svg icon corresponding to an input string
+   * 
+   * @param {string} icon
+   * @returns
+   */
+  public renderGraphic(icon: string) {
+    switch (icon) {
       case "my-icon":
         return (
           <g><path d="M7.41 7.84l4.59 4.58 4.59-4.58 1.41 1.41-6 6-6-6z"/></g>
@@ -38,22 +56,29 @@ export default class Input extends React.Component<Props, {}> {
     }
   }
 
+  public click() {
+    const { id, onClick } = this.props;
+    console.log(id);
+    onClick(id);
+  }
+
   public render() {
-    const { size, onClick, style } = this.props;
-    let styles = {
+    const { size, style, icon } = this.props;
+    let styles: Object = {
       fill: "currentcolor",
       verticalAlign: "middle",
       width: size, // CSS instead of the width attr to support non-pixel units
       height: size, // Prevents scaling issue in IE
     };
+
     return (
-      <div className="formcontrol-icon" onClick={onClick}>
+      <div className="formcontrol-icon" onClick={this.click}>
         <svg
           viewBox="0 0 24 24"
           preserveAspectRatio="xMidYMid meet"
           style={this._mergeStyles(styles, style)}
         >
-          {this.renderGraphic()}
+          {this.renderGraphic(icon)}
         </svg>
       </div>
     );

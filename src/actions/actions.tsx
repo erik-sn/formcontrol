@@ -1,6 +1,6 @@
-import { ADD_PANEL, REMOVE_PANEL, CLEAR_PANELS, UPDATE_PANELS } from "./constants.tsx";
+import { ADD_PANEL, CLEAR_PANELS, REMOVE_PANEL, UPDATE_PANELS } from "./constants.tsx";
 
-import { ReducerAction, Panel } from "../utils/interfaces.tsx";
+import { Panel, ReducerAction  } from "../utils/interfaces.tsx";
 
 export function addPanel(panel: Panel): ReducerAction {
   return {

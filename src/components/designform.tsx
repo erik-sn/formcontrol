@@ -1,9 +1,11 @@
 if (process.env.BROWSER) {
   require("../sass/design.scss");
 }
+
 const Responsive = require("react-grid-layout").Responsive; // typescript definitions not available
 const WidthProvider = require("react-grid-layout").WidthProvider;
 const ResponsiveReactGridLayout = WidthProvider(Responsive);
+
 import * as _ from "lodash";
 import * as React from "react";
 import { connect } from "react-redux";
@@ -31,10 +33,6 @@ export class DesignForm extends React.Component<Props, State> {
     this.updateLayouts = this.updateLayouts.bind(this);
   }
 
-  public shouldComponentUpdate(nextProps: Props, nextState: State) {
-    return true; 
-  }
-
   public getType(type: string, label: string): JSX.Element {
     switch (type) {
       case "input":
@@ -48,13 +46,14 @@ export class DesignForm extends React.Component<Props, State> {
 
   public processPanels(panels: Array<Panel>) {
     return panels.map((panel, index) => {
-      const child = this.getType(panel.type, panel.id)
+      const child = this.getType(panel.type, panel.id);
       if (!child) {
         return undefined;
       }
       return (
         <GridWrapper
-          close={() => this.props.removePanel(panel.id)}
+          close={this.props.removePanel}
+          id={panel.id}
           key={`${panel.id}`}
           data-grid={panel.layout}
         >
@@ -76,7 +75,6 @@ export class DesignForm extends React.Component<Props, State> {
 
   public render() {
     const { panels } = this.props;
-    console.log(panels);
     return (
       <div className="design-form-container">
         <ResponsiveReactGridLayout
@@ -94,7 +92,7 @@ export class DesignForm extends React.Component<Props, State> {
   }
 }
 
-const mapStateToProps = (state: ReduxState) => ({ 
+const mapStateToProps = (state: ReduxState) => ({
   panels: state.design.panels,
 });
 
