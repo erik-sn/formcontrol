@@ -1,8 +1,8 @@
 
-import DesignPanel from "../../src/components/designpanel.tsx";
+import ConnectedDesignPanel, { DesignPanel } from "../../src/components/designpanel.tsx";
 import { expect } from "chai";
 import * as sinon from "sinon";
-import { sRender } from "../test_helper.tsx";
+import { fRender, sRender } from "../test_helper.tsx";
 
 describe("Design Panel" , () => {
 
@@ -14,7 +14,7 @@ describe("Design Panel" , () => {
 
 
     beforeEach(() => {
-      component = sRender(DesignPanel, props, state);
+      component = fRender(ConnectedDesignPanel, props, state);
     });
 
     it("renders something", () => {

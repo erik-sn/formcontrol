@@ -11,13 +11,14 @@ export interface DesignReducer {
 
 export interface ReducerAction {
   type: string;
-  payload: Object;
+  payload: any;
 }
 
 /**
  * Model Interfaces
  */
 export interface Panel {
+  id?: string;
   type: string;
 }
 

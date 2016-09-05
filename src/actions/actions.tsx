@@ -1,17 +1,17 @@
-import { ADD_DESIGN_PANEL, REMOVE_DESIGN_PANEL } from "./constants.tsx";
+import { ADD_PANEL, REMOVE_PANEL } from "./constants.tsx";
 
 import { ReducerAction, Panel } from "../utils/interfaces.tsx";
 
-export function addDesignPanel(panel: Panel): ReducerAction {
+export function addPanel(panel: Panel): ReducerAction {
   return {
     payload: panel,
-    type: ADD_DESIGN_PANEL,
+    type: ADD_PANEL,
   };
 }
 
-export function removeDesignPanel(id: number): ReducerAction {
+export function removePanel(id: string): ReducerAction {
   return {
     payload: { id },
-    type: REMOVE_DESIGN_PANEL,
+    type: REMOVE_PANEL,
   };
 }

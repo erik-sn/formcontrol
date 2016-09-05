@@ -29,20 +29,25 @@ export class DesignForm extends React.Component<Props, {}> {
       case "select":
         return <select disabled />;
       default:
-        return <div />;
+        return undefined;
     }
   }
 
   public processPanels(panels: Array<Panel>) {
-    return panels.map(panel => (
-      <GridWrapper key="test1" data-grid={{x: 0, y: 0, w: 1, h: 3}}>
-        {this.getType("input", "label1")}
-      </GridWrapper>
-    ));
+    return panels.map((panel, index) => {
+      const child = this.getType(panel.type, panel.id)
+      if (!child) return undefined;
+      return (
+        <GridWrapper key={`${index}`} data-grid={{x: 0, y: 0, w: 1, h: 3}}>
+          {child}
+        </GridWrapper>
+      );
+    })
+    .filter(panel => panel !== undefined);
   }
 
   public render() {
-    const { design } = this.props;
+    const { panels } = this.props;
     return (
       <div className="design-form-container">
         <ResponsiveReactGridLayout
@@ -52,7 +57,7 @@ export class DesignForm extends React.Component<Props, {}> {
           breakpoints={{lg: 1200, md: 996, sm: 768, xs: 480, xxs: 0}}
           cols={{lg: 12, md: 10, sm: 6, xs: 4, xxs: 2}}
         >
-          {this.processPanels(design.panels)}
+          {this.processPanels(panels)}
         </ResponsiveReactGridLayout>
       </div>
     );
@@ -60,7 +65,7 @@ export class DesignForm extends React.Component<Props, {}> {
 }
 
 const mapStateToProps = (state: ReduxState) => ({ 
-  design: state.design
+  panels: state.design.panels,
 });
 
 export default connect(mapStateToProps)(DesignForm);

@@ -9,22 +9,23 @@ describe("Actions" , () => {
 
     it("should create an action to add a panel", () => {
       const panel = { 
-        type: "input" 
+        id: "b1",
+        type: "input",
       };
       const expectedAction = {
         payload: panel,
-        type: types.ADD_DESIGN_PANEL,
+        type: types.ADD_PANEL,
       }
-      expect(actions.addDesignPanel(panel).type).to.equal(expectedAction.type)
-      expect(actions.addDesignPanel(panel).payload).to.equal(expectedAction.payload)
+      expect(actions.addPanel(panel).type).to.equal(expectedAction.type)
+      expect(actions.addPanel(panel).payload).to.equal(expectedAction.payload)
     });
 
     it("should create an action to delete a panel", () => {
       const expectedAction: any = {
-        payload: { id: 1 },
-        type: types.REMOVE_DESIGN_PANEL,
+        payload: { id: "b1" },
+        type: types.REMOVE_PANEL,
       }
-      expect(actions.removeDesignPanel(1).payload).deep.equal(expectedAction.payload)
+      expect(actions.removePanel("b1").payload).deep.equal(expectedAction.payload)
     });
 
   });

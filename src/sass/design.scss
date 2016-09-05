@@ -2,13 +2,25 @@
 
 /* Design Panel Styles */
 .design-panel-container {
+    color: $secondary;
 
   h3 {
     text-align: center;
   }
 
+  .panel-item {
+    padding: 10px;
+    font-size: 1.25rem;
+    cursor: pointer;
+    transition: 0.1s ease-in-out;
+  }
 
-  color: $secondary;
+  .panel-item:hover {
+    color: $primary;
+    background: $secondary;
+    transition: 0.15s ease-in-out;
+  }
+
 }
 
 
