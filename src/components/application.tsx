@@ -5,7 +5,7 @@ if (process.env.BROWSER) {
 import * as React from "react";
 import { connect } from "react-redux";
 
-import { ReduxState, DisplayReducer } from "../utils/interfaces.tsx";
+import { DisplayReducer, ReduxState } from "../utils/interfaces.tsx";
 import DesignForm from "./designform.tsx";
 import DesignPanel from "./designpanel.tsx";
 import Form from "./form.tsx";
