@@ -1,6 +1,7 @@
-/**
+/*********************************************
  * Redux Interfaces
- */
+ *********************************************/
+
 export interface ReduxState { 
   design: DesignReducer;
 }
@@ -14,8 +15,14 @@ export interface ReducerAction {
   payload: any;
 }
 
-/**
+/*********************************************
  * Model Interfaces
+ *********************************************/
+/**
+ * Panel object interface
+ * 
+ * @export
+ * @interface Panel
  */
 export interface Panel {
   id?: string;
@@ -23,6 +30,12 @@ export interface Panel {
   layout: Layout;
 }
 
+/**
+ * Layout object specific to react-grid-layout
+ * 
+ * @export
+ * @interface Layout
+ */
 export interface Layout {
   w: number;
   h: number;
@@ -31,8 +44,34 @@ export interface Layout {
   i?: string;
 }
 
+
 /**
+ * Interface to hold state for the following input components:
+ * - Input
+ * - Select/Combobox
+ * - Radio Button
+ * - Checkbox
+ * 
+ * @export
+ * @interface InputState
+ */
+export interface InputState {
+  label?: string;
+  type?: string;
+  description?: string;
+  options?: Array<string>;
+  checked?: boolean;
+}
+
+/*********************************************
  * General Interfaces
+ *********************************************/
+
+/**
+ * ChangeEvent interface to use with DOM manipulation (onChange, onClick, etc.)
+ * 
+ * @export
+ * @interface ChangeEvent
  */
 export interface ChangeEvent {
   target: { value: string};

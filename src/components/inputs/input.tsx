@@ -1,21 +1,23 @@
-import { ChangeEvent } from "../../../src/utils/interfaces.tsx";
+import { ChangeEvent, InputState } from "../../../src/utils/interfaces.tsx";
 import * as React from "react";
 
-export interface IInputProps {
+interface Props {
   label?: string;
   description?: string;
 }
 
-export interface IInputState {
-  label?: string;
-  description?: string;
-}
 
-export default class Input extends React.Component<IInputProps, IInputState> {
+export default class Input extends React.Component<Props, InputState> {
 
-  constructor(props: IInputProps) {
+  /**
+   * Creates an instance of Input.
+   * 
+   * @param {Props} props
+   */
+  constructor(props: Props) {
     super(props);
     this.state = {
+      type: "input",
       description: props.description || "",
       label: props.label || "",
     };
@@ -23,10 +25,20 @@ export default class Input extends React.Component<IInputProps, IInputState> {
     this.updateDescription = this.updateDescription.bind(this);
   }
 
+  /**
+   * Update the label of the Input component
+   * 
+   * @param {ChangeEvent} e
+   */
   public updateLabel(e: ChangeEvent): void {
     this.setState({ label: e.target.value });
   }
 
+  /**
+   * Update the description of the Input component
+   * 
+   * @param {ChangeEvent} e
+   */
   public updateDescription(e: ChangeEvent): void {
     this.setState({ description: e.target.value });
   }
