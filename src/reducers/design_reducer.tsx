@@ -1,4 +1,4 @@
-import { ADD_PANEL, REMOVE_PANEL } from "../actions/constants.tsx";
+import { ADD_PANEL, REMOVE_PANEL, CLEAR_PANELS } from "../actions/constants.tsx";
 
 import { DesignReducer, ReducerAction } from "../utils/interfaces.tsx";
 
@@ -14,7 +14,12 @@ export default function (state = INITIAL_STATE, action: ReducerAction) {
     case REMOVE_PANEL:
       return {
         panels: state.panels.filter(panel => panel.id !== action.payload),
-      }      
+      }
+
+    case CLEAR_PANELS:
+      return {
+        panels: [],
+      }       
 
     default:
       return state;

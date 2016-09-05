@@ -15,6 +15,3 @@ export default class DesignPanelItem extends React.Component<Props, {}> {
   }
 
 }
-
-
-// <div onClick={() => this.createPanel(element)} key={index} className="panel-item">{element}</div>

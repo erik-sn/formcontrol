@@ -28,6 +28,14 @@ describe("Actions" , () => {
       expect(actions.removePanel("b1").payload).deep.equal(expectedAction.payload)
     });
 
+    it("should create an action to clear all panels", () => {
+      const expectedAction: any = {
+        payload: undefined,
+        type: types.CLEAR_PANELS,
+      }
+      expect(actions.clearPanels()).deep.equal(expectedAction)
+    });
+
   });
 
 });

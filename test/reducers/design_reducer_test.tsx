@@ -7,7 +7,7 @@ describe("Design Reducers" , () => {
 
   const panels = [{ id: "b1", type: "input" }, { id: "b2", type: "select"},];
 
-  it('should return the initial state', () => {
+  it("should return the initial state", () => {
     expect(
       reducer(undefined, { type: types.NULL_ACTION, payload: {}})
     ).to.deep.equal(
@@ -17,7 +17,7 @@ describe("Design Reducers" , () => {
     )
   });
 
-  it('should add a design panel', () => {
+  it("should add a design panel", () => {
     expect(
       reducer({ panels: [panels[0]]}, { type: types.ADD_PANEL, payload: panels[1]})
     ).to.deep.equal(
@@ -28,12 +28,22 @@ describe("Design Reducers" , () => {
   });
 
 
-  it('should remove a design panel', () => {
+  it("should remove a panel based on its id", () => {
     expect(
       reducer({ panels }, { type: types.REMOVE_PANEL, payload: "b1"})
     ).to.deep.equal(
       {
         panels: [panels[1]],
+      }
+    )
+  });
+
+  it("should remove a design panel", () => {
+    expect(
+      reducer({ panels }, { type: types.CLEAR_PANELS, payload: undefined})
+    ).to.deep.equal(
+      {
+        panels: [],
       }
     )
   });
