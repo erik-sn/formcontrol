@@ -53,6 +53,14 @@ describe("Actions" , () => {
       expect(actions.updatePanels(panels)).to.deep.equal(expectedAction);
     });
 
+    it("should create an action to update panels with their layout", () => {
+      const expectedAction: any = {
+        payload: panels[0],
+        type: types.UPDATE_PANEL,
+      };
+      expect(actions.updatePanel(panels[0])).to.deep.equal(expectedAction);
+    });
+
   });
 
 
