@@ -1,8 +1,9 @@
-import { ChangeEvent, Panel } from "../../../src/utils/interfaces.tsx";
+import { ChangeEvent, Panel, ReducerAction } from "../../../src/utils/interfaces.tsx";
 import * as React from "react";
 
-interface Props {
+export interface Props {
   panel: Panel;
+  update: (panel: Panel) => ReducerAction;
 }
 
 interface State {
@@ -34,6 +35,7 @@ export default class Input extends React.Component<Props, State> {
     const panel = this.state.panel;
     panel.config.label = e.target.value;
     this.setState({ panel });
+    this.props.update(panel);
   }
 
   /**
@@ -45,6 +47,7 @@ export default class Input extends React.Component<Props, State> {
     const panel = this.state.panel;
     panel.config.description = e.target.value;
     this.setState({ panel });
+    this.props.update(panel);
   }
 
   public render() {

@@ -1,5 +1,5 @@
 import { ADD_PANEL, CLEAR_PANELS, HIDE_MODAL, REMOVE_PANEL, SHOW_MODAL,
-  UPDATE_PANELS  } from "./constants.tsx";
+  UPDATE_PANEL, UPDATE_PANELS  } from "./constants.tsx";
 
 import { Panel, ReducerAction  } from "../utils/interfaces.tsx";
 
@@ -21,6 +21,13 @@ export function clearPanels(): ReducerAction {
   return {
     payload: undefined,
     type: CLEAR_PANELS,
+  };
+}
+
+export function updatePanel(panel: Panel): ReducerAction {
+  return {
+    payload: panel,
+    type: UPDATE_PANEL,
   };
 }
 

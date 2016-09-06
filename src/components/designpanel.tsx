@@ -29,7 +29,6 @@ export class DesignPanel extends React.Component<Props, {}> {
     if (panels.length === 0) {
       return;
     }
-    console.log(panels);
     const message = "Are you sure you want to delete all panels in this design?";
     const response: (response: boolean) => void = (input) => {
       if (input) {

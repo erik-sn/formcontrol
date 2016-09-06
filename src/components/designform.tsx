@@ -10,7 +10,7 @@ import * as _ from "lodash";
 import * as React from "react";
 import { connect } from "react-redux";
 
-import {  removePanel, updatePanels, showModal, hideModal } from "../actions/actions.tsx";
+import {  hideModal, removePanel, showModal, updatePanel, updatePanels  } from "../actions/actions.tsx";
 import { DesignReducer, Layout, Panel, ReducerAction, ReduxState } from "../utils/interfaces.tsx";
 import Input from "./inputs/input.tsx";
 import GridWrapper from "./utility/gridwrapper.tsx";
@@ -19,6 +19,7 @@ import Modal from "./utility/modal.tsx";
 interface Props {
   design: DesignReducer;
   panels: Array<Panel>;
+  updatePanel: (panel: Panel) => ReducerAction;
   updatePanels: (panels: Array<Panel>) => ReducerAction;
   removePanel: (id: string) => ReducerAction;
   showModal: (modal: JSX.Element) => ReducerAction;
@@ -52,7 +53,7 @@ export class DesignForm extends React.Component<Props, State> {
   public getType(panel: Panel): JSX.Element {
     switch (panel.type) {
       case "input":
-        return <Input panel={panel} />;
+        return <Input panel={panel} update={this.props.updatePanel} />;
       case "select":
         return <select disabled />;
       default:
@@ -161,4 +162,5 @@ const mapStateToProps = (state: ReduxState) => ({
   panels: state.design.panels,
 });
 
-export default connect(mapStateToProps, { updatePanels, removePanel, showModal, hideModal })(DesignForm);
+export default connect(mapStateToProps, { updatePanel, updatePanels, removePanel,
+   showModal, hideModal })(DesignForm);

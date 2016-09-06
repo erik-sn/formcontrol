@@ -4,7 +4,7 @@ import { mount, shallow } from "enzyme";
 import * as React from "react";
 import * as sinon from "sinon";
 
-import Input from "../../src/components/inputs/input.tsx";
+import Input, { Props } from "../../src/components/inputs/input.tsx";
 import * as interfaces from "../../src/utils/interfaces.tsx";
 import { sRender } from "../test_helper.tsx";
 
@@ -26,8 +26,10 @@ describe("Input" , () => {
   describe("Layout" , () => {
 
     let component: any;
+    let update: any = sinon.spy(() => "test");
     const props = {
       panel,
+      update,
     };
     const state = {};
 
@@ -66,10 +68,12 @@ describe("Input" , () => {
   describe("Fields" , () => {
 
     let component: any;
+    let update: any = sinon.spy(() => "test");
     let updateLabel: any = sinon.spy(Input.prototype, "updateLabel");
     let updateDescription: any = sinon.spy(Input.prototype, "updateDescription");
-    const props = {
+    const props: Props = {
       panel,
+      update,
     };
     const state = {};
 
