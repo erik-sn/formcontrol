@@ -7,7 +7,7 @@ import { Panel, ReducerAction, ReduxState } from "../utils/interfaces.tsx";
 import DesignPanelItem from "./designpanel_item.tsx";
 import Modal from "./utility/modal.tsx";
 
-interface Props {
+export interface Props {
   panels: Array<Panel>;
   addPanel: (panel: Panel) => ReducerAction;
   clearPanels: () => ReducerAction;

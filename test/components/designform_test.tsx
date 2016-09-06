@@ -1,20 +1,43 @@
-
 import { expect } from "chai";
+import { mount } from "enzyme";
+import * as React from "react";
 import * as sinon from "sinon";
-import { fRender } from "../test_helper.tsx";
-import DesignForm from "../../src/components/designform.tsx";
+
+import * as constants from "../../src/actions/constants.tsx";
+import DesignFormConnected, { DesignForm, Props } from "../../src/components/designform.tsx";
+import * as interfaces from "../../src/utils/interfaces.tsx";
 
 describe("Design Form" , () => {
 
+
   describe("Form" , () => {
+    const config: interfaces.PanelConfig = {
+      label: "",
+      description: "",
+      options: [],
+      checked: false,
+    };
+
+    const panels: Array<interfaces.Panel> = [
+      { id: "b1", type: "input", layout: { x: 0, y: 0, w: 1, h: 3 }, config },
+      { id: "b2", type: "select", layout: { x: 2, y: 2, w: 1, h: 3 }, config },
+    ];
+
+    const action: interfaces.ReducerAction = {
+      payload: undefined,
+      type: constants.NULL_ACTION,
+    };
+
     let component: any;
-    const props = {
+    const props: any = {
+      panels,
+      updatePanels: (updated: Array<interfaces.Panel>): interfaces.ReducerAction => action,
     };
     const state = {};
 
 
     beforeEach(() => {
-      component = fRender(DesignForm, props, state);
+      component = mount(<DesignForm {...props} />);
     });
 
     it("renders something", () => {

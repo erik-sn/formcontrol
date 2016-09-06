@@ -1,7 +1,7 @@
-
 import { expect } from "chai";
-import * as sinon from "sinon";
-import { sRender } from "../test_helper.tsx";
+import { shallow } from "enzyme";
+import * as React from "react";
+
 import Navbar from "../../src/components/navbar.tsx";
 
 describe("Navbar" , () => {
@@ -17,7 +17,7 @@ describe("Navbar" , () => {
 
 
     beforeEach(() => {
-      component = sRender(Navbar, props, state);
+      component = shallow(<Navbar  {...props} />);
     });
 
     it("renders something", () => {

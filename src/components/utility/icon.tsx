@@ -1,7 +1,7 @@
 import * as _ from "lodash";
 import * as React from "react";
 
-interface Props {
+export interface Props {
   icon: string;
   size: any;
   id: string;

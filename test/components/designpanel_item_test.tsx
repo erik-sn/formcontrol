@@ -1,9 +1,9 @@
-
 import { expect } from "chai";
+import { shallow } from "enzyme";
+import * as React from "react";
 import * as sinon from "sinon";
 
 import DesignPanelItem from "../../src/components/designpanel_item.tsx";
-import { sRender } from "../test_helper.tsx";
 
 describe("Design Panel Item" , () => {
 
@@ -17,7 +17,7 @@ describe("Design Panel Item" , () => {
 
 
   beforeEach(() => {
-    component = sRender(DesignPanelItem, props, state);
+    component = shallow(<DesignPanelItem {...props} />);
   });
 
   it("renders component with correct text and class", () => {

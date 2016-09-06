@@ -1,10 +1,4 @@
-import { mount, shallow } from "enzyme";
 import * as jsdom from "jsdom";
-import * as  React from "react";
-import  * as ReactDOM from "react-dom";
-import { Provider } from "react-redux";
-import { createStore } from "redux";
-import reducers from "../src/reducers/root.tsx";
 
 declare const global: any;
 const doc = jsdom.jsdom("<!doctype html><html><body></body></html>");
@@ -16,22 +10,8 @@ global["navigator"] = {userAgent: "node.js"};
 global["HTMLElement"] = global["window"].HTMLElement;
 
 
-export function sRender(ComponentClass: any, props = {}, state= {}, store= {}) {
-  return shallow(
-      <ComponentClass {...props} store={store} />
-  );
-}
-
-export function fRender(ComponentClass: any, props = {}, state = {}) {
-  return mount(
-    <Provider store={createStore(reducers, state)}>
-      <ComponentClass {...props} />
-    </Provider>
-  );
-}
-
-class Dictionary<TValue> {
-    [index: string]: TValue;
+class Dictionary<Value> {
+    [index: string]: Value;
 }
 
 function storageMock() {

@@ -1,23 +1,25 @@
-
 import { expect } from "chai";
+import { shallow } from "enzyme";
+import * as React from "react";
 import * as sinon from "sinon";
 
-import Icon from "../../../src/components/utility/icon.tsx";
-import { sRender } from "../../test_helper.tsx";
+import Icon, { Props } from "../../../src/components/utility/icon.tsx";
 
 describe("Design Panel Item" , () => {
 
   let component: any;
-  const click = sinon.spy(() => ("test click"))
-  const props = {
+  const click = sinon.spy(() => ("test click"));
+  const props: Props = {
     onClick: click,
-    element: "test element",
+    icon: "test icon",
+    size: 20,
+    id: "test id",
   };
   const state = {};
 
 
   beforeEach(() => {
-    component = sRender(Icon, props, state);
+    component = shallow(<Icon {...props} />);
   });
 
   it("renders component with correct text and class", () => {

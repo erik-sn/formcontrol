@@ -1,10 +1,10 @@
 
 import { expect } from "chai";
+import { shallow } from "enzyme";
 import * as React from "react";
 import * as sinon from "sinon";
 
 import { Application, Props } from "../../src/components/application.tsx";
-import { sRender } from "../test_helper.tsx";
 
 
 describe("Application" , () => {
@@ -27,7 +27,7 @@ describe("Application" , () => {
 
 
     beforeEach(() => {
-      component = sRender(Application, props, state);
+      component = shallow(<Application {...props} />);
     });
 
     it("renders something", () => {
@@ -55,7 +55,7 @@ describe("Application" , () => {
         showModal: true,
         modal: <div className="modal-container" />,
       };
-      component = sRender(Application, newProps, state);
+      component = shallow(<Application {...newProps} />);
       expect(component.find(".modal-container")).to.have.length(1);
       expect(component.find(".application-container").props().style.opacity).to.equal("0.4");
     });
@@ -81,7 +81,7 @@ describe("Application" , () => {
 
 
     beforeEach(() => {
-      component = sRender(Application, props, state);
+      component = shallow(<Application {...props} />);
     });
 
     it("does NOT have design components", () => {

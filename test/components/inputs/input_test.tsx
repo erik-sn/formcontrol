@@ -4,9 +4,8 @@ import { mount, shallow } from "enzyme";
 import * as React from "react";
 import * as sinon from "sinon";
 
-import Input, { Props } from "../../src/components/inputs/input.tsx";
-import * as interfaces from "../../src/utils/interfaces.tsx";
-import { sRender } from "../test_helper.tsx";
+import Input, { Props } from "../../../src/components/inputs/input.tsx";
+import * as interfaces from "../../../src/utils/interfaces.tsx";
 
 describe("Input" , () => {
   const config: interfaces.PanelConfig = {
@@ -35,7 +34,7 @@ describe("Input" , () => {
 
 
     beforeEach(() => {
-      component = sRender(Input, props, state);
+      component = shallow(<Input {...props} />);
     });
 
     it("renders something", () => {
@@ -68,7 +67,7 @@ describe("Input" , () => {
   describe("Fields" , () => {
 
     let component: any;
-    let update: any = sinon.spy(() => "test");
+    let update: any;
     let updateLabel: any = sinon.spy(Input.prototype, "updateLabel");
     let updateDescription: any = sinon.spy(Input.prototype, "updateDescription");
     const props: Props = {
@@ -79,19 +78,25 @@ describe("Input" , () => {
 
 
     beforeEach(() => {
+      update = sinon.spy(() => "test");
+      props.update = update;
       component = mount(<Input {...props} />);
     });
 
     it("changes update the input field", () => {
       expect(updateLabel.callCount).to.equal(0);
+      expect(update.callCount).to.equal(0);
       component.find(".input-label-container input").simulate("change");
       expect(updateLabel.callCount).to.equal(1);
+      expect(update.callCount).to.equal(1);
     });
 
     it("changes update the description field", () => {
       expect(updateDescription.callCount).to.equal(0);
+      expect(update.callCount).to.equal(0);
       component.find(".input-description-container input").simulate("change");
       expect(updateDescription.callCount).to.equal(1);
+      expect(update.callCount).to.equal(1);
     });
 
   });

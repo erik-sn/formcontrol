@@ -16,7 +16,7 @@ import Input from "./inputs/input.tsx";
 import GridWrapper from "./utility/gridwrapper.tsx";
 import Modal from "./utility/modal.tsx";
 
-interface Props {
+export interface Props {
   design: DesignReducer;
   panels: Array<Panel>;
   updatePanel: (panel: Panel) => ReducerAction;
@@ -26,19 +26,14 @@ interface Props {
   hideModal: () => ReducerAction;
 }
 
-interface State {
-  showModal?: boolean;
-  modal?: JSX.Element;
- }
+export interface State {
+}
 
 export class DesignForm extends React.Component<Props, State> {
 
   constructor(props: Props) {
     super(props);
-    this.state = {
-      showModal: false,
-      modal: undefined,
-    };
+    this.state = {};
     this.updateLayouts = this.updateLayouts.bind(this);
     this.closePanel = this.closePanel.bind(this);
   }
@@ -138,11 +133,9 @@ export class DesignForm extends React.Component<Props, State> {
   }
 
   public render() {
-    const { showModal, modal } = this.state;
     const { panels } = this.props;
     return (
       <div className="design-form-container">
-        {showModal ? modal : ""}
         <ResponsiveReactGridLayout
           onLayoutChange={this.updateLayouts}
           className="layout"
