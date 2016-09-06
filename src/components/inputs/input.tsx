@@ -1,13 +1,15 @@
-import { ChangeEvent, InputState } from "../../../src/utils/interfaces.tsx";
+import { ChangeEvent, Panel } from "../../../src/utils/interfaces.tsx";
 import * as React from "react";
 
 interface Props {
-  label?: string;
-  description?: string;
+  panel: Panel;
 }
 
+interface State {
+  panel: Panel;
+}
 
-export default class Input extends React.Component<Props, InputState> {
+export default class Input extends React.Component<Props, State> {
 
   /**
    * Creates an instance of Input.
@@ -17,9 +19,7 @@ export default class Input extends React.Component<Props, InputState> {
   constructor(props: Props) {
     super(props);
     this.state = {
-      type: "input",
-      description: props.description || "",
-      label: props.label || "",
+      panel: props.panel,
     };
     this.updateLabel = this.updateLabel.bind(this);
     this.updateDescription = this.updateDescription.bind(this);
@@ -31,7 +31,9 @@ export default class Input extends React.Component<Props, InputState> {
    * @param {ChangeEvent} e
    */
   public updateLabel(e: ChangeEvent): void {
-    this.setState({ label: e.target.value });
+    const panel = this.state.panel;
+    panel.config.label = e.target.value;
+    this.setState({ panel });
   }
 
   /**
@@ -40,11 +42,13 @@ export default class Input extends React.Component<Props, InputState> {
    * @param {ChangeEvent} e
    */
   public updateDescription(e: ChangeEvent): void {
-    this.setState({ description: e.target.value });
+    const panel = this.state.panel;
+    panel.config.description = e.target.value;
+    this.setState({ panel });
   }
 
   public render() {
-    const { label, description } = this.state;
+    const { label, description } = this.state.panel.config;
     return (
      <div className="formpanel-input-container">
         <div className="input-label-container">
@@ -52,7 +56,7 @@ export default class Input extends React.Component<Props, InputState> {
             type="text"
             value={label}
             onChange={this.updateLabel}
-            placeholder="Enter Label..."
+            placeholder="Label..."
           />
         </div>
         <div className="input-container">
@@ -63,7 +67,7 @@ export default class Input extends React.Component<Props, InputState> {
             type="text"
             value={description}
             onChange={this.updateDescription}
-            placeholder="Enter Description..."
+            placeholder="Description..."
           />
         </div>
       </div>

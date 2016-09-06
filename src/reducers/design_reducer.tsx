@@ -2,7 +2,7 @@ import { ADD_PANEL, CLEAR_PANELS,  REMOVE_PANEL, UPDATE_PANELS } from "../action
 
 import { DesignReducer, ReducerAction } from "../utils/interfaces.tsx";
 
-const INITIAL_STATE: DesignReducer = { panels: [], };
+const INITIAL_STATE: DesignReducer = { panels: [] };
 
 export default function (state = INITIAL_STATE, action: ReducerAction) {
   switch (action.type) {

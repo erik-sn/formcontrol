@@ -49,10 +49,10 @@ export class DesignForm extends React.Component<Props, State> {
    * @param {string} label - label that should be applied to the generated component
    * @returns {JSX.Element}
    */
-  public getType(type: string, label: string): JSX.Element {
-    switch (type) {
+  public getType(panel: Panel): JSX.Element {
+    switch (panel.type) {
       case "input":
-        return <Input description="" label={label} />;
+        return <Input panel={panel} />;
       case "select":
         return <select disabled />;
       default:
@@ -79,7 +79,6 @@ export class DesignForm extends React.Component<Props, State> {
       }
       this.props.hideModal();
     };
-    console.log(message, response);
     this.props.showModal(<Modal message={message} response={response} />);
   }
 
@@ -109,7 +108,7 @@ export class DesignForm extends React.Component<Props, State> {
    */
   public processPanels(panels: Array<Panel>): Array<JSX.Element> {
     return panels.map((panel, index) => {
-      const child = this.getType(panel.type, panel.id);
+      const child = this.getType(panel);
       if (!child) {
         return undefined;
       }

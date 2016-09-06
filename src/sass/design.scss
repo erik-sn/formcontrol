@@ -47,11 +47,11 @@
   padding: 5px 0px;
   padding-left: 10px;
   margin: 0% 5%;
-  width: 85%;
+  width: 75%;
 }
 
 .react-grid-item {
-  @include shadow($b: 1px, $s: 0px);
+  @include shadow($b: 4px, $s: 0px);
   border: 1px solid $primary;
   background: $secondary;
 
@@ -99,6 +99,10 @@
 
     input {
       @include formpanel-format();
+    }
+
+    input:focus {
+      outline: none;
     }
   }
 

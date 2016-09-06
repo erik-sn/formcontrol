@@ -36,6 +36,7 @@ export interface Panel {
   id?: string;
   type: string;
   layout: Layout;
+  config: PanelConfig;
 }
 
 /**
@@ -49,9 +50,10 @@ export interface Layout {
   h: number;
   x: number;
   y: number;
+  minH?: number;
+  minW?: number;
   i?: string;
 }
-
 
 /**
  * Interface to hold state for the following input components:
@@ -61,11 +63,10 @@ export interface Layout {
  * - Checkbox
  * 
  * @export
- * @interface InputState
+ * @interface PanelConfig
  */
-export interface InputState {
+export interface PanelConfig {
   label?: string;
-  type?: string;
   description?: string;
   options?: Array<string>;
   checked?: boolean;

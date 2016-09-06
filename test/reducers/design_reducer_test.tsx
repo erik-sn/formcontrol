@@ -6,9 +6,16 @@ import { expect } from "chai";
 
 describe("Design Reducers" , () => {
 
-  const panels = [
-    { id: "b1", type: "input", layout: {x: 0, y: 0, w: 1, h: 3 } },
-    { id: "b2", type: "select", layout: {x: 0, y: 0, w: 1, h: 3 } },
+  const config: interfaces.PanelConfig = {
+    label: "",
+    description: "",
+    options: [],
+    checked: false,
+  };
+
+  const panels: Array<interfaces.Panel> = [
+    { id: "b1", type: "input", layout: {x: 0, y: 0, w: 1, h: 3 }, config },
+    { id: "b2", type: "select", layout: {x: 0, y: 0, w: 1, h: 3 }, config },
   ];
 
   it("should return the initial state", () => {

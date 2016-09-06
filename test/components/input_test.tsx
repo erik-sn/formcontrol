@@ -1,20 +1,33 @@
 
 import { expect } from "chai";
-import { mount, shallow } from 'enzyme';
-import * as sinon from "sinon";
+import { mount, shallow } from "enzyme";
 import * as React from "react";
-import { sRender } from "../test_helper.tsx";
+import * as sinon from "sinon";
+
 import Input from "../../src/components/inputs/input.tsx";
+import * as interfaces from "../../src/utils/interfaces.tsx";
+import { sRender } from "../test_helper.tsx";
 
 describe("Input" , () => {
+  const config: interfaces.PanelConfig = {
+    label: "",
+    description: "",
+    options: [],
+    checked: false,
+  };
+
+  const panel: interfaces.Panel = {
+    id: "b1",
+    type: "input",
+    layout: {x: 0, y: 0, w: 1, h: 3 },
+    config,
+  };
 
   describe("Layout" , () => {
 
     let component: any;
     const props = {
-      description: "test description",
-      label: "test1",
-      type: "input",
+      panel,
     };
     const state = {};
 
@@ -33,12 +46,14 @@ describe("Input" , () => {
 
     it("should have the label displayed inside a label container", () => {
       expect(component.find(".input-label-container")).to.have.length(1);
-      expect(component.find(".input-label-container input").props().value).to.equal(props.label);
+      expect(component.find(".input-label-container input").props().value).to.equal(props.panel.config.label);
     });
 
     it("should have the description displayed inside a description container", () => {
       expect(component.find(".input-description-container")).to.have.length(1);
-      expect(component.find(".input-description-container input").props().value).to.equal(props.description);
+      expect(component.find(".input-description-container input").props().value).to.equal(
+        props.panel.config.description
+      );
     });
 
     it("an type of input should have an input field", () => {
@@ -54,15 +69,13 @@ describe("Input" , () => {
     let updateLabel: any = sinon.spy(Input.prototype, "updateLabel");
     let updateDescription: any = sinon.spy(Input.prototype, "updateDescription");
     const props = {
-      description: "test description",
-      label: "test1",
-      type: "input",
+      panel,
     };
     const state = {};
 
 
     beforeEach(() => {
-      component = mount(<Input  {...props} />);
+      component = mount(<Input {...props} />);
     });
 
     it("changes update the input field", () => {
