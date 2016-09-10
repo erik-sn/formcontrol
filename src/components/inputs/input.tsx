@@ -1,9 +1,13 @@
 import { ChangeEvent, Panel, ReducerAction } from "../../../src/utils/interfaces.tsx";
 import * as React from "react";
 
+import Icon from "../utility/icon.tsx";
+
 export interface Props {
   panel: Panel;
   update: (panel: Panel) => ReducerAction;
+  close: (id: string) => void;
+  settings: (id: string) => void;
 }
 
 interface State {
@@ -54,6 +58,8 @@ export default class Input extends React.Component<Props, State> {
     const { label, description } = this.state.panel.config;
     return (
      <div className="formpanel-input-container">
+        <Icon onClick={this.props.close} id={this.props.panel.id} size={20} icon="cancel" />
+        <Icon onClick={this.props.settings} id={this.props.panel.id} size={20} icon="settings" />
         <div className="input-label-container">
           <input
             type="text"

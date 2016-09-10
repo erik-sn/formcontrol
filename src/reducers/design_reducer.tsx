@@ -2,7 +2,7 @@ import * as _ from "lodash";
 
 import { ADD_PANEL, CLEAR_PANELS,  REMOVE_PANEL, UPDATE_PANEL,
    UPDATE_PANELS } from "../actions/constants.tsx";
-import { DesignReducer, ReducerAction, Panel } from "../utils/interfaces.tsx";
+import { DesignReducer, Panel, ReducerAction } from "../utils/interfaces.tsx";
 
 const INITIAL_STATE: DesignReducer = { panels: [] };
 

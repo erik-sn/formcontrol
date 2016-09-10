@@ -48,7 +48,14 @@ export class DesignForm extends React.Component<Props, State> {
   public getType(panel: Panel): JSX.Element {
     switch (panel.type) {
       case "input":
-        return <Input panel={panel} update={this.props.updatePanel} />;
+        return (
+          <Input
+            panel={panel}
+            close={this.closePanel}
+            settings={this.showSettings}
+            update={this.props.updatePanel}
+          />
+        );
       case "select":
         return <select disabled />;
       default:
@@ -110,9 +117,6 @@ export class DesignForm extends React.Component<Props, State> {
       }
       return (
         <GridWrapper
-          close={this.closePanel}
-          settings={this.showSettings}
-          id={panel.id}
           key={`${panel.id}`}
           data-grid={panel.layout}
         >

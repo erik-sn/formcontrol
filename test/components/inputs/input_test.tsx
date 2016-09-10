@@ -29,6 +29,8 @@ describe("Input" , () => {
     const props = {
       panel,
       update,
+      close: (id: string) => id,
+      settings: (id: string) => id,
     };
     const state = {};
 
@@ -73,6 +75,8 @@ describe("Input" , () => {
     const props: Props = {
       panel,
       update,
+      close: (id: string) => id,
+      settings: (id: string) => id,
     };
     const state = {};
 
