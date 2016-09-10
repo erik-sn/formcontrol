@@ -30,7 +30,7 @@ describe("Actions" , () => {
     });
 
     it("should create an action to delete a panel", () => {
-      const expectedAction: any = {
+      const expectedAction: interfaces.ReducerAction = {
         payload: { id: "b1" },
         type: types.REMOVE_PANEL,
       };
@@ -38,7 +38,7 @@ describe("Actions" , () => {
     });
 
     it("should create an action to clear all panels", () => {
-      const expectedAction: any = {
+      const expectedAction: interfaces.ReducerAction = {
         payload: undefined,
         type: types.CLEAR_PANELS,
       };
@@ -46,7 +46,7 @@ describe("Actions" , () => {
     });
 
     it("should create an action to update panels with their layout", () => {
-      const expectedAction: any = {
+      const expectedAction: interfaces.ReducerAction = {
         payload: panels,
         type: types.UPDATE_PANELS,
       };
@@ -54,11 +54,19 @@ describe("Actions" , () => {
     });
 
     it("should create an action to update panels with their layout", () => {
-      const expectedAction: any = {
+      const expectedAction: interfaces.ReducerAction = {
         payload: panels[0],
         type: types.UPDATE_PANEL,
       };
       expect(actions.updatePanel(panels[0])).to.deep.equal(expectedAction);
+    });
+
+    it("should create an action to save all panels", () => {
+      const expectedAction: interfaces.ReducerAction = {
+        payload: undefined,
+        type: types.SAVE_PANELS,
+      };
+      expect(actions.savePanels(panels)).to.deep.equal(expectedAction);
     });
 
   });
@@ -68,7 +76,7 @@ describe("Actions" , () => {
     const mockModal = <div />;
 
     it("should create an action to show a modal", () => {
-      const expectedAction: any = {
+      const expectedAction: interfaces.ReducerAction = {
         payload: {
           showModal: true,
           modal: mockModal,

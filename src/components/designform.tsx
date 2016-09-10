@@ -89,7 +89,6 @@ export class DesignForm extends React.Component<Props, State> {
     console.log(id);
   }
 
-
   /**
    * Map over panel objects and return JSX components. These components
    * are of types:
@@ -134,6 +133,7 @@ export class DesignForm extends React.Component<Props, State> {
       return panel;
     });
     updatePanels(combined);
+    console.log(combined);
   }
 
   public render() {

@@ -1,40 +1,39 @@
-import { ADD_PANEL, CLEAR_PANELS, HIDE_MODAL, REMOVE_PANEL, SHOW_MODAL,
-  UPDATE_PANEL, UPDATE_PANELS  } from "./constants.tsx";
+import * as types from "../../src/actions/constants.tsx";
 
 import { Panel, ReducerAction  } from "../utils/interfaces.tsx";
 
 export function addPanel(panel: Panel): ReducerAction {
   return {
     payload: panel,
-    type: ADD_PANEL,
+    type: types.ADD_PANEL,
   };
 }
 
 export function removePanel(id: string): ReducerAction {
   return {
     payload: { id },
-    type: REMOVE_PANEL,
+    type: types.REMOVE_PANEL,
   };
 }
 
 export function clearPanels(): ReducerAction {
   return {
     payload: undefined,
-    type: CLEAR_PANELS,
+    type: types.CLEAR_PANELS,
   };
 }
 
 export function updatePanel(panel: Panel): ReducerAction {
   return {
     payload: panel,
-    type: UPDATE_PANEL,
+    type: types.UPDATE_PANEL,
   };
 }
 
 export function updatePanels(panels: Array<Panel>): ReducerAction {
   return {
     payload: panels,
-    type: UPDATE_PANELS,
+    type: types.UPDATE_PANELS,
   };
 }
 
@@ -43,8 +42,8 @@ export function showModal(modal: JSX.Element): ReducerAction {
     payload: {
         showModal: true,
         modal,
-      },
-    type: SHOW_MODAL,
+    },
+    type: types.SHOW_MODAL,
   };
 }
 
@@ -53,8 +52,14 @@ export function hideModal(): ReducerAction {
     payload: {
         showModal: false,
         undefined,
-      },
-    type: HIDE_MODAL,
+    },
+    type: types.HIDE_MODAL,
   };
 }
 
+export function savePanels(panels: Array<Panel>): ReducerAction {
+  return {
+    payload: undefined,
+    type: types.SAVE_PANELS,
+  };
+}

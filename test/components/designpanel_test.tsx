@@ -32,6 +32,7 @@ describe("Design Panel" , () => {
     const props: Props = {
       panels,
       addPanel: (panel: interfaces.Panel): interfaces.ReducerAction => action,
+      savePanels: (panelArray: Array<interfaces.Panel>): interfaces.ReducerAction => action,
       clearPanels: (): interfaces.ReducerAction => action,
       hideModal: (): interfaces.ReducerAction => action,
       showModal: (): interfaces.ReducerAction => action,

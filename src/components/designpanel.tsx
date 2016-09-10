@@ -1,7 +1,7 @@
 import * as React from "react";
 import { connect } from "react-redux";
 
-import { addPanel, clearPanels, hideModal, showModal } from "../actions/actions.tsx";
+import { addPanel, clearPanels, hideModal, savePanels, showModal } from "../actions/actions.tsx";
 import { generateId } from "../utils/functions.tsx";
 import { Panel, ReducerAction, ReduxState } from "../utils/interfaces.tsx";
 import DesignPanelItem from "./designpanel_item.tsx";
@@ -11,10 +11,10 @@ export interface Props {
   panels: Array<Panel>;
   addPanel: (panel: Panel) => ReducerAction;
   clearPanels: () => ReducerAction;
+  savePanels: (panels: Array<Panel>) => ReducerAction;
   showModal: (modal: JSX.Element) => ReducerAction;
   hideModal: () => ReducerAction;
 }
-
 
 export class DesignPanel extends React.Component<Props, {}> {
 
@@ -22,6 +22,7 @@ export class DesignPanel extends React.Component<Props, {}> {
     super(props);
     this.createPanel = this.createPanel.bind(this);
     this.clearAllPanels = this.clearAllPanels.bind(this);
+    this.saveAllPanels = this.saveAllPanels.bind(this);
   }
 
   public clearAllPanels(): void {
@@ -37,6 +38,11 @@ export class DesignPanel extends React.Component<Props, {}> {
       hideModal();
     };
     showModal(<Modal message={message} response={response} />);
+  }
+
+  public saveAllPanels(): void {
+    const { panels, savePanels } = this.props;
+    savePanels(panels);
   }
 
   public createPanel(type: string): void {
@@ -68,6 +74,7 @@ export class DesignPanel extends React.Component<Props, {}> {
         <h2>Form Configuration</h2>
         {this.generateElements()}
         <div onClick={this.clearAllPanels} id="design-panel-clear" className="panel-item">Clear Panels</div>
+        <div onClick={this.saveAllPanels} id="design-panel-clear" className="panel-item">Save Panels</div>
       </div>
     );
   }
@@ -80,4 +87,4 @@ const mapStateToProps = (state: ReduxState) => ({
 });
 
 
-export default connect(mapStateToProps, { addPanel, clearPanels, showModal, hideModal })(DesignPanel);
+export default connect(mapStateToProps, { addPanel, clearPanels, savePanels, showModal, hideModal })(DesignPanel);
