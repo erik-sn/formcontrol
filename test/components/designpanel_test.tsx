@@ -29,6 +29,7 @@ describe("Design Panel" , () => {
   describe("Panel" , () => {
     let component: any;
     let clearAllPanels: any = sinon.spy(DesignPanel.prototype, "clearAllPanels");
+    let saveAllPanels: any = sinon.spy(DesignPanel.prototype, "saveAllPanels");
     const props: Props = {
       panels,
       addPanel: (panel: interfaces.Panel): interfaces.ReducerAction => action,
@@ -53,6 +54,12 @@ describe("Design Panel" , () => {
       expect(clearAllPanels.callCount).to.equal(0);
       component.find("#design-panel-clear").simulate("click");
       expect(clearAllPanels.callCount).to.equal(1);
+    });
+
+    it("Calls clearAllPanels on click", () => {
+      expect(saveAllPanels.callCount).to.equal(0);
+      component.find("#design-panel-save").simulate("click");
+      expect(saveAllPanels.callCount).to.equal(1);
     });
 
 

@@ -74,7 +74,7 @@ export class DesignPanel extends React.Component<Props, {}> {
         <h2>Form Configuration</h2>
         {this.generateElements()}
         <div onClick={this.clearAllPanels} id="design-panel-clear" className="panel-item">Clear Panels</div>
-        <div onClick={this.saveAllPanels} id="design-panel-clear" className="panel-item">Save Panels</div>
+        <div onClick={this.saveAllPanels} id="design-panel-save" className="panel-item">Save Panels</div>
       </div>
     );
   }

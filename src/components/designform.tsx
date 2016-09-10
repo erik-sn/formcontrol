@@ -133,7 +133,6 @@ export class DesignForm extends React.Component<Props, State> {
       return panel;
     });
     updatePanels(combined);
-    console.log(combined);
   }
 
   public render() {

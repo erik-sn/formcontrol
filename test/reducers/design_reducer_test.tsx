@@ -59,6 +59,11 @@ describe("Design Reducers" , () => {
     expect(result.panels[0].layout).to.deep.equal(newPanel.layout);
   });
 
+  it("should save all panels", () => {
+    const result = reducer({ panels }, { payload: undefined, type: types.SAVE_PANELS });
+    expect(result).to.deep.equal({ panels });
+  });
+
 });
 
 
