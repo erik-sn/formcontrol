@@ -15,11 +15,20 @@ describe("Input" , () => {
     checked: false,
   };
 
+  const validation: interfaces.PanelValidation = {
+    regex: "",  // let user specify regex
+    email: "",  // default empty, user specifiys a '@host.com'
+    date: "",
+    type: "",  // default: both string, number, both
+    length: -1,
+  };
+
   const panel: interfaces.Panel = {
     id: "b1",
     type: "input",
     layout: {x: 0, y: 0, w: 1, h: 3 },
     config,
+    validation,
   };
 
   describe("Layout" , () => {

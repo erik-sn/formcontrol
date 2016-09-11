@@ -15,9 +15,17 @@ describe("Actions" , () => {
       checked: false,
     };
 
+    const validation: interfaces.PanelValidation = {
+      regex: "",  // let user specify regex
+      email: "",  // default empty, user specifiys a '@host.com'
+      date: "",
+      type: "",  // default: both string, number, both
+      length: -1,
+    }
+
     const panels: Array<interfaces.Panel> = [
-      { id: "b1", type: "input", layout: {x: 0, y: 0, w: 1, h: 3 }, config },
-      { id: "b2", type: "select", layout: {x: 0, y: 0, w: 1, h: 3 }, config },
+      { id: "b1", type: "input", layout: {x: 0, y: 0, w: 1, h: 3 }, config, validation },
+      { id: "b2", type: "select", layout: {x: 0, y: 0, w: 1, h: 3 }, config, validation },
     ];
 
     it("should create an action to add a panel", () => {

@@ -56,6 +56,13 @@ export class DesignPanel extends React.Component<Props, {}> {
         options: [],
         checked: false,
       },
+      validation: {
+        regex: "",  // let user specify regex
+        email: "",  // default empty, user specifiys a '@host.com'
+        date: "",
+        type: "",  // default: both string, number, both
+        length: -1,
+      },
     };
     this.props.addPanel(panel);
   }
@@ -73,8 +80,8 @@ export class DesignPanel extends React.Component<Props, {}> {
       <div className="design-panel-container">
         <h2>Form Configuration</h2>
         {this.generateElements()}
-        <div onClick={this.clearAllPanels} id="design-panel-clear" className="panel-item">Clear Panels</div>
-        <div onClick={this.saveAllPanels} id="design-panel-save" className="panel-item">Save Panels</div>
+        <div onClick={this.clearAllPanels} id="design-panel-clear" className="panel-item panel-menu-button">Clear Panels</div>
+        <div onClick={this.saveAllPanels} id="design-panel-save" className="panel-item panel-menu-button">Save Panels</div>
       </div>
     );
   }

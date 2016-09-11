@@ -37,10 +37,11 @@ export interface Panel {
   type: string;
   layout: Layout;
   config: PanelConfig;
+  validation: PanelValidation;
 }
 
 /**
- * Layout object specific to react-grid-layout
+ * Layout object specific to react-grid-layout - included in Panel
  * 
  * @export
  * @interface Layout
@@ -53,6 +54,21 @@ export interface Layout {
   minH?: number;
   minW?: number;
   i?: string;
+}
+
+/**
+ * Validation object for Panel
+ * 
+ * Priority in execution is determined in the order specified in this interface
+ * @export
+ * @interface Layout
+ */
+export interface PanelValidation {
+  regex: string; // let user specify regex
+  email: string; // default empty, user specifiys a '@host.com'
+  date: string;
+  type: string; // default: both string, number, both
+  length: number; // default -1
 }
 
 /**
