@@ -1,8 +1,8 @@
 import * as React from "react";
 import { connect } from "react-redux";
+const uuid = require("node-uuid");
 
 import { addPanel, clearPanels, hideModal, savePanels, showModal } from "../actions/actions.tsx";
-import { generateId } from "../utils/functions.tsx";
 import { Panel, ReducerAction, ReduxState } from "../utils/interfaces.tsx";
 import DesignPanelItem from "./designpanel_item.tsx";
 import Modal from "./utility/modal.tsx";
@@ -47,7 +47,7 @@ export class DesignPanel extends React.Component<Props, {}> {
 
   public createPanel(type: string): void {
     const panel: Panel = {
-      id: generateId(),
+      id: uuid.v4(),
       type: type.toLowerCase(),
       layout: {x: 0, y: 0, w: 1, h: 3, minH: 3 },
       config: {
@@ -80,8 +80,20 @@ export class DesignPanel extends React.Component<Props, {}> {
       <div className="design-panel-container">
         <h2>Form Configuration</h2>
         {this.generateElements()}
-        <div onClick={this.clearAllPanels} id="design-panel-clear" className="panel-item panel-menu-button">Clear Panels</div>
-        <div onClick={this.saveAllPanels} id="design-panel-save" className="panel-item panel-menu-button">Save Panels</div>
+        <div
+          className="panel-item panel-menu-button"
+          onClick={this.clearAllPanels}
+          id="design-panel-clear"
+        >
+        Clear Panels
+        </div>
+        <div
+          className="panel-item panel-menu-button"
+          onClick={this.saveAllPanels}
+          id="design-panel-save"
+        >
+        Save Panels
+        </div>
       </div>
     );
   }

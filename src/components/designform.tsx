@@ -11,7 +11,7 @@ import * as React from "react";
 import { connect } from "react-redux";
 
 import {  hideModal, removePanel, showModal, updatePanel, updatePanels  } from "../actions/actions.tsx";
-import { DesignReducer, Layout, Panel, ReducerAction, ReduxState } from "../utils/interfaces.tsx";
+import { ChangeEvent, DesignReducer, Layout, Panel, ReducerAction, ReduxState } from "../utils/interfaces.tsx";
 import Input from "./inputs/input.tsx";
 import GridWrapper from "./utility/gridwrapper.tsx";
 import Modal from "./utility/modal.tsx";
@@ -85,8 +85,9 @@ export class DesignForm extends React.Component<Props, State> {
     this.props.showModal(<Modal message={message} response={response} />);
   }
 
-  public showSettings(id: string): void {
+  public showSettings(id: string, event: ChangeEvent): void {
     console.log(id);
+    console.log(event)
   }
 
   /**

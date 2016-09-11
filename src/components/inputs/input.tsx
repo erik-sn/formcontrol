@@ -7,7 +7,7 @@ export interface Props {
   panel: Panel;
   update: (panel: Panel) => ReducerAction;
   close: (id: string) => void;
-  settings: (id: string) => void;
+  settings: (id: string, event: ChangeEvent) => void;
 }
 
 interface State {
