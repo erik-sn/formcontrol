@@ -1,5 +1,7 @@
 import * as React from "react";
 
+const Checkbox = require("rc-checkbox");
+const uuid = require("node-uuid");
 import { Panel, PanelConfig, PanelValidation } from "../../src/utils/interfaces.tsx";
 
 export interface Props {
@@ -23,13 +25,14 @@ export default class PanelSettings extends React.Component<Props, State> {
   }
 
   public updatePanel(event: React.FormEvent) {
-    const { name, value } = event.target as HTMLSelectElement;
-    const panel: any = this.state.panel;
+    event.preventDefault();
+    const { name, value, type } = event.target as HTMLSelectElement; ;
+    let panel: any = this.state.panel;
     const validationNames = ["regex", "type", "length", "email", "date"];
     if (validationNames.indexOf(name) !== -1) {
-      panel.validation[name] = value;
+      panel.validation[name] = type === "text" ? value : !panel.validation[name];
     } else {
-      panel.config[name] = value;
+      panel.config[name] = type === "text" ? value : !panel.config[name];
     }
     this.setState({ panel });
   }
@@ -37,17 +40,18 @@ export default class PanelSettings extends React.Component<Props, State> {
   public  render() {
     const { config, validation } = this.state.panel;
     const { x, y } = this.props;
+    console.log(validation.email);
     return (
-      <div className="panel-settings-container" style={{ left: x - 5, top: y + 5 }} >
+      <div className="panel-settings-container" style={{ left: x - 10, top: y + 10 }} >
         <h3>Validation</h3>
-        <input id="panel-settings-regex" name="regex" type="text" value={validation.regex} onChange={this.updatePanel} />
-        <input id="panel-settings-type" name="type" type="text" value={validation.type} onChange={this.updatePanel} />
-        <input id="panel-settings-length" name="length" type="text" value={validation.length} onChange={this.updatePanel} />
-        <input id="panel-settings-email" name="email" type="checkbox" checked={validation.email} onChange={this.updatePanel} />
-        <input id="panel-settings-date" name="date" type="checkbox" checked={validation.date} onChange={this.updatePanel} />
-        <input id="panel-settings-options" name="options" type="text" value={config.options} onChange={this.updatePanel} />
-        <input id="panel-settings-checked" name="checked" type="checkbox" checked={config.checked} onChange={this.updatePanel} />
-        <input id="panel-settings-mandatory" name="mandatory" type="checkbox" checked={config.mandatory} onChange={this.updatePanel} />
+        <input className="panel-settings-regex" name="regex" type="text" value={validation.regex} onChange={this.updatePanel} />
+        <input className="panel-settings-type" name="type" type="text" value={validation.type} onChange={this.updatePanel} />
+        <input className="panel-settings-length" name="length" type="text" value={validation.length} onChange={this.updatePanel} />
+        <input key={uuid.v4()} className="panel-settings-email" name="email" type="checkbox" checked={validation.email} onClick={this.updatePanel} />
+        <input key={uuid.v4()} className="panel-settings-date" name="date" type="checkbox" checked={validation.date} onClick={this.updatePanel} />
+        <input className="panel-settings-options" name="options" type="text" value={config.options} onChange={this.updatePanel} />
+        <input key={uuid.v4()} className="panel-settings-checked" name="checked" type="checkbox" checked={config.checked} onClick={this.updatePanel} />
+        <input key={uuid.v4()} className="panel-settings-mandatory" name="mandatory" type="checkbox" checked={config.mandatory} onClick={this.updatePanel} />
       </div>
     );
   }
