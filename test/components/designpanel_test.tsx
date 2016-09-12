@@ -14,15 +14,16 @@ describe("Design Panel" , () => {
     description: "",
     options: [],
     checked: false,
+    mandatory: true,
   };
 
   const validation: interfaces.PanelValidation = {
     regex: "",  // let user specify regex
-    email: "",  // default empty, user specifiys a '@host.com'
-    date: "",
+    email: false,  // default empty, user specifiys a '@host.com'
+    date: false,
     type: "",  // default: both string, number, both
     length: -1,
-  }
+  };
 
   const panels: Array<interfaces.Panel> = [
     { id: "b1", type: "input", layout: { x: 0, y: 0, w: 1, h: 3 }, config, validation },

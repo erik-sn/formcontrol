@@ -13,12 +13,13 @@ describe("Input" , () => {
     description: "",
     options: [],
     checked: false,
+    mandatory: true,
   };
 
   const validation: interfaces.PanelValidation = {
     regex: "",  // let user specify regex
-    email: "",  // default empty, user specifiys a '@host.com'
-    date: "",
+    email: false,
+    date: false,
     type: "",  // default: both string, number, both
     length: -1,
   };
@@ -26,7 +27,7 @@ describe("Input" , () => {
   const panel: interfaces.Panel = {
     id: "b1",
     type: "input",
-    layout: {x: 0, y: 0, w: 1, h: 3 },
+    layout: { x: 0, y: 0, w: 1, h: 3 },
     config,
     validation,
   };

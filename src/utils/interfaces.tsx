@@ -65,8 +65,8 @@ export interface Layout {
  */
 export interface PanelValidation {
   regex: string; // let user specify regex
-  email: string; // default empty, user specifiys a '@host.com'
-  date: string;
+  email: boolean; // default empty, user specifiys a '@host.com'
+  date: boolean;
   type: string; // default: both string, number, both
   length: number; // default -1
 }
@@ -82,25 +82,9 @@ export interface PanelValidation {
  * @interface PanelConfig
  */
 export interface PanelConfig {
-  label?: string;
-  description?: string;
-  options?: Array<string>;
-  checked?: boolean;
-}
-
-/*********************************************
- * General Interfaces
- *********************************************/
-
-/**
- * ChangeEvent interface to use with DOM manipulation (onChange, onClick, etc.)
- * 
- * @export
- * @interface ChangeEvent
- */
-export interface ChangeEvent {
-  target: {
-    value?: string
-    innerHTML?: string;
-  };
+  label: string;
+  description: string;
+  options: Array<string>;
+  checked: boolean;
+  mandatory: boolean;
 }

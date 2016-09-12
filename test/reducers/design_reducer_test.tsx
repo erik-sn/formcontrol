@@ -11,12 +11,13 @@ describe("Design Reducers" , () => {
     description: "",
     options: [],
     checked: false,
+    mandatory: true,
   };
 
   const validation: interfaces.PanelValidation = {
     regex: "",  // let user specify regex
-    email: "",  // default empty, user specifiys a '@host.com'
-    date: "",
+    email: false,
+    date: false,
     type: "",  // default: both string, number, both
     length: -1,
   };

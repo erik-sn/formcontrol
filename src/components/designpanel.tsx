@@ -55,11 +55,12 @@ export class DesignPanel extends React.Component<Props, {}> {
         description: "",
         options: [],
         checked: false,
+        mandatory: true,
       },
       validation: {
         regex: "",  // let user specify regex
-        email: "",  // default empty, user specifiys a '@host.com'
-        date: "",
+        email: false,  // default empty, user specifiys a '@host.com'
+        date: false,
         type: "",  // default: both string, number, both
         length: -1,
       },

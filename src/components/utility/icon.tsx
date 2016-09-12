@@ -1,14 +1,13 @@
 import * as _ from "lodash";
 import * as React from "react";
 
-import { ChangeEvent } from "../../utils/interfaces.tsx";
 
 export interface Props {
   icon: string;
   size: any;
   id: string;
   style?: Object;
-  onClick: (id: string, event: ChangeEvent) => void;
+  onClick: (id: string, event: MouseEvent) => void;
 }
 
 // From https://dmfrancisco.github.io/react-icons/
@@ -62,7 +61,7 @@ export default class Input extends React.Component<Props, {}> {
     }
   }
 
-  public click(event: ChangeEvent) {
+  public click(event: MouseEvent) {
     this.props.onClick(this.props.id, event);
   }
 

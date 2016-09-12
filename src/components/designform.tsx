@@ -10,8 +10,9 @@ import * as _ from "lodash";
 import * as React from "react";
 import { connect } from "react-redux";
 
+import PanelSettings from "./panelsettings.tsx";
 import {  hideModal, removePanel, showModal, updatePanel, updatePanels  } from "../actions/actions.tsx";
-import { ChangeEvent, DesignReducer, Layout, Panel, ReducerAction, ReduxState } from "../utils/interfaces.tsx";
+import { DesignReducer, Layout, Panel, ReducerAction, ReduxState } from "../utils/interfaces.tsx";
 import Input from "./inputs/input.tsx";
 import GridWrapper from "./utility/gridwrapper.tsx";
 import Modal from "./utility/modal.tsx";
@@ -27,15 +28,24 @@ export interface Props {
 }
 
 export interface State {
+  settings: { show: boolean; x: number; y: number; id: string }
 }
 
 export class DesignForm extends React.Component<Props, State> {
 
   constructor(props: Props) {
     super(props);
-    this.state = {};
+    this.state = {
+      settings: {
+        show: false,
+        x: undefined,
+        y: undefined,
+        id: "",
+      },
+    };
     this.updateLayouts = this.updateLayouts.bind(this);
     this.closePanel = this.closePanel.bind(this);
+    this.showSettings = this.showSettings.bind(this);
   }
 
   /**
@@ -85,9 +95,11 @@ export class DesignForm extends React.Component<Props, State> {
     this.props.showModal(<Modal message={message} response={response} />);
   }
 
-  public showSettings(id: string, event: ChangeEvent): void {
-    console.log(id);
-    console.log(event)
+  public showSettings(id: string, event: MouseEvent): void {
+    const x = event.clientX;
+    const y = event.clientY;
+    const settings = { id, x, y, show: !this.state.settings.show };
+    this.setState({ settings });
   }
 
   /**
@@ -138,8 +150,22 @@ export class DesignForm extends React.Component<Props, State> {
 
   public render() {
     const { panels } = this.props;
+    const { settings } = this.state;
+
+    let panelSettings: JSX.Element;
+    if (settings.show) {
+      const panel = _.find(panels, (panel: Panel) => panel.id === settings.id);
+      panelSettings = (
+        <PanelSettings
+          x={settings.x}
+          y={settings.y}
+          panel={panel}
+        />
+      );
+    }
     return (
       <div className="design-form-container">
+        {panelSettings}
         <ResponsiveReactGridLayout
           onLayoutChange={this.updateLayouts}
           className="layout"

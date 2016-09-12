@@ -124,3 +124,31 @@
 
 
 }
+
+/* Design Panel Settings */
+.panel-settings-container {
+  @include shadow($b: 10px, $s: 0px, $color: black);
+  z-index: 2;
+  position: fixed;
+  height: 300px;
+  width: 150px;
+  background: black;
+  border-radius: 3px;
+  color: white;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: middle;
+
+  input[type='text'] { 
+    padding: 2px;
+    margin: 5px;
+    height: 15px;
+  }
+  input[type='checkbox'] { 
+    padding: 2px;
+    margin: 5px;
+    height: 15px;
+  }
+}
