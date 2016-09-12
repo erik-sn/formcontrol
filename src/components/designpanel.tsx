@@ -61,8 +61,8 @@ export class DesignPanel extends React.Component<Props, {}> {
         regex: "",  // let user specify regex
         email: false,  // default empty, user specifiys a '@host.com'
         date: false,
-        type: "",  // default: both string, number, both
-        length: -1,
+        type: "any",  // default: any string, number, both
+        length: "",
       },
     };
     this.props.addPanel(panel);

@@ -130,8 +130,8 @@
   @include shadow($b: 10px, $s: 0px, $color: black);
   z-index: 2;
   position: fixed;
-  height: 300px;
-  width: 150px;
+  height: 330px;
+  width: 200px;
   background: black;
   border-radius: 3px;
   color: white;
@@ -141,14 +141,46 @@
   justify-content: center;
   align-content: middle;
 
-  input[type='text'] { 
-    padding: 2px;
-    margin: 5px;
-    height: 15px;
+  h4 {
+    text-align: center;
+    margin: 0px !important;
   }
-  input[type='checkbox'] { 
-    padding: 2px;
-    margin: 5px;
-    height: 15px;
+
+  textarea {
+    resize: none;
+    height: 100px;
+    padding: 5px;
+    margin: 2px 5px 5px 5px;
+  }
+
+  .panel-settings-row {
+    display: flex;
+    flex-wrap: nowrap;
+    align-content: center;
+    line-height: 33px;
+    padding: 0px 5px;
+
+    .panel-settings-label {
+      flex: 1 1 30%;
+    }
+
+    .panel-settings-input {
+      flex: 1 1 auto;
+      max-width: 70%;
+    }
+
+    input[type='text'] { 
+      padding: 2px;
+      margin: 5px;
+      height: 15px;
+      width: 85%;
+    }
+    input[type='checkbox'] { 
+      padding: 2px;
+      margin: 5px;
+      height: 15px;
+      margin: 5px;
+    }
+
   }
 }

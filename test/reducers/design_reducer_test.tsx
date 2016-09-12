@@ -19,7 +19,7 @@ describe("Design Reducers" , () => {
     email: false,
     date: false,
     type: "",  // default: both string, number, both
-    length: -1,
+    length: "",
   };
 
   const panels: Array<interfaces.Panel> = [

@@ -20,7 +20,7 @@ describe("Panel Settings" , () => {
     email: false,
     date: false,
     type: "",  // default: both string, number, both
-    length: -1,
+    length: "",
   };
 
   const panels: Array<interfaces.Panel> = [
@@ -30,16 +30,19 @@ describe("Panel Settings" , () => {
 
   describe("Input fields" , () => {
     let component: any;
+    let updatePanel: any;
     const props: Props = {
       panel: panels[0],
       x: 0,
       y: 0,
+      updatePanel: () => "test",
     };
     const state = {};
 
 
     beforeEach(() => {
-      component = shallow(<PanelSettings  {...props} />);
+      updatePanel = sinon.spy(() => ("test click"));
+      component = shallow(<PanelSettings updatePanel={updatePanel}  {...props} />);
     });
 
     it("renders something", () => {

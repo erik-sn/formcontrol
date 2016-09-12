@@ -21,7 +21,7 @@ describe("Input" , () => {
     email: false,
     date: false,
     type: "",  // default: both string, number, both
-    length: -1,
+    length: "",
   };
 
   const panel: interfaces.Panel = {

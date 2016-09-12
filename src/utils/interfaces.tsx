@@ -68,7 +68,7 @@ export interface PanelValidation {
   email: boolean; // default empty, user specifiys a '@host.com'
   date: boolean;
   type: string; // default: both string, number, both
-  length: number; // default -1
+  length: string; // default empty
 }
 
 /**

@@ -160,6 +160,7 @@ export class DesignForm extends React.Component<Props, State> {
           x={settings.x}
           y={settings.y}
           panel={panel}
+          updatePanel={updatePanel}
         />
       );
     }

@@ -24,7 +24,7 @@ describe("Design Form" , () => {
       email: false,  // default empty, user specifiys a '@host.com'
       date: false,
       type: "",  // default: both string, number, both
-      length: -1,
+      length: "",
     };
 
     const panels: Array<interfaces.Panel> = [
