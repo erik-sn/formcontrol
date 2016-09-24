@@ -2,7 +2,7 @@ import { expect } from "chai";
 import { shallow } from "enzyme";
 import * as React from "react";
 
-import Navbar from "../../src/components/navbar.tsx";
+import Navbar from "../../src/components/navbar";
 
 describe("Navbar" , () => {
 

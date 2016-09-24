@@ -1,5 +1,6 @@
 import { expect } from "chai";
-import * as functions from '../../src/utils/functions.tsx';
+
+import * as functions from "../../src/utils/functions";
 
 describe("Utility Functions" , () => {
 

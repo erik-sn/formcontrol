@@ -3,7 +3,7 @@ import { shallow } from "enzyme";
 import * as React from "react";
 import * as sinon from "sinon";
 
-import DesignPanelItem from "../../src/components/designpanel_item.tsx";
+import DesignPanelItem from "../../src/components/designpanel_item";
 
 describe("Design Panel Item" , () => {
 

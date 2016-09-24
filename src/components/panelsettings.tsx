@@ -2,7 +2,7 @@ import * as React from "react";
 
 const Checkbox = require("rc-checkbox");
 const uuid = require("node-uuid");
-import { Panel, PanelConfig, PanelValidation } from "../../src/utils/interfaces.tsx";
+import { Panel, PanelConfig, PanelValidation } from "../../src/utils/interfaces";
 
 export interface Props {
   panel: Panel;

@@ -5,10 +5,11 @@ import { Router, browserHistory } from "react-router";
 import { applyMiddleware, createStore } from "redux";
 import * as thunk from "redux-thunk";
 
-import reducers from "./reducers/root.tsx";
-import router from "./routes.tsx";
+import reducers from "./reducers/root";
+import router  from "./routes";
 
-const createStoreWithMiddleware = applyMiddleware(thunk.default)(createStore);
+
+const createStoreWithMiddleware: any = applyMiddleware(thunk.default)(createStore);
 
 ReactDOM.render(
   <Provider store={createStoreWithMiddleware(reducers)}>

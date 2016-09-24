@@ -1,7 +1,7 @@
 
-import * as types from "../../src/actions/constants.tsx";
-import reducer from "../../src/reducers/design_reducer.tsx";
-import * as interfaces from "../../src/utils/interfaces.tsx";
+import * as types from "../../src/actions/constants";
+import reducer from "../../src/reducers/design_reducer";
+import * as interfaces from "../../src/utils/interfaces";
 import { expect } from "chai";
 
 describe("Design Reducers" , () => {

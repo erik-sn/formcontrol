@@ -1,13 +1,13 @@
-import { Panel, ReducerAction } from "../../../src/utils/interfaces.tsx";
+import { Panel, ReducerAction } from "../../../src/utils/interfaces";
 import * as React from "react";
 
-import Icon from "../utility/icon.tsx";
+import Icon from "../utility/icon";
 
 export interface Props {
   panel: Panel;
   update: (panel: Panel) => ReducerAction;
   close: (id: string) => void;
-  settings: (id: string, event: MouseEvent) => void;
+  settings: (id: string, event: React.MouseEvent) => void;
 }
 
 interface State {

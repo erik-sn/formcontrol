@@ -1,6 +1,6 @@
-import * as actions from "../../src/actions/actions.tsx";
-import * as types from "../../src/actions/constants.tsx";
-import * as interfaces from "../../src/utils/interfaces.tsx";
+import * as actions from "../../src/actions/actions";
+import * as types from "../../src/actions/constants";
+import * as interfaces from "../../src/utils/interfaces";
 import { expect } from "chai";
 import * as React from "react";
 

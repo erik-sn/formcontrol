@@ -2,10 +2,10 @@ import * as React from "react";
 import { connect } from "react-redux";
 const uuid = require("node-uuid");
 
-import { addPanel, clearPanels, hideModal, savePanels, showModal } from "../actions/actions.tsx";
-import { Panel, ReducerAction, ReduxState } from "../utils/interfaces.tsx";
-import DesignPanelItem from "./designpanel_item.tsx";
-import Modal from "./utility/modal.tsx";
+import { addPanel, clearPanels, hideModal, savePanels, showModal } from "../actions/actions";
+import { Panel, ReducerAction, ReduxState } from "../utils/interfaces";
+import DesignPanelItem from "./designpanel_item";
+import Modal from "./utility/modal";
 
 export interface Props {
   panels: Array<Panel>;

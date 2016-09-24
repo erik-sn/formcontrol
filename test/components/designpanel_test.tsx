@@ -4,9 +4,9 @@ import { mount } from "enzyme";
 import * as React from "react";
 import * as sinon from "sinon";
 
-import * as constants from "../../src/actions/constants.tsx";
-import ConnectedDesignPanel, { DesignPanel, Props } from "../../src/components/designpanel.tsx";
-import * as interfaces from "../../src/utils/interfaces.tsx";
+import * as constants from "../../src/actions/constants";
+import ConnectedDesignPanel, { DesignPanel, Props } from "../../src/components/designpanel";
+import * as interfaces from "../../src/utils/interfaces";
 
 describe("Design Panel" , () => {
   const config: interfaces.PanelConfig = {

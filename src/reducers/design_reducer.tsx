@@ -1,7 +1,7 @@
 import * as _ from "lodash";
 
-import * as types from "../actions/constants.tsx";
-import { DesignReducer, Panel, ReducerAction } from "../utils/interfaces.tsx";
+import * as types from "../actions/constants";
+import { DesignReducer, Panel, ReducerAction } from "../utils/interfaces";
 
 const INITIAL_STATE: DesignReducer = { panels: [] };
 

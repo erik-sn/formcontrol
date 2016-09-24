@@ -4,7 +4,7 @@ import { shallow } from "enzyme";
 import * as React from "react";
 import * as sinon from "sinon";
 
-import { Application, Props } from "../../src/components/application.tsx";
+import { Application, Props } from "../../src/components/application";
 
 
 describe("Application" , () => {

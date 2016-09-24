@@ -5,11 +5,11 @@ if (process.env.BROWSER) {
 import * as React from "react";
 import { connect } from "react-redux";
 
-import { DisplayReducer, ReduxState } from "../utils/interfaces.tsx";
-import DesignForm from "./designform.tsx";
-import DesignPanel from "./designpanel.tsx";
-import Form from "./form.tsx";
-import Navbar from "./navbar.tsx";
+import { DisplayReducer, ReduxState } from "../utils/interfaces";
+import DesignForm from "./designform";
+import DesignPanel from "./designpanel";
+import Form from "./form";
+import Navbar from "./navbar";
 
 export interface Props {
   params: { mode: string };
@@ -37,7 +37,7 @@ export class Application extends React.Component<Props, State> {
     return (
       <div>
         {modal.showModal ? modal.modal : ""}
-        <div className="application-container" style={modal.showModal ? { opacity: "0.4"} : { opacity: "1"}} >
+        <div className="application-container" style={modal.showModal ? { opacity: 0.4} : { opacity: 1}} >
           <Navbar />
           {mode && mode.toLowerCase() === "design" ? design : <Form /> }
         </div>

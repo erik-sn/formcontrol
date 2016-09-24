@@ -3,9 +3,9 @@ import { mount } from "enzyme";
 import * as React from "react";
 import * as sinon from "sinon";
 
-import * as constants from "../../src/actions/constants.tsx";
-import DesignFormConnected, { DesignForm, Props } from "../../src/components/designform.tsx";
-import * as interfaces from "../../src/utils/interfaces.tsx";
+import * as constants from "../../src/actions/constants";
+import DesignFormConnected, { DesignForm, Props } from "../../src/components/designform";
+import * as interfaces from "../../src/utils/interfaces";
 
 describe("Design Form" , () => {
 

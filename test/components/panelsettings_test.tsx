@@ -2,8 +2,8 @@ import { expect } from "chai";
 import { shallow } from "enzyme";
 import * as React from "react";
 
-import PanelSettings, { Props } from "../../src/components/panelsettings.tsx";
-import * as interfaces from "../../src/utils/interfaces.tsx";
+import PanelSettings, { Props } from "../../src/components/panelsettings";
+import * as interfaces from "../../src/utils/interfaces";
 
 describe("Panel Settings" , () => {
 

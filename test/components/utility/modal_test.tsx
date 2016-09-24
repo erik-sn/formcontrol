@@ -3,7 +3,7 @@ import { mount } from "enzyme";
 import * as React from "react";
 import * as sinon from "sinon";
 
-import Modal, { Props } from "../../../src/components/utility/modal.tsx";
+import Modal, { Props } from "../../../src/components/utility/modal";
 
 describe("Modal" , () => {
 

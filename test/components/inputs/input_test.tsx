@@ -4,8 +4,8 @@ import { mount, shallow } from "enzyme";
 import * as React from "react";
 import * as sinon from "sinon";
 
-import Input, { Props } from "../../../src/components/inputs/input.tsx";
-import * as interfaces from "../../../src/utils/interfaces.tsx";
+import Input, { Props } from "../../../src/components/inputs/input";
+import * as interfaces from "../../../src/utils/interfaces";
 
 describe("Input" , () => {
   const config: interfaces.PanelConfig = {

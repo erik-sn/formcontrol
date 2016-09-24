@@ -10,12 +10,12 @@ import * as _ from "lodash";
 import * as React from "react";
 import { connect } from "react-redux";
 
-import PanelSettings from "./panelsettings.tsx";
-import {  hideModal, removePanel, showModal, updatePanel, updatePanels  } from "../actions/actions.tsx";
-import { DesignReducer, Layout, Panel, ReducerAction, ReduxState } from "../utils/interfaces.tsx";
-import Input from "./inputs/input.tsx";
-import GridWrapper from "./utility/gridwrapper.tsx";
-import Modal from "./utility/modal.tsx";
+import PanelSettings from "./panelsettings";
+import {  hideModal, removePanel, showModal, updatePanel, updatePanels  } from "../actions/actions";
+import { DesignReducer, Layout, Panel, ReducerAction, ReduxState } from "../utils/interfaces";
+import Input from "./inputs/input";
+import GridWrapper from "./utility/gridwrapper";
+import Modal from "./utility/modal";
 
 export interface Props {
   design: DesignReducer;
@@ -95,7 +95,7 @@ export class DesignForm extends React.Component<Props, State> {
     this.props.showModal(<Modal message={message} response={response} />);
   }
 
-  public showSettings(id: string, event: MouseEvent): void {
+  public showSettings(id: string, event: React.MouseEvent): void {
     const x = event.clientX;
     const y = event.clientY;
     const settings = { id, x, y, show: !this.state.settings.show };

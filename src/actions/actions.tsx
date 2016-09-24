@@ -1,6 +1,6 @@
-import * as types from "../../src/actions/constants.tsx";
+import * as types from "../../src/actions/constants";
 
-import { Panel, ReducerAction  } from "../utils/interfaces.tsx";
+import { Panel, ReducerAction  } from "../utils/interfaces";
 
 export function addPanel(panel: Panel): ReducerAction {
   return {

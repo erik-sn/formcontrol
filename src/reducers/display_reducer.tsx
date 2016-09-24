@@ -1,6 +1,6 @@
-import { HIDE_MODAL, SHOW_MODAL } from "../actions/constants.tsx";
+import { HIDE_MODAL, SHOW_MODAL } from "../actions/constants";
 
-import { DisplayReducer, ReducerAction } from "../utils/interfaces.tsx";
+import { DisplayReducer, ReducerAction } from "../utils/interfaces";
 
 const INITIAL_STATE: DisplayReducer = {
     modal: {
