@@ -2,7 +2,7 @@ import * as types from "../actions/constants";
 
 import { DisplayReducer, ReducerAction } from "../utils/interfaces";
 
-const INITIAL_STATE: DisplayReducer = {
+export const INITIAL_STATE: DisplayReducer = {
     showPreview: false,
     modal: {
         showModal: false,

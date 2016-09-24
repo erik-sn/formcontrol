@@ -18,7 +18,7 @@ export interface Props {
 }
 
 export interface State {
-  showPreview: boolean;
+  showPreviewButton: boolean;
 }
 
 export class DesignPanel extends React.Component<Props, State> {
@@ -26,7 +26,7 @@ export class DesignPanel extends React.Component<Props, State> {
   constructor(props: Props) {
     super(props);
     this.state = {
-      showPreview: false,
+      showPreviewButton: false,
     };
     this.createPanel = this.createPanel.bind(this);
     this.togglePreview = this.togglePreview.bind(this);
@@ -36,7 +36,7 @@ export class DesignPanel extends React.Component<Props, State> {
 
 
   public togglePreview(): void {
-    this.setState({ showPreview: !this.state.showPreview });
+    this.setState({ showPreviewButton: !this.state.showPreviewButton });
   }
 
   public clearAllPanels(): void {
@@ -91,6 +91,7 @@ export class DesignPanel extends React.Component<Props, State> {
   }
 
   public render() {
+    const { showPreviewButton } = this.state;
     return (
       <div className="design-panel-container">
         <h2>Form Configuration</h2>
@@ -100,7 +101,7 @@ export class DesignPanel extends React.Component<Props, State> {
           onClick={this.togglePreview}
           id="design-panel-preview"
         >
-        {this.state.showPreview ? "Hide " : "Show " }Preview
+        {showPreviewButton ? "Hide " : "Show " }Preview
         </div>
         <div
           className="panel-item panel-menu-button"

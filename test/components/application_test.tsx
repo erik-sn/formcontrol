@@ -17,6 +17,7 @@ describe("Application" , () => {
       },
       route: {},
       display: {
+        showPreview: false, 
         modal: {
           showModal: false,
           modal: undefined,
@@ -71,6 +72,7 @@ describe("Application" , () => {
       },
       route: {},
       display: {
+        showPreview: false,
         modal: {
           showModal: false,
           modal: undefined,
