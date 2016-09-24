@@ -26,6 +26,14 @@ describe("Display Reducers" , () => {
 
   });
 
+  it("should show toggle showPreview", () => {
+    const showResult = reducer(INITIAL_STATE, {type: types.SHOW_PREVIEW, payload: true});
+    expect(showResult.showPreview).to.be.true;
+    const hideResult = reducer(INITIAL_STATE, {type: types.SHOW_PREVIEW, payload: false});
+    expect(hideResult.showPreview).to.be.false;
+
+  });
+
 });
 
 

@@ -37,6 +37,7 @@ describe("Design Panel" , () => {
 
   describe("Panel" , () => {
     let component: any;
+    let showPreview: any;
     let togglePreview: any = sinon.spy(DesignPanel.prototype, "togglePreview");
     let clearAllPanels: any = sinon.spy(DesignPanel.prototype, "clearAllPanels");
     let saveAllPanels: any = sinon.spy(DesignPanel.prototype, "saveAllPanels");
@@ -55,6 +56,8 @@ describe("Design Panel" , () => {
 
 
     beforeEach(() => {
+      showPreview = sinon.spy();
+      props.showPreview = showPreview;
       component = mount(<DesignPanel {...props} {...state} />);
     });
 
@@ -69,18 +72,22 @@ describe("Design Panel" , () => {
 
     it("Calls togglePreview on click, toggles togglePreview state", () => {
       expect(togglePreview.callCount).to.equal(0);
+      expect(showPreview.callCount).to.equal(0);
       expect(component.state(["showPreviewButton"])).to.be.false;
       expect(component.find("#design-panel-preview").text()).to.contain("Show");
 
       component.find("#design-panel-preview").simulate("click");
       expect(togglePreview.callCount).to.equal(1);
+      expect(showPreview.callCount).to.equal(1);
       expect(component.state(["showPreviewButton"])).to.be.true;
       expect(component.find("#design-panel-preview").text()).to.contain("Hide");
 
       component.find("#design-panel-preview").simulate("click");
       expect(togglePreview.callCount).to.equal(2);
+      expect(showPreview.callCount).to.equal(2);
       expect(component.state(["showPreviewButton"])).to.be.false;
       expect(component.find("#design-panel-preview").text()).to.contain("Show");
+
     });
 
     it("Calls clearAllPanels on click", () => {

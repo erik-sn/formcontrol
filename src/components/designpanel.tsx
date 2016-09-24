@@ -14,7 +14,7 @@ export interface Props {
   savePanels: (panels: Array<Panel>) => ReducerAction;
   showModal: (modal: JSX.Element) => ReducerAction;
   hideModal: () => ReducerAction;
-  showPreview: () => ReducerAction;
+  showPreview: (show: boolean) => ReducerAction;
 }
 
 export interface State {
@@ -36,7 +36,9 @@ export class DesignPanel extends React.Component<Props, State> {
 
 
   public togglePreview(): void {
-    this.setState({ showPreviewButton: !this.state.showPreviewButton });
+    const { showPreviewButton } = this.state;
+    this.setState({ showPreviewButton: !showPreviewButton });
+    this.props.showPreview(!showPreviewButton);
   }
 
   public clearAllPanels(): void {

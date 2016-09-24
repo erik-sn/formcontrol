@@ -101,7 +101,7 @@ describe("Actions" , () => {
         payload: true,
         type: types.SHOW_PREVIEW,
       };
-      expect(actions.showPreview()).to.deep.equal(expectedAction);
+      expect(actions.showPreview(true)).to.deep.equal(expectedAction);
 
     });
 
@@ -110,7 +110,7 @@ describe("Actions" , () => {
         payload: false,
         type: types.SHOW_PREVIEW,
       };
-      expect(actions.hidePreview()).to.deep.equal(expectedAction);
+      expect(actions.showPreview(false)).to.deep.equal(expectedAction);
     });
 
   });
