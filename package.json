@@ -5,9 +5,9 @@
   "main": "index.tsx",
   "repository": "https://github.com/kiresuah/ReactTypeScript",
   "scripts": {
-    "dev": "ts-babel-node server.ts",
+    "dev": "ts-node server.ts",
     "test:watch": "npm run test -- --watch",
-    "test": "mocha --compilers ts:ts-babel-node/register,tsx:ts-babel-node/register --require ./test/test_helper.tsx --recursive ./test",
+    "test": "mocha --compilers ts:ts-node/register,tsx:ts-node/register --require ./test/test_helper.tsx --recursive ./test",
     "build": "webpack -p --config webpack.production.config.ts --progress --profile --colors",
     "start": "nodemon server.production.tsx --exec ts-node"
   },

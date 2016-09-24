@@ -5,7 +5,7 @@ import * as React from "react";
 import * as sinon from "sinon";
 
 import * as constants from "../../src/actions/constants";
-import ConnectedDesignPanel, { DesignPanel, Props } from "../../src/components/designpanel";
+import ConnectedDesignPanel, { DesignPanel, Props, State } from "../../src/components/designpanel";
 import * as interfaces from "../../src/utils/interfaces";
 
 describe("Design Panel" , () => {
@@ -37,6 +37,7 @@ describe("Design Panel" , () => {
 
   describe("Panel" , () => {
     let component: any;
+    let togglePreview: any = sinon.spy(DesignPanel.prototype, "togglePreview");
     let clearAllPanels: any = sinon.spy(DesignPanel.prototype, "clearAllPanels");
     let saveAllPanels: any = sinon.spy(DesignPanel.prototype, "saveAllPanels");
     const props: Props = {
@@ -47,16 +48,38 @@ describe("Design Panel" , () => {
       hideModal: (): interfaces.ReducerAction => action,
       showModal: (): interfaces.ReducerAction => action,
     };
-    const state = {};
+    const state: State = {
+      showPreview: false,
+    };
 
 
     beforeEach(() => {
-      component = mount(<DesignPanel {...props} />);
+      component = mount(<DesignPanel {...props} {...state} />);
     });
 
     it("renders something", () => {
       expect(component).to.exist;
       expect(component.find(".design-panel-container")).to.have.length(1);
+    });
+
+    it("should have three menu buttons", () => {
+      expect(component.find(".panel-menu-button")).to.have.length(3);
+    });
+
+    it("Calls togglePreview on click, toggles togglePreview state", () => {
+      expect(togglePreview.callCount).to.equal(0);
+      expect(component.state(["showPreview"])).to.be.false;
+      expect(component.find("#design-panel-preview").text()).to.contain("Show");
+
+      component.find("#design-panel-preview").simulate("click");
+      expect(togglePreview.callCount).to.equal(1);
+      expect(component.state(["showPreview"])).to.be.true;
+      expect(component.find("#design-panel-preview").text()).to.contain("Hide");
+
+      component.find("#design-panel-preview").simulate("click");
+      expect(togglePreview.callCount).to.equal(2);
+      expect(component.state(["showPreview"])).to.be.false;
+      expect(component.find("#design-panel-preview").text()).to.contain("Show");
     });
 
     it("Calls clearAllPanels on click", () => {

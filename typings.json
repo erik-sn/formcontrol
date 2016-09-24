@@ -2,7 +2,7 @@
   "globalDependencies": {
     "chai": "registry:dt/chai#3.4.0+20160601211834",
     "compression": "registry:dt/compression#0.0.0+20160501162003",
-    "enzyme": "registry:dt/enzyme#2.4.1+20160709041153",
+    "enzyme": "registry:dt/enzyme#2.4.1+20160919072335",
     "express": "registry:dt/express#4.0.0+20160708185218",
     "express-serve-static-core": "registry:dt/express-serve-static-core#4.0.0+20160829034835",
     "jquery": "registry:dt/jquery#1.10.0+20160908203239",
@@ -13,7 +13,7 @@
     "morgan": "registry:dt/morgan#1.7.0+20160524142355",
     "node": "registry:dt/node#6.0.0+20160909174046",
     "node-uuid": "registry:dt/node-uuid#0.0.0+20160316155526",
-    "react": "registry:dt/react#0.14.0+20160829191040",
+    "react": "registry:dt/react#0.14.0+20160923124221",
     "react-dom": "registry:dt/react-dom#0.14.0+20160412154040",
     "react-redux": "registry:dt/react-redux#4.4.0+20160908183346",
     "react-router": "registry:dt/react-router#2.0.0+20160828232736",

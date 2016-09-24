@@ -96,6 +96,23 @@ describe("Actions" , () => {
 
     });
 
+    it("should create an action to show a preview", () => {
+      const expectedAction: interfaces.ReducerAction = {
+        payload: true,
+        type: types.SHOW_PREVIEW,
+      };
+      expect(actions.showPreview()).to.deep.equal(expectedAction);
+
+    });
+
+    it("should create an action to hide a preview", () => {
+      const expectedAction: interfaces.ReducerAction = {
+        payload: false,
+        type: types.SHOW_PREVIEW,
+      };
+      expect(actions.hidePreview()).to.deep.equal(expectedAction);
+    });
+
   });
 
 });

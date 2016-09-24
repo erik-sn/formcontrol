@@ -18,3 +18,4 @@ export const SAVE_PANELS: string = "SAVE_PANELS";
  */
 export const SHOW_MODAL: string = "SHOW_MODAL";
 export const HIDE_MODAL: string = "HIDE_MODAL";
+export const SHOW_PREVIEW: string = "SHOW_PREVIEW";

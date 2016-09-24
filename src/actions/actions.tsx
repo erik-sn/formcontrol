@@ -63,3 +63,17 @@ export function savePanels(panels: Array<Panel>): ReducerAction {
     type: types.SAVE_PANELS,
   };
 }
+
+export function showPreview(): ReducerAction {
+  return {
+    payload: true,
+    type: types.SHOW_PREVIEW,
+  };
+}
+
+export function hidePreview(): ReducerAction {
+  return {
+    payload: false,
+    type: types.SHOW_PREVIEW,
+  };
+}

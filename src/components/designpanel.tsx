@@ -2,7 +2,7 @@ import * as React from "react";
 import { connect } from "react-redux";
 const uuid = require("node-uuid");
 
-import { addPanel, clearPanels, hideModal, savePanels, showModal } from "../actions/actions";
+import { addPanel, clearPanels, hideModal, savePanels, showModal, showPreview } from "../actions/actions";
 import { Panel, ReducerAction, ReduxState } from "../utils/interfaces";
 import DesignPanelItem from "./designpanel_item";
 import Modal from "./utility/modal";
@@ -14,15 +14,29 @@ export interface Props {
   savePanels: (panels: Array<Panel>) => ReducerAction;
   showModal: (modal: JSX.Element) => ReducerAction;
   hideModal: () => ReducerAction;
+  showPreview: () => ReducerAction;
 }
 
-export class DesignPanel extends React.Component<Props, {}> {
+export interface State {
+  showPreview: boolean;
+}
+
+export class DesignPanel extends React.Component<Props, State> {
 
   constructor(props: Props) {
     super(props);
+    this.state = {
+      showPreview: false,
+    };
     this.createPanel = this.createPanel.bind(this);
+    this.togglePreview = this.togglePreview.bind(this);
     this.clearAllPanels = this.clearAllPanels.bind(this);
     this.saveAllPanels = this.saveAllPanels.bind(this);
+  }
+
+
+  public togglePreview(): void {
+    this.setState({ showPreview: !this.state.showPreview });
   }
 
   public clearAllPanels(): void {
@@ -83,6 +97,13 @@ export class DesignPanel extends React.Component<Props, {}> {
         {this.generateElements()}
         <div
           className="panel-item panel-menu-button"
+          onClick={this.togglePreview}
+          id="design-panel-preview"
+        >
+        {this.state.showPreview ? "Hide " : "Show " }Preview
+        </div>
+        <div
+          className="panel-item panel-menu-button"
           onClick={this.clearAllPanels}
           id="design-panel-clear"
         >
@@ -107,4 +128,5 @@ const mapStateToProps = (state: ReduxState) => ({
 });
 
 
-export default connect(mapStateToProps, { addPanel, clearPanels, savePanels, showModal, hideModal })(DesignPanel);
+export default connect(mapStateToProps,
+{ showPreview, addPanel, clearPanels, savePanels, showModal, hideModal })(DesignPanel);

@@ -5,7 +5,7 @@ import { DesignReducer, Panel, ReducerAction } from "../utils/interfaces";
 
 const INITIAL_STATE: DesignReducer = { panels: [] };
 
-export default function (state = INITIAL_STATE, action: ReducerAction) {
+export default function (state = INITIAL_STATE, action: ReducerAction): DesignReducer {
   switch (action.type) {
     case types.ADD_PANEL:
       return {

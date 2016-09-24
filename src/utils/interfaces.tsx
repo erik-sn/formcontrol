@@ -12,6 +12,7 @@ export interface DesignReducer {
 }
 
 export interface DisplayReducer {
+  showPreview: boolean;
   modal: {
     showModal: boolean;
     modal: JSX.Element

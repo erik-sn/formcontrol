@@ -1,6 +1,7 @@
 import { expect } from "chai";
 import { shallow } from "enzyme";
 import * as React from "react";
+import * as sinon from "sinon";
 
 import PanelSettings, { Props } from "../../src/components/panelsettings";
 import * as interfaces from "../../src/utils/interfaces";
@@ -51,7 +52,7 @@ describe("Panel Settings" , () => {
     });
 
     it("has the correct number of input fields", () => {
-      expect(component.find("input")).to.have.length(10);
+      expect(component.find("input")).to.have.length(7);
     });
 
   });
