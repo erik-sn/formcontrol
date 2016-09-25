@@ -1,7 +1,6 @@
 if (process.env.BROWSER) {
   require("../sass/design.scss");
 }
-
 const Responsive = require("react-grid-layout").Responsive; // typescript definitions not available
 const WidthProvider = require("react-grid-layout").WidthProvider;
 const ResponsiveReactGridLayout = WidthProvider(Responsive);
@@ -21,6 +20,7 @@ import Modal from "./utility/modal";
 export interface Props {
   design: DesignReducer;
   panels: Array<Panel>;
+  layout: any;
   preview: boolean;
   updatePanel: (panel: Panel) => ReducerAction;
   updatePanels: (panels: Array<Panel>) => ReducerAction;
@@ -30,7 +30,7 @@ export interface Props {
 }
 
 export interface State {
-  settings: { show: boolean; x: number; y: number; id: string }
+  settings?: { show: boolean; x: number; y: number; id: string };
 }
 
 export class DesignForm extends React.Component<Props, State> {
@@ -49,7 +49,13 @@ export class DesignForm extends React.Component<Props, State> {
     this.closePanel = this.closePanel.bind(this);
     this.showSettings = this.showSettings.bind(this);
   }
-  
+
+  public componentWillReceiveProps(nextProps) {
+    if (this.props.preview && ! nextProps.preview) {
+      console.log(this.props.panels.map(panel => panel.layout.x), nextProps.panels.map(panel => panel.layout.x))
+      this.forceUpdate();
+    }
+  }
   /**
    * Return a JSX component with a label based on the type parameter
    * 
@@ -131,8 +137,8 @@ export class DesignForm extends React.Component<Props, State> {
       }
       return (
         <GridWrapper
-          key={`${panel.id}`}
           data-grid={panel.layout}
+          key={panel.id}
         >
           {child}
         </GridWrapper>
@@ -153,11 +159,9 @@ export class DesignForm extends React.Component<Props, State> {
   public render() {
     const { panels, preview } = this.props;
     const { settings } = this.state;
-
     if (preview) {
       return <Renderer panels={panels} />;
     }
-
     let panelSettings: JSX.Element;
     if (settings.show) {
       const panel = _.find(panels, (panel: Panel) => panel.id === settings.id);
@@ -171,12 +175,14 @@ export class DesignForm extends React.Component<Props, State> {
       );
     }
     return (
+      // layotus ={{}} is VERY important - see https://github.com/STRML/react-grid-layout/issues/320
       <div className="design-form-container" id="form-container">
         {panelSettings}
         <ResponsiveReactGridLayout
           onLayoutChange={this.updateLayouts}
           className="layout"
           rowHeight={30}
+          layouts={{}}
           width={1200}
           breakpoints={{lg: 1200, md: 996, sm: 768, xs: 480, xxs: 0}}
           cols={{lg: 10, md: 10, sm: 10, xs: 10, xxs: 10}}

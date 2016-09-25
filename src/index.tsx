@@ -2,17 +2,18 @@ import * as React from "react";
 import * as ReactDOM from "react-dom";
 import { Provider } from "react-redux";
 import { Router, browserHistory } from "react-router";
-import { applyMiddleware, createStore } from "redux";
+import { applyMiddleware, createStore, compose } from "redux";
 import * as thunk from "redux-thunk";
 
 import reducers from "./reducers/root";
 import router  from "./routes";
 
-
 const createStoreWithMiddleware: any = applyMiddleware(thunk.default)(createStore);
-
+const store = createStore(reducers, compose(
+  applyMiddleware(thunk.default), window.devToolsExtension ? window.devToolsExtension() :f => f
+));
 ReactDOM.render(
-  <Provider store={createStoreWithMiddleware(reducers)}>
+  <Provider store={store}>
     <Router history={browserHistory}>{router}</Router>
   </Provider>,
 document.getElementById("react-container"));

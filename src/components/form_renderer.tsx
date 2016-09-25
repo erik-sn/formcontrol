@@ -28,21 +28,17 @@ export default class DesignForm extends React.Component<Props, State> {
   }
 
   public componentDidMount() {
-    // const frame = document.getElementById("form-container");
-    // const col: number = frame.clientWidth / 10;
-
-    const keys: Array<string> = this.props.panels.map(panel => uuid.v4());
     const form: {} = this.props.panels.reduce((prev: any, panel: Panel) => {
-      prev[panel.config.label] = "";
+      prev[`${panel.config.label}__${panel.id}`] = "";
       return prev;
     }, {});
-    const renderedPanels: Array<JSX.Element> = this.props.panels.map((panel, i) => {
-      return this.renderInput(panel, keys[i]);
+    const renderedPanels: Array<JSX.Element> = this.props.panels.map(panel => {
+      return this.renderInput(panel);
     });
     this.setState({ form, renderedPanels });
   }
 
-  public renderInput(panel: Panel, key: string): JSX.Element {
+  public renderInput(panel: Panel): JSX.Element {
     // manually set component heights/widths and positioning based on 10 col grid
     const style = {
       width: `${panel.layout.w * 10}%`,
@@ -53,7 +49,7 @@ export default class DesignForm extends React.Component<Props, State> {
     return (
       <div
         className="formpanel-input-container rendered-panel rendered-input"
-        key={uuid.v4()}
+        key={panel.id}
         style={style}
       >
         <div className="input-label-container">
@@ -66,8 +62,8 @@ export default class DesignForm extends React.Component<Props, State> {
         <div className="input-container">
           <input
             type="text"
-            value={this.state.form[panel.config.label]}
-            onChange={(e: React.FormEvent) => this.updateValue(e, panel.config.label)}
+            value={this.state.form[`${panel.config.label}__${panel.id}`]}
+            onChange={(e: React.FormEvent) => this.updateValue(e, `${panel.config.label}__${panel.id}`)}
           />
         </div>
         <div className="input-description-container">
@@ -92,7 +88,7 @@ export default class DesignForm extends React.Component<Props, State> {
   public render() {
     const { renderedPanels } = this.state;
     return (
-      <div className="design-form-container" id="form-render-container">
+      <div className="design-form-container" id="form-render-container" >
       {renderedPanels}
       </div>
     );
