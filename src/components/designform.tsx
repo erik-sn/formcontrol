@@ -70,6 +70,12 @@ export class DesignForm extends React.Component<Props, State> {
         );
       case "select":
         return <select disabled />;
+      case "submit button":
+        return <button className="formpanel-button formpanel-submit-button" type="submit">Submit</button>;
+      case "cancel button":
+        return <button className="formpanel-button formpanel-submit-button" type="clear">Cancel</button>;
+      case "radio":
+      case "checkbox":
       default:
         return undefined;
     }

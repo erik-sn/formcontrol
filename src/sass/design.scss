@@ -125,6 +125,12 @@
 
 }
 
+/* Styling for formpanel buttons  */
+.formpanel-button {
+  width: 100%;
+  height: 100%;
+}
+
 /* Design Panel Settings */
 .panel-settings-container {
   @include shadow($b: 10px, $s: 0px, $color: black);

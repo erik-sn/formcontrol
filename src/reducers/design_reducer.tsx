@@ -11,7 +11,7 @@ const INITIAL_STATE: DesignReducer = {
   panels: [],
 };
 
-const AVAILABLE_PANELS = ["input"];
+const AVAILABLE_PANELS = ["input", "submit button", "cancel button"];
 
 export default function (state = INITIAL_STATE, action: ReducerAction): DesignReducer {
   switch (action.type) {

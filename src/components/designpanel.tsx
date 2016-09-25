@@ -61,11 +61,23 @@ export class DesignPanel extends React.Component<Props, State> {
     savePanels(panels);
   }
 
+  public getMinHeight(type: string): number {
+    switch (type) {
+      case "submit button":
+        return 1;
+      case "cancel button":
+        return 1;
+      default:
+        return 3;
+    }
+  }
+
   public createPanel(type: string): void {
+    const minHeight = this.getMinHeight(type.toLocaleLowerCase());
     const panel: Panel = {
       id: uuid.v4(),
       type: type.toLowerCase(),
-      layout: {x: 0, y: 0, w: 1, h: 3, minH: 3 },
+      layout: {x: 0, y: 0, w: 1, h: minHeight, minH: minHeight },
       config: {
         label: "",
         description: "",
