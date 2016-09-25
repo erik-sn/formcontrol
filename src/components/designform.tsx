@@ -13,6 +13,7 @@ import { connect } from "react-redux";
 import PanelSettings from "./panelsettings";
 import {  hideModal, removePanel, showModal, updatePanel, updatePanels  } from "../actions/actions";
 import { DesignReducer, Layout, Panel, ReducerAction, ReduxState } from "../utils/interfaces";
+import Renderer from "./form_renderer";
 import Input from "./inputs/input";
 import GridWrapper from "./utility/gridwrapper";
 import Modal from "./utility/modal";
@@ -20,6 +21,7 @@ import Modal from "./utility/modal";
 export interface Props {
   design: DesignReducer;
   panels: Array<Panel>;
+  preview: boolean;
   updatePanel: (panel: Panel) => ReducerAction;
   updatePanels: (panels: Array<Panel>) => ReducerAction;
   removePanel: (id: string) => ReducerAction;
@@ -47,7 +49,7 @@ export class DesignForm extends React.Component<Props, State> {
     this.closePanel = this.closePanel.bind(this);
     this.showSettings = this.showSettings.bind(this);
   }
-
+  
   /**
    * Return a JSX component with a label based on the type parameter
    * 
@@ -149,8 +151,12 @@ export class DesignForm extends React.Component<Props, State> {
   }
 
   public render() {
-    const { panels } = this.props;
+    const { panels, preview } = this.props;
     const { settings } = this.state;
+
+    if (preview) {
+      return <Renderer panels={panels} />;
+    }
 
     let panelSettings: JSX.Element;
     if (settings.show) {
@@ -165,7 +171,7 @@ export class DesignForm extends React.Component<Props, State> {
       );
     }
     return (
-      <div className="design-form-container">
+      <div className="design-form-container" id="form-container">
         {panelSettings}
         <ResponsiveReactGridLayout
           onLayoutChange={this.updateLayouts}
@@ -173,7 +179,7 @@ export class DesignForm extends React.Component<Props, State> {
           rowHeight={30}
           width={1200}
           breakpoints={{lg: 1200, md: 996, sm: 768, xs: 480, xxs: 0}}
-          cols={{lg: 12, md: 10, sm: 6, xs: 4, xxs: 2}}
+          cols={{lg: 10, md: 10, sm: 10, xs: 10, xxs: 10}}
         >
           {this.processPanels(panels)}
         </ResponsiveReactGridLayout>
@@ -184,6 +190,7 @@ export class DesignForm extends React.Component<Props, State> {
 
 const mapStateToProps = (state: ReduxState) => ({
   panels: state.design.panels,
+  preview: state.display.showPreview,
 });
 
 export default connect(mapStateToProps, { updatePanel, updatePanels, removePanel,

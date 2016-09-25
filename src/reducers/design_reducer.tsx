@@ -3,22 +3,31 @@ import * as _ from "lodash";
 import * as types from "../actions/constants";
 import { DesignReducer, Panel, ReducerAction } from "../utils/interfaces";
 
-const INITIAL_STATE: DesignReducer = { panels: [] };
+const INITIAL_STATE: DesignReducer = {
+  layout: {
+    height: undefined,
+    width: undefined,
+  },
+  panels: [],
+};
 
 export default function (state = INITIAL_STATE, action: ReducerAction): DesignReducer {
   switch (action.type) {
     case types.ADD_PANEL:
       return {
+        layout: state.layout,
         panels: state.panels.concat(action.payload),
       };
 
     case types.REMOVE_PANEL:
       return {
+        layout: state.layout,
         panels: state.panels.filter(panel => panel.id !== action.payload.id),
       };
 
     case types.CLEAR_PANELS:
       return {
+        layout: state.layout,
         panels: INITIAL_STATE.panels,
       };
 
@@ -27,11 +36,13 @@ export default function (state = INITIAL_STATE, action: ReducerAction): DesignRe
       const panels = state.panels;
       panels[index] = action.payload;
       return {
+        layout: state.layout,
         panels,
       };
 
     case types.UPDATE_PANELS:
       return {
+        layout: state.layout,
         panels: action.payload,
       };
 

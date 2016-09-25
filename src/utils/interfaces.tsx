@@ -8,6 +8,7 @@ export interface ReduxState {
 }
 
 export interface DesignReducer {
+  layout: FormLayout;
   panels: Array<Panel>;
 }
 
@@ -27,6 +28,18 @@ export interface ReducerAction {
 /*********************************************
  * Model Interfaces
  *********************************************/
+
+/**
+ * Represents a form
+ * 
+ * @export
+ * @interface Panel
+ */
+export interface FormLayout {
+  height: number;
+  width: number;
+}
+
 /**
  * Panel object interface
  * 

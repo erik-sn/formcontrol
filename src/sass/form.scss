@@ -1,0 +1,16 @@
+#form-render-container {
+  position: relative;
+}
+
+.rendered-panel {
+    border: 1px solid black;
+    padding: 5px;
+    background: white;
+    margin: 15px;
+    position: absolute;;
+
+    h3 {
+      margin-left: 10%;
+    }
+}
+
