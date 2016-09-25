@@ -24,7 +24,7 @@ describe("Design Reducers" , () => {
 
   const panels: Array<interfaces.Panel> = [
     { id: "b1", type: "input", layout: { x: 0, y: 0, w: 1, h: 3 }, config, validation },
-    { id: "b2", type: "select", layout: { x: 2, y: 2, w: 1, h: 3 }, config, validation },
+    { id: "b2", type: "input", layout: { x: 2, y: 2, w: 1, h: 3 }, config, validation },
   ];
 
   const layout: interfaces.FormLayout = {
@@ -37,7 +37,7 @@ describe("Design Reducers" , () => {
       reducer(undefined, { payload: {}, type: types.NULL_ACTION })
     ).to.deep.equal(
       {
-        panels: [], layout
+        panels: [], layout,
       }
     );
   });
@@ -47,6 +47,10 @@ describe("Design Reducers" , () => {
     expect(result).to.deep.equal({panels, layout});
   });
 
+  it("Should not add a panel that does not exist in the available panels array", () => {
+    const result = reducer({ panels: [panels[0]], layout}, { payload: panels[1], type: "BAD TYPE" });
+    expect(result).to.deep.equal({ panels: [panels[0]], layout});
+  });
 
   it("should remove a panel based on its id", () => {
     const result = reducer({ panels, layout }, { payload: { id: "b1" }, type: types.REMOVE_PANEL });

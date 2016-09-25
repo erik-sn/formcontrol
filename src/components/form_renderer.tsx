@@ -39,12 +39,15 @@ export default class DesignForm extends React.Component<Props, State> {
   }
 
   public renderInput(panel: Panel): JSX.Element {
+    if (!panel) {
+      return undefined;
+    }
     // manually set component heights/widths and positioning based on 10 col grid
     const style = {
-      width: `${panel.layout.w * 10}%`,
-      height: `${panel.layout.h * 30}px`,
-      left: `${panel.layout.x * 10}%`,
-      top: `${panel.layout.y * 40}px`, // 5px padding on rows
+      width: `calc(${panel.layout.w * 9.90}% - ${20}px)`,
+      height: `calc(${panel.layout.h * 40}px - 20px)`,
+      left: `calc(${panel.layout.x * 9.90}% + 5px)`,
+      top: `calc(${panel.layout.y * 40}px + 5px)`, // 5px padding on rows
     };
     return (
       <div

@@ -11,13 +11,18 @@ const INITIAL_STATE: DesignReducer = {
   panels: [],
 };
 
+const AVAILABLE_PANELS = ["input"];
+
 export default function (state = INITIAL_STATE, action: ReducerAction): DesignReducer {
   switch (action.type) {
     case types.ADD_PANEL:
-      return {
-        layout: state.layout,
-        panels: state.panels.concat(action.payload),
-      };
+      if (_.includes(AVAILABLE_PANELS, action.payload.type)) {
+        return {
+          layout: state.layout,
+          panels: state.panels.concat(action.payload),
+        };
+      }
+      return state;
 
     case types.REMOVE_PANEL:
       return {

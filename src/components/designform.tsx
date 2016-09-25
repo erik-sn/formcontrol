@@ -154,7 +154,7 @@ export class DesignForm extends React.Component<Props, State> {
     const { panels, preview } = this.props;
     const { settings } = this.state;
     if (preview) {
-      return <Renderer panels={panels} />;
+      return <Renderer panels={panels.filter(panel => panel !== undefined)} />;
     }
     let panelSettings: JSX.Element;
     if (settings.show) {
