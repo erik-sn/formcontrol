@@ -13,9 +13,8 @@ export interface Props {
 }
 
 export interface State {
-  form: {};
-  width: number;
-  height?: number;
+  form: any;
+  renderedPanels: Array<JSX.Element>;
 }
 
 export default class DesignForm extends React.Component<Props, State> {
@@ -24,40 +23,37 @@ export default class DesignForm extends React.Component<Props, State> {
     super(props);
     this.state = {
       form: {},
-      width: undefined,
-      height: undefined,
+      renderedPanels: [],
     };
   }
 
   public componentDidMount() {
-    window.addEventListener("resize", () => this.updateWindow());
-    // this.updateWindow();
-  }
+    // const frame = document.getElementById("form-container");
+    // const col: number = frame.clientWidth / 10;
 
-  public updateWindow() {
-    const frame = document.getElementById("form-container");
-    this.setState({
-      form: this.state.form,
-      width: frame.clientWidth,
+    const keys: Array<string> = this.props.panels.map(panel => uuid.v4());
+    const form: {} = this.props.panels.reduce((prev: any, panel: Panel) => {
+      prev[panel.config.label] = "";
+      return prev;
+    }, {});
+    const renderedPanels: Array<JSX.Element> = this.props.panels.map((panel, i) => {
+      return this.renderInput(panel, keys[i]);
     });
+    this.setState({ form, renderedPanels });
   }
 
-  public renderInput(panel: Panel): JSX.Element {
-    const frame = document.getElementById("form-container");
-    const col: number = frame.clientWidth / 10;
+  public renderInput(panel: Panel, key: string): JSX.Element {
+    // manually set component heights/widths and positioning based on 10 col grid
     const style = {
-      width: `${panel.layout.w * col}px`,
+      width: `${panel.layout.w * 10}%`,
       height: `${panel.layout.h * 30}px`,
-      left: `${panel.layout.x * col}px`,
+      left: `${panel.layout.x * 10}%`,
       top: `${panel.layout.y * 40}px`, // 5px padding on rows
     };
-
-
-    const key = uuid.v4();
     return (
       <div
         className="formpanel-input-container rendered-panel rendered-input"
-        key={key}
+        key={uuid.v4()}
         style={style}
       >
         <div className="input-label-container">
@@ -68,7 +64,11 @@ export default class DesignForm extends React.Component<Props, State> {
           />
         </div>
         <div className="input-container">
-          <input type="text"  />
+          <input
+            type="text"
+            value={this.state.form[panel.config.label]}
+            onChange={(e: React.FormEvent) => this.updateValue(e, panel.config.label)}
+          />
         </div>
         <div className="input-description-container">
           <input
@@ -81,13 +81,16 @@ export default class DesignForm extends React.Component<Props, State> {
     );
   }
 
-  public render() {
-    const { panels } = this.props;
-    const renderedPanels = panels.map(panel => this.renderInput(panel));
-    panels.forEach(panel => {
-      console.log(panel.type, panel.layout);
-    });
+  public updateValue(e: React.FormEvent, label: string) {
+    const { renderedPanels } = this.state;
+    e.preventDefault();
+    const form: any = this.state.form;
+    form[label] = e.target.value;
+    this.setState({ form, renderedPanels });
+  }
 
+  public render() {
+    const { renderedPanels } = this.state;
     return (
       <div className="design-form-container" id="form-render-container">
       {renderedPanels}

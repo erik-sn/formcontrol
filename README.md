@@ -2,7 +2,7 @@
 
 ### A CRUD application to end CRUD applications (sort of)
 
-CRUD stands for create-update-delete; the three most basic functions
+CRUD stands for create-read-update-delete; the three most basic functions
 you can operate on data with. Instead of creating many CRUD applications
 that all have a similar function (data entry and analysis), this is an attempt
 to create one application that allows users to generate their own forms and
@@ -16,4 +16,4 @@ data entry applications into more purpose-built applications. So instead of buil
 an equally high stack of CRUD apps, lets try to build just one.
 
 #### Technology
-The core technologies are React/Redux and TypeScript.
+The core technologies are React/Redux and TypeScript on the front end, and Django on the backend.
