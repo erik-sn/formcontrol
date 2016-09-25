@@ -50,12 +50,6 @@ export class DesignForm extends React.Component<Props, State> {
     this.showSettings = this.showSettings.bind(this);
   }
 
-  public componentWillReceiveProps(nextProps) {
-    if (this.props.preview && ! nextProps.preview) {
-      console.log(this.props.panels.map(panel => panel.layout.x), nextProps.panels.map(panel => panel.layout.x))
-      this.forceUpdate();
-    }
-  }
   /**
    * Return a JSX component with a label based on the type parameter
    * 

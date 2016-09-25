@@ -2,15 +2,16 @@ import * as React from "react";
 import * as ReactDOM from "react-dom";
 import { Provider } from "react-redux";
 import { Router, browserHistory } from "react-router";
-import { applyMiddleware, createStore, compose } from "redux";
+import { applyMiddleware, compose, createStore } from "redux";
 import * as thunk from "redux-thunk";
 
 import reducers from "./reducers/root";
 import router  from "./routes";
 
-const createStoreWithMiddleware: any = applyMiddleware(thunk.default)(createStore);
+// const createStoreWithMiddleware: any = applyMiddleware(thunk.default)(createStore);
+// Redux Dev Tool configuration
 const store = createStore(reducers, compose(
-  applyMiddleware(thunk.default), window.devToolsExtension ? window.devToolsExtension() :f => f
+  applyMiddleware(thunk.default), window.devToolsExtension ? window.devToolsExtension() : f => f
 ));
 ReactDOM.render(
   <Provider store={store}>

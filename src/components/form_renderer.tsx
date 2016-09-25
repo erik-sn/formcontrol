@@ -48,6 +48,7 @@ export default class DesignForm extends React.Component<Props, State> {
     };
     return (
       <div
+        id={panel.id}
         className="formpanel-input-container rendered-panel rendered-input"
         key={panel.id}
         style={style}
@@ -80,8 +81,9 @@ export default class DesignForm extends React.Component<Props, State> {
   public updateValue(e: React.FormEvent, label: string) {
     const { renderedPanels } = this.state;
     e.preventDefault();
+    const target = e.target as HTMLSelectElement;
     const form: any = this.state.form;
-    form[label] = e.target.value;
+    form[label] = target.value;
     this.setState({ form, renderedPanels });
   }
 

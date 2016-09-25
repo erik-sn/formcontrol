@@ -6,31 +6,14 @@ import * as sinon from "sinon";
 import * as constants from "../../src/actions/constants";
 import DesignFormConnected, { DesignForm, Props } from "../../src/components/designform";
 import * as interfaces from "../../src/utils/interfaces";
+import { generatePanels } from "../test_data";
 
 describe("Design Form" , () => {
 
 
   describe("Form" , () => {
-    const config: interfaces.PanelConfig = {
-      label: "",
-      description: "",
-      options: [],
-      checked: false,
-      mandatory: true,
-    };
 
-    const validation: interfaces.PanelValidation = {
-      regex: "",  // let user specify regex
-      email: false,  // default empty, user specifiys a '@host.com'
-      date: false,
-      type: "",  // default: both string, number, both
-      length: "",
-    };
-
-    const panels: Array<interfaces.Panel> = [
-      { id: "b1", type: "input", layout: { x: 0, y: 0, w: 1, h: 3 }, config, validation },
-      { id: "b2", type: "select", layout: { x: 2, y: 2, w: 1, h: 3 }, config, validation },
-    ];
+    const panels = generatePanels(2);
 
     const action: interfaces.ReducerAction = {
       payload: undefined,
