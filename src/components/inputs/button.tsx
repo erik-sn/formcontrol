@@ -36,7 +36,7 @@ export default class Input extends React.Component<Props, State> {
     return (
       <div className="formpanel-button-container">
         <Icon onClick={this.closePanel} id={panel.id} size={20} icon="cancel" />
-        <button className="formpanel-button" type="clear" diabled>{label}</button>
+        <button className="formpanel-button" type="clear" >{label}</button>
       </div>
     );
   }

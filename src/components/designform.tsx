@@ -194,10 +194,13 @@ export class DesignForm extends React.Component<Props, State> {
   }
 }
 
-const mapStateToProps = (state: ReduxState) => ({
-  panels: state.design.panels,
-  preview: state.display.showPreview,
-});
+const mapStateToProps = (state: ReduxState) => {
+  console.log(state.design.panels.map(panel => panel.layout.y));
+  return {
+    panels: state.design.panels,
+    preview: state.display.showPreview,
+  };
+};
 
 export default connect(mapStateToProps, { updatePanel, updatePanels, removePanel,
    showModal, hideModal })(DesignForm);
