@@ -13,6 +13,7 @@ import PanelSettings from "./panelsettings";
 import {  hideModal, removePanel, showModal, updatePanel, updatePanels  } from "../actions/actions";
 import { DesignReducer, Layout, Panel, ReducerAction, ReduxState } from "../utils/interfaces";
 import Renderer from "./form_renderer";
+import Button from "./inputs/button";
 import Input from "./inputs/input";
 import GridWrapper from "./utility/gridwrapper";
 import Modal from "./utility/modal";
@@ -70,9 +71,9 @@ export class DesignForm extends React.Component<Props, State> {
           />
         );
       case "submit button":
-        return <button className="formpanel-button formpanel-submit-button" type="submit" diabled >Submit</button>;
+        return <Button close={this.closePanel} panel={panel} label="Submit" />;
       case "cancel button":
-        return <button className="formpanel-button formpanel-submit-button" type="clear" diabled>Cancel</button>;
+        return <Button close={this.closePanel} panel={panel} label="Cancel" />;
       case "radio":
       case "checkbox":
       default:

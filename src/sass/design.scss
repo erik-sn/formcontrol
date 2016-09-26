@@ -132,9 +132,16 @@
 /* styling for formpanel select
 
 /* Styling for formpanel buttons  */
-.formpanel-button {
-  width: 100%;
+
+.formpanel-button-container {
   height: 100%;
+  .formcontrol-icon {
+    margin-right: 5px;
+  }
+  .formpanel-button {
+    width: 100%;
+    height: 100%;
+  }
 }
 
 /* Design Panel Settings */

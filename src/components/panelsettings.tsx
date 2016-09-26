@@ -13,6 +13,7 @@ export interface Props {
 
 interface State {
   panel: Panel;
+  optionsText: string;
 }
 
 export default class PanelSettings extends React.Component<Props, State> {
@@ -21,6 +22,7 @@ export default class PanelSettings extends React.Component<Props, State> {
     super(props);
     this.state = {
       panel: props.panel,
+      optionsText: props.panel.config.options.join(", "),  // options are stored in an array
     };
     this.updatePanel = this.updatePanel.bind(this);
   }
@@ -29,17 +31,22 @@ export default class PanelSettings extends React.Component<Props, State> {
     event.preventDefault();
     const { name, value, type } = event.target as HTMLSelectElement; ;
     let panel: any = this.state.panel;
+    let optionsText: string = this.state.optionsText;
     const validationNames = ["regex", "type", "length", "email", "date"];
     if (validationNames.indexOf(name) !== -1) {
       panel.validation[name] = type === "text" ? value : !panel.validation[name];
+    } else if (name === "options") {
+      optionsText = value;
+      panel.config.options = value.split(",").map((option: string) => option.trim());
     } else {
       panel.config[name] = type === "text" || type === "textarea" ? value : !panel.config[name];
     }
-    this.setState({ panel }, () => this.props.updatePanel(panel));
+    this.setState({ panel, optionsText }, () => this.props.updatePanel(panel));
   }
 
   public  render() {
-    const { config, validation } = this.state.panel;
+    const { optionsText, panel } = this.state;
+    const { config, validation } = panel;
     const { x, y } = this.props;
     return (
       <div className="panel-settings-container" style={{ left: x - 10, top: y + 10 }} >
@@ -83,7 +90,7 @@ export default class PanelSettings extends React.Component<Props, State> {
             <input key={uuid.v4()} className="panel-settings-mandatory" name="mandatory" type="checkbox" checked={config.mandatory} onChange={this.updatePanel} />
           </div>
         </div>
-          <textarea className="panel-settings-options" name="options" type="text" placeholder="Enter options separated by commas" value={config.options} onChange={this.updatePanel} />
+          <textarea className="panel-settings-options" name="options" type="text" placeholder="Enter options separated by commas" value={optionsText} onChange={this.updatePanel} />
 
       </div>
     );

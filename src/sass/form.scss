@@ -14,3 +14,15 @@
     }
 }
 
+
+
+.rendered-button {
+  
+  button {
+    margin-left: -5px;
+    margin-top: -5px;
+    height: calc(100% + 10px);
+    width: calc(100% + 10px);
+  }
+
+}

@@ -73,6 +73,11 @@ export class DesignPanel extends React.Component<Props, State> {
   }
 
   public createPanel(type: string): void {
+    // don't allow creating new panels when in preview mode
+    if (this.state.showPreviewButton) {
+      return;
+    }
+
     const minHeight = this.getMinHeight(type.toLocaleLowerCase());
     const panel: Panel = {
       id: uuid.v4(),
@@ -97,7 +102,7 @@ export class DesignPanel extends React.Component<Props, State> {
   }
 
   public generateElements(): Array<JSX.Element> {
-    const elements = ["Input", "Select", "Radio", "Checkbox", "Submit Button", "Cancel Button"];
+    const elements = ["Input", "Select", "Radio", "Checkbox", "Date Picker", "Submit Button", "Cancel Button"];
     return elements.map((element, index) => (
       <DesignPanelItem element={element} onClick={this.createPanel} key={index} />
     ));
