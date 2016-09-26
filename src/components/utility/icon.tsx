@@ -11,7 +11,7 @@ export interface Props {
 }
 
 // From https://dmfrancisco.github.io/react-icons/
-export default class Input extends React.Component<Props, {}> {
+export default class Icon extends React.Component<Props, {}> {
 
   constructor(props: Props) {
     super(props);

@@ -32,8 +32,8 @@ describe("Input" , () => {
       expect(component).to.exist;
     });
 
-    it("should contain a grid layout", () => {
-      expect(component.find(".form-panel-container")).to.exist;
+    it("should have a top level class", () => {
+      expect(component.find(".formpanel-input-container")).to.have.length(1);
     });
 
     it("should have the label displayed inside a label container", () => {
@@ -48,11 +48,14 @@ describe("Input" , () => {
       );
     });
 
-    it("an type of input should have an input field", () => {
+    it("the type of input should have an input field", () => {
       expect(component.find(".input-container")).to.have.length(1);
       expect(component.find(".input-container input")).to.have.length(1);
     });
 
+    it("should have two icons", () => {
+      expect(component.find("Icon")).to.have.length(2);
+    });
   });
 
   describe("Label and Description" , () => {
