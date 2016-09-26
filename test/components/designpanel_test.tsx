@@ -10,7 +10,7 @@ import * as interfaces from "../../src/utils/interfaces";
 import { generatePanels } from "../test_data";
 
 describe("Design Panel" , () => {
-  const panels: Array<interfaces.Panel> = generatePanels(2);
+  const panels: Array<interfaces.Panel> = generatePanels(["input", "select"]);
   const action: interfaces.ReducerAction = {
     payload: undefined,
     type: constants.NULL_ACTION,

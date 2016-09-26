@@ -1,14 +1,13 @@
 import * as interfaces from "../src/utils/interfaces";
-import * as _ from "lodash";
 
-export function generatePanels(count: number = 1): Array<interfaces.Panel> {
-  return _.range(0, count).map(__ => randPanel());
+export function generatePanels(types: Array<string>): Array<interfaces.Panel> {
+  return types.map(type => randPanel(type));
 }
 
-export function randPanel(): interfaces.Panel {
+export function randPanel(type: string): interfaces.Panel {
   return {
     id: randString(15),
-    type: randString(5),
+    type,
     layout: randLayout(),
     config: randPanelConfig(),
     validation: randPanelValidation(),
@@ -19,7 +18,7 @@ function randPanelConfig(): interfaces.PanelConfig {
   return {
     label: randString(10),
     description: randString(10),
-    options: [randString(5), randString(5),randString(5),randString(5),randString(5),],
+    options: [randString(5), randString(5), randString(5), randString(5), randString(5)],
     checked: randBoolean(),
     mandatory: randBoolean(),
   };

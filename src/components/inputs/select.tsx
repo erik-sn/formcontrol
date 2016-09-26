@@ -56,36 +56,9 @@ export default class Input extends React.Component<Props, State> {
     this.props.update(panel);
   }
 
-  /**
-   * Return the type of input to be used in the form depending on the type
-   * 
-   * @param {string} type - type of input panel
-   * @param {string} label - label of the panel
-   * @returns {JSX.Element}
-   * 
-   * @memberOf Input
-   */
-  public getType(type: string, label: string): JSX.Element {
-    switch (type) {
-      case "select":
-        return (
-          <select className="design-select-field"value="Select this!" disabled />
-        );
-      default:
-        return (
-          <input
-            className="design-input-field"
-            type="text"
-            value=""
-            placeholder={`Value for ${label ? label : "..."}`}
-            disabled
-          />
-        );
-    }
-  }
-
   public render() {
     const { label, description } = this.state.panel.config;
+    const type = this.props.panel.type;
     return (
      <div className="formpanel-input-container">
         <Icon onClick={this.props.close} id={this.props.panel.id} size={20} icon="cancel" />
@@ -99,7 +72,7 @@ export default class Input extends React.Component<Props, State> {
           />
         </div>
         <div className="input-container">
-          {this.getType(this.props.panel.type, label)}
+          <input type="text" value="" placeholder={`Value for ${label ? label : "..."}`} disabled />
         </div>
         <div className="input-description-container">
           <input

@@ -13,7 +13,7 @@ describe("Design Form" , () => {
 
   describe("Form" , () => {
 
-    const panels = generatePanels(2);
+    const panels = generatePanels(["input", "select"]);
 
     const action: interfaces.ReducerAction = {
       payload: undefined,

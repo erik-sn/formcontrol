@@ -6,34 +6,13 @@ import * as sinon from "sinon";
 
 import Input, { Props } from "../../../src/components/inputs/input";
 import * as interfaces from "../../../src/utils/interfaces";
+import { generatePanels } from "../../test_data";
 
 describe("Input" , () => {
-  const config: interfaces.PanelConfig = {
-    label: "",
-    description: "",
-    options: [],
-    checked: false,
-    mandatory: true,
-  };
-
-  const validation: interfaces.PanelValidation = {
-    regex: "",  // let user specify regex
-    email: false,
-    date: false,
-    type: "",  // default: both string, number, both
-    length: "",
-  };
-
-  const panel: interfaces.Panel = {
-    id: "b1",
-    type: "input",
-    layout: { x: 0, y: 0, w: 1, h: 3 },
-    config,
-    validation,
-  };
 
   describe("Layout" , () => {
 
+    const panel = generatePanels(["input", "select"])[0];
     let component: any;
     let update: any = sinon.spy(() => "test");
     const props = {
@@ -76,8 +55,9 @@ describe("Input" , () => {
 
   });
 
-  describe("Fields" , () => {
+  describe("Label and Description" , () => {
 
+    const panel = generatePanels(["input", "select"])[0];
     let component: any;
     let update: any;
     let updateLabel: any = sinon.spy(Input.prototype, "updateLabel");
@@ -111,6 +91,37 @@ describe("Input" , () => {
       component.find(".input-description-container input").simulate("change");
       expect(updateDescription.callCount).to.equal(1);
       expect(update.callCount).to.equal(1);
+    });
+
+  });
+
+
+  describe("the type of the input" , () => {
+
+   it("has an input box if it the input type is input", () => {
+      const panel = generatePanels(["input"])[0];
+      const props: Props = {
+        panel,
+        update: undefined,
+        close: (id: string) => id,
+        settings: (id: string) => id,
+      };
+      const state = {};
+      const component = mount(<Input {...props} />);
+      expect(component.find(".design-input-field")).to.have.length(1);
+    });
+
+   it("has a select box if it the input type is select", () => {
+      const panel = generatePanels(["select"])[0];
+      const props: Props = {
+        panel,
+        update: undefined,
+        close: (id: string) => id,
+        settings: (id: string) => id,
+      };
+      const state = {};
+      const component = mount(<Input {...props} />);
+      expect(component.find(".design-select-field")).to.have.length(1);
     });
 
   });

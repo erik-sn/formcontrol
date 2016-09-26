@@ -13,7 +13,7 @@ describe("Form Renderer" , () => {
 
   describe("Form" , () => {
     let component: any;
-    const panels = generatePanels(5);
+    const panels = generatePanels(["input", "select", "input", "input", "select"]);
     const props: Props = {
       panels,
     };

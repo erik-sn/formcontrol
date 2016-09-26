@@ -60,6 +60,7 @@ export class DesignForm extends React.Component<Props, State> {
   public getType(panel: Panel): JSX.Element {
     switch (panel.type) {
       case "input":
+      case "select":
         return (
           <Input
             panel={panel}
@@ -68,12 +69,10 @@ export class DesignForm extends React.Component<Props, State> {
             update={this.props.updatePanel}
           />
         );
-      case "select":
-        return <select disabled />;
       case "submit button":
-        return <button className="formpanel-button formpanel-submit-button" type="submit">Submit</button>;
+        return <button className="formpanel-button formpanel-submit-button" type="submit" diabled >Submit</button>;
       case "cancel button":
-        return <button className="formpanel-button formpanel-submit-button" type="clear">Cancel</button>;
+        return <button className="formpanel-button formpanel-submit-button" type="clear" diabled>Cancel</button>;
       case "radio":
       case "checkbox":
       default:

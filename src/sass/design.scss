@@ -101,6 +101,10 @@
       @include formpanel-format();
     }
 
+    select {
+      @include formpanel-format();
+    }
+
     input:focus {
       outline: none;
     }
@@ -124,6 +128,8 @@
 
 
 }
+
+/* styling for formpanel select
 
 /* Styling for formpanel buttons  */
 .formpanel-button {
