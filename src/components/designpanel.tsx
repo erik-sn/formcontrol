@@ -2,7 +2,7 @@ import * as React from "react";
 import { connect } from "react-redux";
 const uuid = require("node-uuid");
 
-import { addPanel, clearPanels, hideModal, savePanels,showModal, showPreview } from "../actions/actions";
+import { addPanel, clearPanels, hideModal, savePanels, showModal, showPreview } from "../actions/actions";
 import { Panel, ReducerAction, ReduxState } from "../utils/interfaces";
 import DesignPanelItem from "./designpanel_item";
 import Modal from "./utility/modal";
@@ -18,15 +18,25 @@ export interface Props {
 }
 
 export interface State {
-  showPreviewButton: boolean;
+  showPreviewButton?: boolean;
+  errors?: IErrors;
 }
 
 export class DesignPanel extends React.Component<Props, State> {
 
+  private defaultErrors: IErrors = {
+    clearPanel: "",
+    showPreview: "",
+    savePanel: "",
+    addPanel: "",
+  };
+
   constructor(props: Props) {
     super(props);
+
     this.state = {
       showPreviewButton: false,
+      errors: this.defaultErrors,
     };
     this.createPanel = this.createPanel.bind(this);
     this.togglePreview = this.togglePreview.bind(this);
@@ -34,16 +44,26 @@ export class DesignPanel extends React.Component<Props, State> {
     this.saveAllPanels = this.saveAllPanels.bind(this);
   }
 
+  public componentWillReceiveProps(nextProps) {
+    this.setState({ errors: this.defaultErrors });
+  }
+  
 
   public togglePreview(): void {
-    const { showPreviewButton } = this.state;
-    this.setState({ showPreviewButton: !showPreviewButton });
+    const { showPreviewButton, errors } = this.state;
+    this.setState({ errors, showPreviewButton: !showPreviewButton });
     this.props.showPreview(!showPreviewButton);
   }
 
   public clearAllPanels(): void {
     const { showModal, hideModal, clearPanels, panels } = this.props;
-    if (panels.length === 0) {
+    // don't allow creating new panels when in preview mode
+    if (this.state.showPreviewButton) {
+      const errors: IErrors = _.cloneDeep(this.defaultErrors);
+      errors.clearPanel = "Cannot clear panels while in prieview mode";
+      this.setState({ errors });
+      return;
+    } else if (panels.length === 0) {
       return;
     }
     const message = "Are you sure you want to delete all panels in this design?";
@@ -60,6 +80,7 @@ export class DesignPanel extends React.Component<Props, State> {
     const { panels, savePanels } = this.props;
     savePanels(panels);
   }
+  
 
   public getMinHeight(type: string): number {
     switch (type) {
@@ -110,7 +131,7 @@ export class DesignPanel extends React.Component<Props, State> {
   }
 
   public render() {
-    const { showPreviewButton } = this.state;
+    const { showPreviewButton, errors } = this.state;
     return (
       <div className="design-panel-container">
         <h2>Form Configuration</h2>
@@ -127,7 +148,8 @@ export class DesignPanel extends React.Component<Props, State> {
           onClick={this.clearAllPanels}
           id="design-panel-clear"
         >
-        Clear Panels
+        <div>Clear Panels</div>
+        {errors.clearPanel ? <span className="small-error">{errors.clearPanel}</span> : undefined}
         </div>
         <div
           className="panel-item panel-menu-button"
@@ -150,3 +172,11 @@ const mapStateToProps = (state: ReduxState) => ({
 
 export default connect(mapStateToProps,
 { showPreview, addPanel, clearPanels, savePanels, showModal, hideModal })(DesignPanel);
+
+
+interface IErrors {
+  clearPanel: string;
+  showPreview: string;
+  savePanel: string;
+  addPanel: string;
+};

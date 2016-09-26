@@ -59,7 +59,8 @@ export class DesignForm extends React.Component<Props, State> {
    * @returns {JSX.Element}
    */
   public getType(panel: Panel): JSX.Element {
-    const props = { close: this.closePanel, panel, disabled: true };
+    console.log(panel);
+    const props = { close: this.closePanel, panel: _.cloneDeep(panel), disabled: true };
     switch (panel.type) {
       case "input":
       case "select":

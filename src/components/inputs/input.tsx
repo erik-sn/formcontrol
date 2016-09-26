@@ -33,6 +33,10 @@ export default class Input extends React.Component<Props, State> {
     this.updateDescription = this.updateDescription.bind(this);
   }
 
+  public shouldComponentUpdate(nextProps: Props, nextState: State) {
+    return !_.isEqual(this.state.panel, nextState.panel) ||
+           !_.isEqual(this.props.panel, nextProps.panel);
+  }
 
   /**
    * Update the label of the Input component
@@ -40,7 +44,7 @@ export default class Input extends React.Component<Props, State> {
    * @param {ChangeEvent} e
    */
   public updateLabel(e: React.FormEvent): void {
-    const panel = this.state.panel;
+    const panel = _.cloneDeep(this.state.panel);
     const target = e.target as HTMLSelectElement;
     panel.config.label = target.value;
     this.setState({ panel });
@@ -53,7 +57,7 @@ export default class Input extends React.Component<Props, State> {
    * @param {ChangeEvent} e
    */
   public updateDescription(e: React.FormEvent): void {
-    const panel = this.state.panel;
+    const panel = _.cloneDeep(this.state.panel);
     const target = e.target as HTMLSelectElement;
     panel.config.description = target.value;
     this.setState({ panel });
