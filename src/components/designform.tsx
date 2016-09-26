@@ -59,22 +59,16 @@ export class DesignForm extends React.Component<Props, State> {
    * @returns {JSX.Element}
    */
   public getType(panel: Panel): JSX.Element {
+    const props = { close: this.closePanel, panel, disabled: true };
     switch (panel.type) {
       case "input":
       case "select":
-        return (
-          <Input
-            panel={panel}
-            close={this.closePanel}
-            settings={this.showSettings}
-            update={this.props.updatePanel}
-          />
-        );
-      case "submit button":
-        return <Button close={this.closePanel} panel={panel} label="Submit" />;
-      case "cancel button":
-        return <Button close={this.closePanel} panel={panel} label="Cancel" />;
       case "radio":
+        return <Input {...props} settings={this.showSettings} update={this.props.updatePanel} />;
+      case "submit button":
+        return <Button  {...props} label="Submit" />;
+      case "cancel button":
+        return <Button  {...props} label="Cancel" />;
       case "checkbox":
       default:
         return undefined;
@@ -195,7 +189,6 @@ export class DesignForm extends React.Component<Props, State> {
 }
 
 const mapStateToProps = (state: ReduxState) => {
-  console.log(state.design.panels.map(panel => panel.layout.y));
   return {
     panels: state.design.panels,
     preview: state.display.showPreview,

@@ -3,9 +3,9 @@ if (process.env.BROWSER) {
 }
 
 import * as React from "react";
-const uuid = require("node-uuid");
 
 import { Panel } from "../utils/interfaces";
+import Radio from "./inputs/radio";
 
 
 export interface Props {
@@ -53,6 +53,8 @@ export default class DesignForm extends React.Component<Props, State> {
           return this.renderInput(panel, style);
         case "select":
           return this.renderSelect(panel, style);
+        case "radio":
+          return this.renderRadio(panel, style);
         case "submit button":
           return this.renderButton(panel, style, "Submit");
         case "cancel button":
@@ -62,6 +64,35 @@ export default class DesignForm extends React.Component<Props, State> {
       }
     });
     this.setState({ form, renderedPanels });
+  }
+
+  public renderRadio(panel: Panel, style: RenderStyle): JSX.Element {
+    return (
+      <div
+        id={panel.id}
+        className="formpanel-input-container rendered-panel rendered-radio"
+        key={panel.id}
+        style={style}
+      >
+        <div className="input-label-container">
+          <input
+            type="text"
+            value={panel.config.label}
+            disabled
+          />
+        </div>
+        <div className="input-container">
+          <Radio panel={panel} disabled={false} />
+        </div>
+        <div className="input-description-container">
+          <input
+            type="text"
+            value={panel.config.description}
+            disabled
+          />
+        </div>
+      </div>
+    );
   }
 
   public renderButton(panel: Panel, style: RenderStyle, label: string): JSX.Element {

@@ -1,13 +1,16 @@
-import { Panel, ReducerAction } from "../../../src/utils/interfaces";
+import * as _ from "lodash";
 import * as React from "react";
 
+import { Panel, ReducerAction } from "../../../src/utils/interfaces";
 import Icon from "../utility/icon";
+import Radio from "./radio";
 
 export interface Props {
   panel: Panel;
-  update: (panel: Panel) => ReducerAction;
   close: (id: string) => void;
+  update: (panel: Panel) => ReducerAction;
   settings: (id: string, event: React.MouseEvent) => void;
+  disabled: boolean;
 }
 
 interface State {
@@ -29,6 +32,7 @@ export default class Input extends React.Component<Props, State> {
     this.updateLabel = this.updateLabel.bind(this);
     this.updateDescription = this.updateDescription.bind(this);
   }
+
 
   /**
    * Update the label of the Input component
@@ -65,12 +69,14 @@ export default class Input extends React.Component<Props, State> {
    * 
    * @memberOf Input
    */
-  public getType(type: string, label: string): JSX.Element {
-    switch (type) {
+  public getType(panel: Panel, label: string): JSX.Element {
+    switch (panel.type) {
       case "select":
         return (
           <select className="design-select-field"value="Select this!" disabled />
         );
+      case "radio":
+        return <Radio panel={_.cloneDeep(panel)} disabled/>;
       default:
         return (
           <input
@@ -99,7 +105,7 @@ export default class Input extends React.Component<Props, State> {
           />
         </div>
         <div className="input-container">
-          {this.getType(this.props.panel.type, label)}
+          {this.getType(this.props.panel, label)}
         </div>
         <div className="input-description-container">
           <input

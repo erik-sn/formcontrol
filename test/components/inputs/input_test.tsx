@@ -20,6 +20,7 @@ describe("Input" , () => {
       update,
       close: (id: string) => id,
       settings: (id: string) => id,
+      disabled: false,
     };
     const state = {};
 
@@ -70,6 +71,7 @@ describe("Input" , () => {
       update,
       close: (id: string) => id,
       settings: (id: string) => id,
+      disabled: false,
     };
     const state = {};
 
@@ -108,6 +110,7 @@ describe("Input" , () => {
         update: undefined,
         close: (id: string) => id,
         settings: (id: string) => id,
+        disabled: false,
       };
       const state = {};
       const component = mount(<Input {...props} />);
@@ -121,6 +124,7 @@ describe("Input" , () => {
         update: undefined,
         close: (id: string) => id,
         settings: (id: string) => id,
+        disabled: false,
       };
       const state = {};
       const component = mount(<Input {...props} />);

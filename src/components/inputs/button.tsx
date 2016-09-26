@@ -12,7 +12,7 @@ export interface Props {
 interface State {
 }
 
-export default class Input extends React.Component<Props, State> {
+export default class Button extends React.Component<Props, State> {
 
   /**
    * Creates an instance of Input.
