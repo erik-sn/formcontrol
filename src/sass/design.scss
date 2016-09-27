@@ -70,7 +70,6 @@
   background: $secondary;
 
   .react-resizable-handle {
-    z-index: 3;
   }
 
   .formcontrol-icon svg:hover {
@@ -83,7 +82,7 @@
     z-index: 2;
     position: fixed;
     top: 1px;
-    right: 6px;
+    right: 11px;
     color: $primary;
     transition: 0.25s ease-in-out;
   }
@@ -92,7 +91,7 @@
     z-index: 2;
     position: fixed;
     top: 1px;
-    right: 30px;
+    right: 35px;
     color: $primary;
     
     transition: 0.25s ease-in-out;
@@ -186,6 +185,7 @@
     
     div > div {
       height: 20px !important;
+      width: 0px !important;
 
     }
     input {
