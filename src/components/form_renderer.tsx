@@ -6,7 +6,7 @@ import * as React from "react";
 
 import { Panel } from "../utils/interfaces";
 import Checkbox from "./inputs/checkbox";
-import Datepicker from "./inputs/datepicker";
+import DateTimePicker from "./inputs/datetimepicker";
 import Radio from "./inputs/radio";
 
 export interface Props {
@@ -59,6 +59,7 @@ export default class DesignForm extends React.Component<Props, State> {
         case "checkbox":
           return this.renderCheckbox(panel, style);
         case "date picker":
+        case "time picker":
           return this.renderDatePicker(panel, style);
         case "submit button":
           return this.renderButton(panel, style, "Submit");
@@ -134,7 +135,7 @@ export default class DesignForm extends React.Component<Props, State> {
         key={panel.id}
         style={style}
       >
-        <Datepicker panel={panel} disabled={false} />
+        <DateTimePicker panel={panel} disabled={false} />
       </div>
     );
   }

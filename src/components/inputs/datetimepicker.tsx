@@ -1,6 +1,7 @@
 
 import * as _ from "lodash";
 import DatePicker from "material-ui/DatePicker";
+import TimePicker from "material-ui/TimePicker";
 import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
 import * as React from "react";
 
@@ -28,12 +29,22 @@ export default class Date extends React.Component<Props, State> {
     return !_.isEqual(this.props.panel.config, nextProps.panel.config);
   }
 
+  public getType(): JSX.Element {
+    const { panel, disabled } = this.props;
+    if (panel.type === "date picker") {
+      return <DatePicker disabled={disabled} hintText={disabled ? "" : panel.config.label} />;
+    } else if (panel.type === "time picker") {
+      return <TimePicker disabled={disabled} hintText={disabled ? "" : panel.config.label} />;
+    }
+    return undefined;
+  }
+
   public render() {
-    const { panel, disabled, className } = this.props;
+    const { className } = this.props;
     return (
-      <div className={`checkbox-input ${className ? className : ""}`} >
+      <div className={`datetimepicker-input ${className ? className : ""}`} >
         <MuiThemeProvider>
-          <DatePicker hintText={disabled ? "" : panel.config.label} />
+          {this.getType()}
         </MuiThemeProvider>
       </div>
     );

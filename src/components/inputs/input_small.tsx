@@ -4,7 +4,7 @@ import * as React from "react";
 import { Panel, ReducerAction } from "../../../src/utils/interfaces";
 import Icon from "../utility/icon";
 import Checkbox from "./checkbox";
-import Datepicker from "./datepicker";
+import DateTimePicker from "./datetimepicker";
 
 
 export interface Props {
@@ -63,9 +63,10 @@ export default class Input extends React.Component<Props, State> {
    */
   public getType(panel: Panel, label: string): JSX.Element {
     switch (panel.type) {
-      case "datepicker":
+      case "date picker":
+      case "time picker":
         return (
-          <Datepicker
+          <DateTimePicker
             panel={panel}
             className="design-input-field"
             disabled

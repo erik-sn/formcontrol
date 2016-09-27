@@ -133,9 +133,8 @@
 
 }
 
-/* styling for formpanel select
 
-/* Styling for checkbox */
+/* Styling for small input */
 .formpanel-small-input-container {
   display: flex;
   justify-content: center;
@@ -150,6 +149,7 @@
 
   .small-input-label-container {
     flex: 1 1 100px;
+    z-index: 1; /* need to override disabled datetimepickers */
     
     input {
       padding-left: 5px;
@@ -161,8 +161,17 @@
     }
   }
 }
-/* Styling for formpanel buttons  */
 
+/* styling for formpanel select
+
+/* styling for date and time pickers */
+
+/* Styling for small input */
+.datetimepicker-input {  
+  width: 0px;
+}
+
+/* Styling for formpanel buttons  */
 .formpanel-button-container {
   height: 100%;
   .formcontrol-icon {

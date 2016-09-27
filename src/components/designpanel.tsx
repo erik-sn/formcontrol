@@ -88,6 +88,7 @@ export class DesignPanel extends React.Component<Props, State> {
       case "cancel button":
       case "checkbox":
       case "date picker":
+      case "time picker":
         return 1;
       default:
         return 2;
@@ -124,7 +125,8 @@ export class DesignPanel extends React.Component<Props, State> {
   }
 
   public generateElements(): Array<JSX.Element> {
-    const elements = ["Input", "Select", "Radio", "Checkbox", "Date Picker", "Submit Button", "Cancel Button"];
+    const elements = ["Input", "Select", "Radio", "Checkbox", "Date Picker", "Time Picker",
+    "Submit Button", "Cancel Button"];
     return elements.map((element, index) => (
       <DesignPanelItem element={element} onClick={this.createPanel} key={index} />
     ));

@@ -11,7 +11,8 @@ const INITIAL_STATE: DesignReducer = {
   panels: [],
 };
 
-const AVAILABLE_PANELS = ["input", "select", "radio", "checkbox", "date picker", "submit button", "cancel button"];
+const AVAILABLE_PANELS = ["input", "select", "radio", "checkbox", "date picker", "time picker",
+ "submit button", "cancel button"];
 
 export default function (state = INITIAL_STATE, action: ReducerAction): DesignReducer {
   switch (action.type) {
