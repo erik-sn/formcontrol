@@ -4,6 +4,8 @@ import * as React from "react";
 import { Panel, ReducerAction } from "../../../src/utils/interfaces";
 import Icon from "../utility/icon";
 import Checkbox from "./checkbox";
+import Datepicker from "./datepicker";
+
 
 export interface Props {
   panel: Panel;
@@ -61,6 +63,14 @@ export default class Input extends React.Component<Props, State> {
    */
   public getType(panel: Panel, label: string): JSX.Element {
     switch (panel.type) {
+      case "datepicker":
+        return (
+          <Datepicker
+            panel={panel}
+            className="design-input-field"
+            disabled
+          />
+        );
       case "checkbox":
       default:
         return (

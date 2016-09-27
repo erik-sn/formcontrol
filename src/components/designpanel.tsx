@@ -87,6 +87,7 @@ export class DesignPanel extends React.Component<Props, State> {
       case "submit button":
       case "cancel button":
       case "checkbox":
+      case "date picker":
         return 1;
       default:
         return 2;

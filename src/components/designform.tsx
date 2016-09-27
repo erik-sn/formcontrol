@@ -71,6 +71,7 @@ export class DesignForm extends React.Component<Props, State> {
       case "cancel button":
         return <Button  {...props} label="Cancel" />;
       case "checkbox":
+      case "date picker":
         return <InputSmall {...props} settings={this.showSettings} update={this.props.updatePanel}/>;
       default:
         return undefined;

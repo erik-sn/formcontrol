@@ -5,9 +5,9 @@ if (process.env.BROWSER) {
 import * as React from "react";
 
 import { Panel } from "../utils/interfaces";
-import Radio from "./inputs/radio";
 import Checkbox from "./inputs/checkbox";
-
+import Datepicker from "./inputs/datepicker";
+import Radio from "./inputs/radio";
 
 export interface Props {
   panels: Array<Panel>;
@@ -58,6 +58,8 @@ export default class DesignForm extends React.Component<Props, State> {
           return this.renderRadio(panel, style);
         case "checkbox":
           return this.renderCheckbox(panel, style);
+        case "date picker":
+          return this.renderDatePicker(panel, style);
         case "submit button":
           return this.renderButton(panel, style, "Submit");
         case "cancel button":
@@ -112,7 +114,7 @@ export default class DesignForm extends React.Component<Props, State> {
   }
 
   public renderCheckbox(panel: Panel, style: RenderStyle): JSX.Element {
-        return(
+    return(
       <div
         id={panel.id}
         className="formpanel-checkbox-container rendered-panel rendered-checkbox"
@@ -123,7 +125,20 @@ export default class DesignForm extends React.Component<Props, State> {
       </div>
     );
   }
-  
+
+  public renderDatePicker(panel: Panel, style: RenderStyle): JSX.Element {
+    return(
+      <div
+        id={panel.id}
+        className="formpanel-datepicker-container rendered-panel rendered-datepicker"
+        key={panel.id}
+        style={style}
+      >
+        <Datepicker panel={panel} disabled={false} />
+      </div>
+    );
+  }
+
   /**
    * Render a Panel object into it's equivalent user-facing Input field
    * and corresponding information
