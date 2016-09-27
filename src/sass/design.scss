@@ -1,3 +1,10 @@
+
+/* z-indexes:
+  3 - resize handle
+  2 - Icons
+  1 - label inputs
+*/
+
 @import 'style';
 .design-container {
 
@@ -56,11 +63,15 @@
   width: 75%;
 }
 
+
 .react-grid-item {
   @include shadow($b: 4px, $s: 0px);
   border: 1px solid $primary;
   background: $secondary;
 
+  .react-resizable-handle {
+    z-index: 3;
+  }
 
   .formcontrol-icon svg:hover {
     color: $secondary;
@@ -69,17 +80,19 @@
   }
 
   .formcontrol-icon-cancel {
+    z-index: 2;
     position: fixed;
     top: 1px;
-    right: 1px;
+    right: 6px;
     color: $primary;
     transition: 0.25s ease-in-out;
   }
 
   .formcontrol-icon-settings {
+    z-index: 2;
     position: fixed;
     top: 1px;
-    right: 25px;
+    right: 30px;
     color: $primary;
     
     transition: 0.25s ease-in-out;
@@ -160,16 +173,37 @@
       border: none;
     }
   }
+
+  /*
+  styling for date and time pickers 
+
+  Hide the actual component but show the underline, and let the 
+  label container take the place of the normal input
+  */
+  .datetimepicker-input {  
+    width: 0px;
+    height: 0px;
+    
+    div > div {
+      height: 20px !important;
+
+    }
+    input {
+      width: 0px !important;
+    }
+
+    hr {
+      display: none;
+    }
+  }
 }
 
 /* styling for formpanel select
 
-/* styling for date and time pickers */
+
+
 
 /* Styling for small input */
-.datetimepicker-input {  
-  width: 0px;
-}
 
 /* Styling for formpanel buttons  */
 .formpanel-button-container {

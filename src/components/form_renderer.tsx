@@ -131,7 +131,7 @@ export default class DesignForm extends React.Component<Props, State> {
     return(
       <div
         id={panel.id}
-        className="formpanel-datepicker-container rendered-panel rendered-datepicker"
+        className="formpanel-datepicker-container rendered-panel rendered-datetimepicker"
         key={panel.id}
         style={style}
       >

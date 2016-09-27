@@ -85,7 +85,8 @@ export default class Input extends React.Component<Props, State> {
   }
 
   public render() {
-    const { label, description } = this.state.panel.config;
+    const { type, config } = this.state.panel;
+    const { label, description } = config;
     return (
       <div className="formpanel-small-input-container">
         <Icon onClick={this.props.close} id={this.props.panel.id} size={20} icon="cancel" />
@@ -98,7 +99,7 @@ export default class Input extends React.Component<Props, State> {
             type="text"
             value={label}
             onChange={this.updateLabel}
-            placeholder="Label..."
+            placeholder={`${type} Label...`}
           />
         </div>
       </div>

@@ -14,14 +14,6 @@
     }
 }
 
-.rendered-checkbox {
-
-  .checkbox-input {
-    margin-top: -2px;
-    margin-left: 5px;
-  }
-}
-
 .rendered-button {
   
   button {
@@ -32,3 +24,30 @@
   }
 
 }
+
+.rendered-checkbox {
+
+  .checkbox-input {
+    margin-top: -2px;
+    margin-left: 5px;
+  }
+}
+
+.rendered-datetimepicker {
+
+  div > div > div {
+    height: 22px !important;
+    width: 90% !important;
+
+    div {
+      bottom: 0px !important;
+      width: 100%;
+    }
+  }
+
+  hr {
+    bottom: 0px !important;
+  }
+  
+}
+
