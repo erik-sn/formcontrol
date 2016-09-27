@@ -15,6 +15,7 @@ import { DesignReducer, Layout, Panel, ReducerAction, ReduxState } from "../util
 import Renderer from "./form_renderer";
 import Button from "./inputs/button";
 import Input from "./inputs/input";
+import InputSmall from "./inputs/input_small";
 import GridWrapper from "./utility/gridwrapper";
 import Modal from "./utility/modal";
 
@@ -59,7 +60,6 @@ export class DesignForm extends React.Component<Props, State> {
    * @returns {JSX.Element}
    */
   public getType(panel: Panel): JSX.Element {
-    console.log(panel);
     const props = { close: this.closePanel, panel: _.cloneDeep(panel), disabled: true };
     switch (panel.type) {
       case "input":
@@ -71,6 +71,7 @@ export class DesignForm extends React.Component<Props, State> {
       case "cancel button":
         return <Button  {...props} label="Cancel" />;
       case "checkbox":
+        return <InputSmall {...props} settings={this.showSettings} update={this.props.updatePanel}/>;
       default:
         return undefined;
     }

@@ -38,7 +38,7 @@ export default class Radio extends React.Component<Props, State> {
       <RadioButton key={i} value={option} label={option} disabled={disabled} />
     ));
     return (
-      <div className="design-radio-field">
+      <div className="formpanel-button-container">
         <MuiThemeProvider>
           <RadioButtonGroup name="shipSpeed" defaultSelected="not_light">
             {radioButtons}

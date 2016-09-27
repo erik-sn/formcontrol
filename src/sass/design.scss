@@ -98,8 +98,6 @@
 /* Styling related to Input component */
 .formpanel-input-container {
 
-  margin-top: 10px;
-
   div {
     flex: 1 1 auto;
 
@@ -117,7 +115,7 @@
   }
 
   .input-label-container input {
-    font-size: 1.5rem;
+    font-size: 1.25rem;
     background: none;
     border: none;
   }
@@ -137,6 +135,32 @@
 
 /* styling for formpanel select
 
+/* Styling for checkbox */
+.formpanel-small-input-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-left: 10px;
+  padding-top: 3px;
+
+  .small-input-container {
+    max-width: 50px;
+    min-width: 20px;
+  }
+
+  .small-input-label-container {
+    flex: 1 1 100px;
+    
+    input {
+      padding-left: 5px;
+      margin-left: -10px;
+      width: calc(100% - 45px);
+      font-size: 1.15rem;
+      background: none;
+      border: none;
+    }
+  }
+}
 /* Styling for formpanel buttons  */
 
 .formpanel-button-container {

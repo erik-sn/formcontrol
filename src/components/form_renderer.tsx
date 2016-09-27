@@ -6,6 +6,7 @@ import * as React from "react";
 
 import { Panel } from "../utils/interfaces";
 import Radio from "./inputs/radio";
+import Checkbox from "./inputs/checkbox";
 
 
 export interface Props {
@@ -55,6 +56,8 @@ export default class DesignForm extends React.Component<Props, State> {
           return this.renderSelect(panel, style);
         case "radio":
           return this.renderRadio(panel, style);
+        case "checkbox":
+          return this.renderCheckbox(panel, style);
         case "submit button":
           return this.renderButton(panel, style, "Submit");
         case "cancel button":
@@ -107,6 +110,19 @@ export default class DesignForm extends React.Component<Props, State> {
       </div>
     );
   }
+
+  public renderCheckbox(panel: Panel, style: RenderStyle): JSX.Element {
+        return(
+      <div
+        id={panel.id}
+        className="formpanel-checkbox-container rendered-panel rendered-checkbox"
+        key={panel.id}
+        style={style}
+      >
+        <Checkbox panel={panel} disabled={false} />
+      </div>
+    );
+  }
   
   /**
    * Render a Panel object into it's equivalent user-facing Input field
@@ -119,7 +135,9 @@ export default class DesignForm extends React.Component<Props, State> {
    */
   public renderSelect(panel: Panel, style: RenderStyle): JSX.Element {
     // manually set component heights/widths and positioning based on 10 col grid
-    const options = panel.config.options.map((option: string) => <option value={option}>{option}</option>);
+    const options = panel.config.options.map((option: string, index: number) => (
+      <option key={index} value={option}>{option}</option>
+    ));
     return (
       <div
         id={panel.id}
