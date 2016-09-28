@@ -34,10 +34,14 @@ export class Application extends React.Component<Props, State> {
     const { modal } = this.props.display;
     const { mode } = this.props.params;
     const { design } = this.state;
+    const modalStyle = {
+      opacity: 0.5,
+      background: "#000",
+    };
     return (
       <div>
         {modal.showModal ? modal.modal : ""}
-        <div className="application-container" style={modal.showModal ? { opacity: 0.4} : { opacity: 1}} >
+        <div className="application-container"  >
           <Navbar />
           {mode && mode.toLowerCase() === "design" ? design : <Form /> }
         </div>

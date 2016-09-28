@@ -2,6 +2,8 @@ if (process.env.BROWSER) {
   require("../../sass/modal.scss");
 }
 
+import RaisedButton from "material-ui/RaisedButton";
+import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
 import * as React from "react";
 
 export interface Props {
@@ -13,32 +15,25 @@ export default class DesignPanelItem extends React.Component<Props, {}> {
 
   constructor(props: Props) {
     super(props);
-    this.respond = this.respond.bind(this);
-  }
-
-  public respond(e: React.FormEvent) {
-    if (e) {
-      const { response } = this.props;
-      const target = e.target as HTMLSelectElement;
-      switch (target.innerHTML.toLowerCase()) {
-        case "yes":
-          response(true);
-          break;
-        default:
-          response(false);
-      }
-    }
   }
 
   public render() {
-    const { message } = this.props;
+    const { message, response } = this.props;
     return (
-      <div className="modal-container">
-        <div className="message-container">{message}</div>
-        <div className="response-container">
-          <button onClick={this.respond} className="modal-button confirm-button">Yes</button>
-          <button onClick={this.respond} className="modal-button deny-button">No</button>
+      <div>
+        <div className="modal-container">
+          <div className="header-container">Confirm</div>
+          <div className="message-container">{message}</div>
+          <div className="response-container">
+            <MuiThemeProvider>
+              <RaisedButton className="modal-button confirm-button" onClick={response.bind(this, true)} label="Yes"/>
+            </MuiThemeProvider>
+            <MuiThemeProvider>
+              <RaisedButton className="modal-button deny-button" onClick={response.bind(this, false)} label="No"/>
+            </MuiThemeProvider>
+          </div>
         </div>
+        <div className="modal-page-container" />
       </div>
     );
   }
