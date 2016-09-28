@@ -47,6 +47,7 @@ export interface FormLayout {
  * @interface Panel
  */
 export interface Panel {
+  value: any; // official way to do this without using any?
   id?: string;
   type: string;
   layout: Layout;

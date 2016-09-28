@@ -34,11 +34,6 @@ export default class Input extends React.Component<Props, State> {
     this.updateLabel = this.updateLabel.bind(this);
   }
 
-  // public shouldComponentUpdate(nextProps: Props, nextState: State) {
-  //   return !_.isEqual(this.state.panel, nextState.panel) ||
-  //          !_.isEqual(this.props.panel, nextProps.panel);
-  // }
-
   /**
    * Update the label of the Input component
    * 
@@ -63,8 +58,8 @@ export default class Input extends React.Component<Props, State> {
    */
   public getType(panel: Panel, label: string): JSX.Element {
     switch (panel.type) {
-      case "date picker":
-      case "time picker":
+      case "date":
+      case "time":
         return (
           <DateTimePicker
             panel={panel}
@@ -73,14 +68,17 @@ export default class Input extends React.Component<Props, State> {
           />
         );
       case "checkbox":
-      default:
         return (
           <Checkbox
             panel={panel}
+            checked={false}
+            onChange={undefined}
             className="design-input-field"
             disabled
           />
         );
+      default:
+        throw(`The type ${panel.type} is not a supported panel.`);
     }
   }
 

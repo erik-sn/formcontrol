@@ -1,19 +1,18 @@
-
-import * as _ from "lodash";
 import Checkbox from "material-ui/Checkbox";
 import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
 import * as React from "react";
 
-import { Panel, ReducerAction } from "../../../src/utils/interfaces";
-import Icon from "../utility/icon";
+import { Panel } from "../../../src/utils/interfaces";
 
 export interface Props {
   panel: Panel;
   disabled: boolean;
   className?: string;
+  checked: boolean;
+  onChange: (e: React.MouseEvent, checked: boolean) => void;
 }
 
-interface State {
+export interface State {
 }
 
 export default class Check extends React.Component<Props, State> {
@@ -24,16 +23,17 @@ export default class Check extends React.Component<Props, State> {
     };
   }
 
-  public shouldComponentUpdate(nextProps: Props, nextState: State) {
-    return !_.isEqual(this.props.panel.config, nextProps.panel.config);
-  }
-
   public render() {
-    const { panel, disabled, className } = this.props;
+    const { panel, disabled, checked, onChange, className } = this.props;
     return (
       <div className={`checkbox-input ${className ? className : ""}`} >
         <MuiThemeProvider>
-          <Checkbox label={disabled ? "" : panel.config.label} />
+          <Checkbox
+            label={disabled ? "" : panel.config.label}
+            checked={checked}
+            onCheck={onChange}
+            disabled={false}
+          />
         </MuiThemeProvider>
       </div>
     );

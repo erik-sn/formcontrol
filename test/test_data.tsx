@@ -6,6 +6,7 @@ export function generatePanels(types: Array<string>): Array<interfaces.Panel> {
 
 export function randPanel(type: string): interfaces.Panel {
   return {
+    value: [randString(5), randInt(10), randBoolean()][randInt(2)],
     id: randString(15),
     type,
     layout: randLayout(),

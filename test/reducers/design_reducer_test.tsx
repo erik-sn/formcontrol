@@ -4,28 +4,12 @@ import reducer from "../../src/reducers/design_reducer";
 import * as interfaces from "../../src/utils/interfaces";
 import { expect } from "chai";
 
+import { generatePanels } from "../test_data";
+
 describe("Design Reducers" , () => {
 
-  const config: interfaces.PanelConfig = {
-    label: "",
-    description: "",
-    options: [],
-    checked: false,
-    mandatory: true,
-  };
+  const panels: Array<interfaces.Panel> = generatePanels(["input", "select"]);
 
-  const validation: interfaces.PanelValidation = {
-    regex: "",  // let user specify regex
-    email: false,
-    date: false,
-    type: "",  // default: both string, number, both
-    length: "",
-  };
-
-  const panels: Array<interfaces.Panel> = [
-    { id: "b1", type: "input", layout: { x: 0, y: 0, w: 1, h: 3 }, config, validation },
-    { id: "b2", type: "input", layout: { x: 2, y: 2, w: 1, h: 3 }, config, validation },
-  ];
 
   const layout: interfaces.FormLayout = {
     height: undefined,

@@ -1,8 +1,10 @@
 import * as React from "react";
+import { isEqual } from "lodash";
 import { connect } from "react-redux";
 const uuid = require("node-uuid");
 
 import { addPanel, clearPanels, hideModal, savePanels, showModal, showPreview } from "../actions/actions";
+import { AVAILABLE_PANELS } from "../actions/constants";
 import { Panel, ReducerAction, ReduxState } from "../utils/interfaces";
 import DesignPanelItem from "./designpanel_item";
 import Modal from "./utility/modal";
@@ -44,10 +46,13 @@ export class DesignPanel extends React.Component<Props, State> {
     this.saveAllPanels = this.saveAllPanels.bind(this);
   }
 
+  public shouldComponentUpdate(nextProps: Props, nextState: State): boolean {
+    return !isEqual(this.state, nextState);
+  }
+
   public componentWillReceiveProps(nextProps: Props) {
     this.setState({ errors: this.defaultErrors });
   }
-  
 
   public togglePreview(): void {
     const { showPreviewButton, errors } = this.state;
@@ -80,7 +85,6 @@ export class DesignPanel extends React.Component<Props, State> {
     const { panels, savePanels } = this.props;
     savePanels(panels);
   }
-  
 
   public getMinHeight(type: string): number {
     switch (type) {
@@ -104,6 +108,7 @@ export class DesignPanel extends React.Component<Props, State> {
     const minHeight = this.getMinHeight(type.toLocaleLowerCase());
     const panel: Panel = {
       id: uuid.v4(),
+      value: undefined,
       type: type.toLowerCase(),
       layout: {x: 0, y: 0, w: 3, h: minHeight, minH: minHeight },
       config: {
@@ -125,9 +130,7 @@ export class DesignPanel extends React.Component<Props, State> {
   }
 
   public generateElements(): Array<JSX.Element> {
-    const elements = ["Input", "Select", "Radio", "Checkbox", "Date Picker", "Time Picker",
-    "Submit Button", "Cancel Button"];
-    return elements.map((element, index) => (
+    return AVAILABLE_PANELS.map((element, index) => (
       <DesignPanelItem element={element} onClick={this.createPanel} key={index} />
     ));
 
@@ -138,28 +141,32 @@ export class DesignPanel extends React.Component<Props, State> {
     return (
       <div className="design-panel-container">
         <h2>Form Configuration</h2>
-        {this.generateElements()}
-        <div
-          className="panel-item panel-menu-button"
-          onClick={this.togglePreview}
-          id="design-panel-preview"
-        >
-        {showPreviewButton ? "Hide " : "Show " }Preview
+        <div id="design-panel-add">
+          {this.generateElements()}
         </div>
-        <div
-          className="panel-item panel-menu-button"
-          onClick={this.clearAllPanels}
-          id="design-panel-clear"
-        >
-        <div>Clear Panels</div>
-        {errors.clearPanel ? <span className="small-error">{errors.clearPanel}</span> : undefined}
-        </div>
-        <div
-          className="panel-item panel-menu-button"
-          onClick={this.saveAllPanels}
-          id="design-panel-save"
-        >
-        Save Panels
+        <div id="design-panel-action">
+          <div
+            className="panel-item panel-menu-button"
+            onClick={this.togglePreview}
+            id="design-panel-preview"
+          >
+          {showPreviewButton ? "Design " : "Preview" }
+          </div>
+          <div
+            className="panel-item panel-menu-button"
+            onClick={this.clearAllPanels}
+            id="design-panel-clear"
+          >
+          <div>Clear</div>
+          {errors.clearPanel ? <span className="small-error">{errors.clearPanel}</span> : undefined}
+          </div>
+          <div
+            className="panel-item panel-menu-button"
+            onClick={this.saveAllPanels}
+            id="design-panel-save"
+          >
+          Save
+          </div>
         </div>
       </div>
     );

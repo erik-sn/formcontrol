@@ -18,9 +18,11 @@ interface Props {
 
 const DesignPanelItem: any = (props: Props) => (
   <div onClick={() => props.onClick(props.element)} className="panel-item">
-    <MuiThemeProvider>
-      {getIcon(props.element)}
-    </MuiThemeProvider>
+    <div className="panel-item-icon">
+      <MuiThemeProvider>
+        {getIcon(props.element)}
+      </MuiThemeProvider>
+    </div>
     <div className="panel-item-label" >{props.element}</div>
   </div>
 );
@@ -28,23 +30,22 @@ const DesignPanelItem: any = (props: Props) => (
 export default DesignPanelItem;
 
 function getIcon(element: string): JSX.Element {
-  console.log(element);
   switch (element) {
-    case "Input":
+    case "input":
       return <TextFields />;
-    case "Select":
+    case "select":
       return <DropDownArrow />;
-    case "Radio":
+    case "radio":
       return <RadioButton />;
-    case "Checkbox":
+    case "checkbox":
       return <CheckBox />;
-    case "Date Picker":
+    case "date":
       return <DateRange />;
-    case "Time Picker":
+    case "time":
       return <TimeRange />;
-    case "Submit Button":
+    case "submit":
       return <Input />;
-    case "Cancel Button":
+    case "cancel":
       return <Cancel />;
     default:
       return <HardwareVideogameAsset />;

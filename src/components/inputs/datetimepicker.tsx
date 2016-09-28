@@ -31,12 +31,13 @@ export default class Date extends React.Component<Props, State> {
 
   public getType(): JSX.Element {
     const { panel, disabled } = this.props;
-    if (panel.type === "date picker") {
+    if (panel.type === "date") {
       return <DatePicker disabled={disabled} hintText={disabled ? "" : panel.config.label} />;
-    } else if (panel.type === "time picker") {
+    } else if (panel.type === "time") {
       return <TimePicker disabled={disabled} hintText={disabled ? "" : panel.config.label} />;
+    } else {
+      throw(`The type ${panel.type} is not a supported panel`);
     }
-    return undefined;
   }
 
   public render() {

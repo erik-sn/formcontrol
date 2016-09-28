@@ -4,30 +4,13 @@ import * as interfaces from "../../src/utils/interfaces";
 import { expect } from "chai";
 import * as React from "react";
 
+import { generatePanels } from "../test_data";
+
 describe("Actions" , () => {
 
   describe("Design Actions" , () => {
 
-    const config: interfaces.PanelConfig = {
-      label: "",
-      description: "",
-      options: [],
-      checked: false,
-      mandatory: true,
-    };
-
-    const validation: interfaces.PanelValidation = {
-      regex: "",  // let user specify regex
-      email: false,
-      date: false,
-      type: "",  // default: both string, number, both
-      length: "",
-    };
-
-    const panels: Array<interfaces.Panel> = [
-      { id: "b1", type: "input", layout: {x: 0, y: 0, w: 1, h: 3 }, config, validation },
-      { id: "b2", type: "select", layout: {x: 0, y: 0, w: 1, h: 3 }, config, validation },
-    ];
+    const panels: Array<interfaces.Panel> = generatePanels(["input", "select"]);
 
     it("should create an action to add a panel", () => {
       const expectedAction = {

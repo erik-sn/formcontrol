@@ -22,8 +22,12 @@ describe("Design Panel Item" , () => {
 
   it("renders component with correct text and class", () => {
     expect(component).to.exist;
-    expect(component.text()).to.equal(props.element);
+    expect(component.text()).to.contain(props.element);
     expect(component.find(".panel-item")).to.have.length(1);
+  });
+
+  it("contains an icon", () => {
+    expect(component.find("MuiThemeProvider")).to.have.length(1);
   });
 
   it("returns the element text on click", () => {

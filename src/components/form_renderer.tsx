@@ -2,20 +2,22 @@ if (process.env.BROWSER) {
   require("../sass/form.scss");
 }
 
+import { cloneDeep, isEqual } from "lodash";
 import * as React from "react";
 
 import { Panel } from "../utils/interfaces";
 import Checkbox from "./inputs/checkbox";
 import DateTimePicker from "./inputs/datetimepicker";
 import Radio from "./inputs/radio";
+import * as interfaces from "../utils/interfaces";
 
 export interface Props {
   panels: Array<Panel>;
+  update: (panel: Panel) => interfaces.ReducerAction;
 }
 
 export interface State {
   form: any;
-  renderedPanels: Array<JSX.Element>;
 }
 
 interface RenderStyle {
@@ -31,24 +33,30 @@ export default class DesignForm extends React.Component<Props, State> {
     super(props);
     this.state = {
       form: {},
-      renderedPanels: [],
     };
   }
+
+  public shouldComponentUpdate(nextProps: Props, nextState: State) {
+    return !isEqual(this.props.panels, nextProps.panels) || !isEqual(this.state.form, nextState.form);
+  }
+  
 
   public componentDidMount() {
     const form: {} = this.props.panels.reduce((prev: any, panel: Panel) => {
       prev[`${panel.config.label}__${panel.id}`] = "";
       return prev;
     }, {});
-    const renderedPanels: Array<JSX.Element> = this.props.panels.map(panel => {
+    this.setState({ form });
+  }
 
+  public renderPanels(panels: Array<Panel>): Array<JSX.Element> {
+    return this.props.panels.map(panel => {
       const style: RenderStyle = {
         width: `calc(${panel.layout.w * 9.90}% - ${20}px)`,
         height: `calc(${panel.layout.h * 40}px - 20px)`,
         left: `calc(${panel.layout.x * 9.90}% + 5px)`,
         top: `calc(${panel.layout.y * 40}px + 5px)`, // 5px padding on rows
       };
-
       switch (panel.type) {
         case "input":
           return this.renderInput(panel, style);
@@ -58,18 +66,18 @@ export default class DesignForm extends React.Component<Props, State> {
           return this.renderRadio(panel, style);
         case "checkbox":
           return this.renderCheckbox(panel, style);
-        case "date picker":
-        case "time picker":
+        case "date":
+        case "time":
           return this.renderDatePicker(panel, style);
-        case "submit button":
+        case "submit":
           return this.renderButton(panel, style, "Submit");
-        case "cancel button":
+        case "cancel":
           return this.renderButton(panel, style, "Cancel");
         default:
+          console.log(panel.type);
           return undefined;
       }
     });
-    this.setState({ form, renderedPanels });
   }
 
   public renderRadio(panel: Panel, style: RenderStyle): JSX.Element {
@@ -122,7 +130,13 @@ export default class DesignForm extends React.Component<Props, State> {
         key={panel.id}
         style={style}
       >
-        <Checkbox panel={panel} disabled={false} />
+        <Checkbox
+          /* default is string, expecting boolean */
+          checked={this.state.form[`${panel.config.label}__${panel.id}`] === true ? true : false} 
+          onChange={(e: React.MouseEvent) => this.updateValue(e, `${panel.config.label}__${panel.id}`)}
+          panel={panel}
+          disabled={false}
+        />
       </div>
     );
   }
@@ -231,19 +245,22 @@ export default class DesignForm extends React.Component<Props, State> {
   }
 
   public updateValue(e: React.FormEvent, label: string) {
-    const { renderedPanels } = this.state;
     e.preventDefault();
     const target = e.target as HTMLSelectElement;
-    const form: any = this.state.form;
-    form[label] = target.value;
-    this.setState({ form, renderedPanels });
+    const form: any = cloneDeep(this.state.form);
+    if (target.type === "checkbox") {
+      form[label] = form[label] ? false : true;
+    } else {
+      form[label] = target.value;
+    }
+    this.setState({ form });
   }
 
   public render() {
-    const { renderedPanels } = this.state;
+    const { panels } = this.props;
     return (
       <div className="design-form-container" id="form-render-container" >
-      {renderedPanels}
+        {this.renderPanels(panels)}
       </div>
     );
   }

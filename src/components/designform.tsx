@@ -66,13 +66,13 @@ export class DesignForm extends React.Component<Props, State> {
       case "select":
       case "radio":
         return <Input {...props} settings={this.showSettings} update={this.props.updatePanel} />;
-      case "submit button":
+      case "submit":
         return <Button  {...props} label="Submit" />;
-      case "cancel button":
+      case "cancel":
         return <Button  {...props} label="Cancel" />;
       case "checkbox":
-      case "date picker":
-      case "time picker":
+      case "date":
+      case "time":
         return <InputSmall {...props} settings={this.showSettings} update={this.props.updatePanel}/>;
       default:
         return undefined;
@@ -158,7 +158,7 @@ export class DesignForm extends React.Component<Props, State> {
     const { panels, preview } = this.props;
     const { settings } = this.state;
     if (preview) {
-      return <Renderer panels={panels.filter(panel => panel !== undefined)} />;
+      return <Renderer update={this.props.updatePanel} panels={panels.filter(panel => panel !== undefined)} />;
     }
     let panelSettings: JSX.Element;
     if (settings.show) {

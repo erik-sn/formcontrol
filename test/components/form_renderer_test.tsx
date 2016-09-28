@@ -16,11 +16,11 @@ describe("Form Renderer" , () => {
     const panels = generatePanels(["input", "select", "input", "input", "select"]);
     const props: Props = {
       panels,
+      update: (panel: interfaces.Panel) => undefined,
     };
 
     const state: State = {
       form: {},
-      renderedPanels: undefined,
     };
 
 

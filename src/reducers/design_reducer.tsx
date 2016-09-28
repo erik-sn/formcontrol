@@ -11,13 +11,10 @@ const INITIAL_STATE: DesignReducer = {
   panels: [],
 };
 
-const AVAILABLE_PANELS = ["input", "select", "radio", "checkbox", "date picker", "time picker",
- "submit button", "cancel button"];
-
 export default function (state = INITIAL_STATE, action: ReducerAction): DesignReducer {
   switch (action.type) {
     case types.ADD_PANEL:
-      if (_.includes(AVAILABLE_PANELS, action.payload.type)) {
+      if (_.includes(types.AVAILABLE_PANELS, action.payload.type)) {
         return {
           layout: state.layout,
           panels: state.panels.concat(action.payload),
