@@ -55,19 +55,19 @@ describe("Design Panel" , () => {
       expect(togglePreview.callCount).to.equal(0);
       expect(showPreview.callCount).to.equal(0);
       expect(component.state(["showPreviewButton"])).to.be.false;
-      expect(component.find("#design-panel-preview").text()).to.contain("Show");
+      expect(component.find("#design-panel-preview").text()).to.equal("Preview");
 
       component.find("#design-panel-preview").simulate("click");
       expect(togglePreview.callCount).to.equal(1);
       expect(showPreview.callCount).to.equal(1);
       expect(component.state(["showPreviewButton"])).to.be.true;
-      expect(component.find("#design-panel-preview").text()).to.contain("Hide");
+      expect(component.find("#design-panel-preview").text()).to.equal("Design");
 
       component.find("#design-panel-preview").simulate("click");
       expect(togglePreview.callCount).to.equal(2);
       expect(showPreview.callCount).to.equal(2);
       expect(component.state(["showPreviewButton"])).to.be.false;
-      expect(component.find("#design-panel-preview").text()).to.contain("Show");
+      expect(component.find("#design-panel-preview").text()).to.equal("Preview");
 
     });
 

@@ -88,11 +88,11 @@ export class DesignPanel extends React.Component<Props, State> {
 
   public getMinHeight(type: string): number {
     switch (type) {
-      case "submit button":
-      case "cancel button":
+      case "submit":
+      case "cancel":
       case "checkbox":
-      case "date picker":
-      case "time picker":
+      case "date":
+      case "time":
         return 1;
       default:
         return 2;
@@ -150,7 +150,7 @@ export class DesignPanel extends React.Component<Props, State> {
             onClick={this.togglePreview}
             id="design-panel-preview"
           >
-          {showPreviewButton ? "Design " : "Preview" }
+          {showPreviewButton ? "Design" : "Preview" }
           </div>
           <div
             className="panel-item panel-menu-button"

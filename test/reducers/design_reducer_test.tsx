@@ -37,7 +37,7 @@ describe("Design Reducers" , () => {
   });
 
   it("should remove a panel based on its id", () => {
-    const result = reducer({ panels, layout }, { payload: { id: "b1" }, type: types.REMOVE_PANEL });
+    const result = reducer({ panels, layout }, { payload: { id: panels[0].id }, type: types.REMOVE_PANEL });
     expect(result.panels).to.deep.equal([panels[1]]);
   });
 

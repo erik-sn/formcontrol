@@ -1,6 +1,6 @@
 
 import {RadioButton, RadioButtonGroup} from "material-ui/RadioButton";
-import * as _ from "lodash";
+import { isEqual } from "lodash";
 import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
 import * as React from "react";
 
@@ -16,12 +16,7 @@ interface State {
 }
 
 export default class Radio extends React.Component<Props, State> {
-
-  /**
-   * Creates an instance of Input.
-   * 
-   * @param {Props} props
-   */
+  
   constructor(props: Props) {
     super(props);
     this.state = {
@@ -29,7 +24,7 @@ export default class Radio extends React.Component<Props, State> {
   }
 
   public shouldComponentUpdate(nextProps: Props, nextState: State) {
-    return !_.isEqual(this.props.panel.config.options, nextProps.panel.config.options);
+    return !isEqual(this.props.panel.config.options, nextProps.panel.config.options);
   }
 
   public render() {
@@ -40,7 +35,7 @@ export default class Radio extends React.Component<Props, State> {
     return (
       <div className="formpanel-button-container">
         <MuiThemeProvider>
-          <RadioButtonGroup name="shipSpeed" defaultSelected="not_light">
+          <RadioButtonGroup name="buttongroup" defaultSelected="">
             {radioButtons}
           </RadioButtonGroup>
         </MuiThemeProvider>
