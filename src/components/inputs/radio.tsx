@@ -10,13 +10,15 @@ import Icon from "../utility/icon";
 export interface Props {
   panel: Panel;
   disabled: boolean;
+  onChange: (e: React.MouseEvent, value: string) => void;
+  value: string;
 }
 
 interface State {
 }
 
 export default class Radio extends React.Component<Props, State> {
-  
+
   constructor(props: Props) {
     super(props);
     this.state = {
@@ -28,14 +30,19 @@ export default class Radio extends React.Component<Props, State> {
   }
 
   public render() {
-    const { panel, disabled } = this.props;
+    const { panel, disabled, onChange, value } = this.props;
     const radioButtons = panel.config.options.map((option: string, i: number) => (
       <RadioButton key={i} value={option} label={option} disabled={disabled} />
     ));
     return (
       <div className="formpanel-button-container">
         <MuiThemeProvider>
-          <RadioButtonGroup name="buttongroup" defaultSelected="">
+          <RadioButtonGroup
+            name="buttongroup"
+            defaultSelected=""
+            valueSelected={value}
+            onChange={onChange}
+          >
             {radioButtons}
           </RadioButtonGroup>
         </MuiThemeProvider>

@@ -12,11 +12,10 @@ describe("Modal" , () => {
   const props: any = {
     message: "test message",
   };
-  const state = {};
 
 
   beforeEach(() => {
-    response = sinon.spy((confirm: boolean) => (confirm));
+    response = sinon.spy((confirm: boolean) => confirm);
     component = mount(<Modal response={response} {...props} />);
   });
 
@@ -25,16 +24,18 @@ describe("Modal" , () => {
     expect(component.find(".modal-container")).to.have.length(1);
   });
 
+  it("should contain the correct label", () => {
+    expect(component.find(".message-container").text()).to.equal(props.message);
+  });
+
   it("responds with true on confirm click", () => {
-    expect(response.callCount).to.equal(0);
-    component.find(".confirm-button").simulate("click");
+    component.find(".confirm-container").simulate("click");
     expect(response.callCount).to.equal(1);
     expect(response.returnValues[0]).to.equal(true);
   });
 
   it("responds with false on deny click", () => {
-    expect(response.callCount).to.equal(0);
-    component.find(".deny-button").simulate("click");
+    component.find(".deny-container").simulate("click");
     expect(response.callCount).to.equal(1);
     expect(response.returnValues[0]).to.equal(false);
   });

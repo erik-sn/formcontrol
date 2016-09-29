@@ -96,7 +96,12 @@ export default class DesignForm extends React.Component<Props, State> {
           />
         </div>
         <div className="input-container">
-          <Radio panel={panel} disabled={false} />
+          <Radio
+            panel={panel}
+            value={this.state.form[`${panel.config.label}__${panel.id}`]}
+            onChange={(e: React.MouseEvent) => this.updateValue(e, `${panel.config.label}__${panel.id}`)}
+            disabled={false}
+          />
         </div>
         <div className="input-description-container">
           <input

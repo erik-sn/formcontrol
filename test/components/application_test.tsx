@@ -50,7 +50,6 @@ describe("Application" , () => {
 
     it("has modal only if showModal is true", () => {
       expect(component.find(".modal-container")).to.have.length(0);
-      expect(component.find(".application-container").props().style.opacity).to.equal(1);
       const newProps = props;
       newProps.display.modal = {
         showModal: true,
@@ -58,7 +57,6 @@ describe("Application" , () => {
       };
       component = shallow(<Application {...newProps} />);
       expect(component.find(".modal-container")).to.have.length(1);
-      expect(component.find(".application-container").props().style.opacity).to.equal(0.4);
     });
 
 

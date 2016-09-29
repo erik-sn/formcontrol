@@ -25,12 +25,16 @@ export default class DesignPanelItem extends React.Component<Props, {}> {
           <div className="header-container">Confirm</div>
           <div className="message-container">{message}</div>
           <div className="response-container">
-            <MuiThemeProvider>
-              <RaisedButton className="modal-button confirm-button" onClick={response.bind(this, true)} label="Yes"/>
-            </MuiThemeProvider>
-            <MuiThemeProvider>
-              <RaisedButton className="modal-button deny-button" onClick={response.bind(this, false)} label="No"/>
-            </MuiThemeProvider>
+            <div className="confirm-container" onClick={response.bind(this, true)}>
+              <MuiThemeProvider>
+                <RaisedButton className="modal-button confirm-button"  label="Yes"/>
+              </MuiThemeProvider>
+            </div>
+            <div className="deny-container" onClick={response.bind(this, false)}>
+              <MuiThemeProvider>
+                <RaisedButton className="modal-button deny-button" label="No"/>
+              </MuiThemeProvider>
+            </div>
           </div>
         </div>
         <div className="modal-page-container" />

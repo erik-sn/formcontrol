@@ -80,7 +80,7 @@ export default class Input extends React.Component<Props, State> {
           <select className="design-select-field"value="Select this!" disabled />
         );
       case "radio":
-        return <Radio panel={_.cloneDeep(panel)} disabled/>;
+        return <Radio onChange={undefined} value={undefined} panel={_.cloneDeep(panel)} disabled/>;
       default:
         return (
           <input
