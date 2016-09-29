@@ -1,5 +1,5 @@
 
-import * as _ from "lodash";
+import { isEqual } from "lodash";
 import DatePicker from "material-ui/DatePicker";
 import TimePicker from "material-ui/TimePicker";
 import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
@@ -12,6 +12,8 @@ export interface Props {
   panel: Panel;
   disabled: boolean;
   className?: string;
+  onChange: (e: any, date: any) => void;
+  value: any;
 }
 
 interface State {
@@ -26,15 +28,30 @@ export default class Date extends React.Component<Props, State> {
   }
 
   public shouldComponentUpdate(nextProps: Props, nextState: State) {
-    return !_.isEqual(this.props.panel.config, nextProps.panel.config);
+    return !isEqual(this.props.panel.config, nextProps.panel.config) ||
+           !isEqual(this.props.value, nextProps.value);
   }
 
   public getType(): JSX.Element {
-    const { panel, disabled } = this.props;
+    const { panel, disabled, value, onChange } = this.props;
     if (panel.type === "date") {
-      return <DatePicker disabled={disabled} hintText={disabled ? "" : panel.config.label} />;
+      return (
+        <DatePicker
+          value={value}
+          onChange={onChange}
+          disabled={disabled}
+          hintText={disabled ? "" : panel.config.label}
+        />
+      );
     } else if (panel.type === "time") {
-      return <TimePicker disabled={disabled} hintText={disabled ? "" : panel.config.label} />;
+      return (
+        <TimePicker
+          value={value}
+          onChange={onChange}
+          disabled={disabled}
+          hintText={disabled ? "" : panel.config.label}
+        />
+      );
     } else {
       throw(`The type ${panel.type} is not a supported panel`);
     }

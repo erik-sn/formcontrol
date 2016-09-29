@@ -62,6 +62,8 @@ export default class Input extends React.Component<Props, State> {
       case "time":
         return (
           <DateTimePicker
+            onChange={undefined}
+            value={undefined}
             panel={panel}
             className="design-input-field"
             disabled

@@ -39,7 +39,6 @@ export default class DesignForm extends React.Component<Props, State> {
   public shouldComponentUpdate(nextProps: Props, nextState: State) {
     return !isEqual(this.props.panels, nextProps.panels) || !isEqual(this.state.form, nextState.form);
   }
-  
 
   public componentDidMount() {
     const form: {} = this.props.panels.reduce((prev: any, panel: Panel) => {
@@ -74,44 +73,9 @@ export default class DesignForm extends React.Component<Props, State> {
         case "cancel":
           return this.renderButton(panel, style, "Cancel");
         default:
-          console.log(panel.type);
-          return undefined;
+          throw(`The panel type ${panel.type} is not supported.`);
       }
     });
-  }
-
-  public renderRadio(panel: Panel, style: RenderStyle): JSX.Element {
-    return (
-      <div
-        id={panel.id}
-        className="formpanel-input-container rendered-panel rendered-radio"
-        key={panel.id}
-        style={style}
-      >
-        <div className="input-label-container">
-          <input
-            type="text"
-            value={panel.config.label}
-            disabled
-          />
-        </div>
-        <div className="input-container">
-          <Radio
-            panel={panel}
-            value={this.state.form[`${panel.config.label}__${panel.id}`]}
-            onChange={(e: React.MouseEvent) => this.updateValue(e, `${panel.config.label}__${panel.id}`)}
-            disabled={false}
-          />
-        </div>
-        <div className="input-description-container">
-          <input
-            type="text"
-            value={panel.config.description}
-            disabled
-          />
-        </div>
-      </div>
-    );
   }
 
   public renderButton(panel: Panel, style: RenderStyle, label: string): JSX.Element {
@@ -154,7 +118,88 @@ export default class DesignForm extends React.Component<Props, State> {
         key={panel.id}
         style={style}
       >
-        <DateTimePicker panel={panel} disabled={false} />
+        <DateTimePicker
+          onChange={(e: any, date: any) => this.updateDate(date, `${panel.config.label}__${panel.id}`)}
+          value={this.state.form[`${panel.config.label}__${panel.id}`]}
+          panel={panel}
+          disabled={false}
+        />
+      </div>
+    );
+  }
+
+  /**
+   * Render a Panel object into it's equivalent user-facing Input field
+   * and corresponding information
+   * 
+   * @param {Panel} panel
+   * @returns {JSX.Element}
+   * 
+   * @memberOf DesignForm
+   */
+  public renderInput(panel: Panel, style: RenderStyle): JSX.Element {
+    return (
+      <div
+        id={panel.id}
+        className="formpanel-input-container rendered-panel rendered-input"
+        key={panel.id}
+        style={style}
+      >
+        <div className="input-label-container">
+          <input
+            type="text"
+            value={panel.config.label}
+            disabled
+          />
+        </div>
+        <div className="input-container">
+          <input
+            type="text"
+            value={this.state.form[`${panel.config.label}__${panel.id}`]}
+            onChange={(e: React.FormEvent) => this.updateValue(e, `${panel.config.label}__${panel.id}`)}
+          />
+        </div>
+        <div className="input-description-container">
+          <input
+            type="text"
+            value={panel.config.description}
+            disabled
+          />
+        </div>
+      </div>
+    );
+  }
+
+  public renderRadio(panel: Panel, style: RenderStyle): JSX.Element {
+    return (
+      <div
+        id={panel.id}
+        className="formpanel-input-container rendered-panel rendered-radio"
+        key={panel.id}
+        style={style}
+      >
+        <div className="input-label-container">
+          <input
+            type="text"
+            value={panel.config.label}
+            disabled
+          />
+        </div>
+        <div className="input-container">
+          <Radio
+            panel={panel}
+            value={this.state.form[`${panel.config.label}__${panel.id}`]}
+            onChange={(e: React.MouseEvent) => this.updateValue(e, `${panel.config.label}__${panel.id}`)}
+            disabled={false}
+          />
+        </div>
+        <div className="input-description-container">
+          <input
+            type="text"
+            value={panel.config.description}
+            disabled
+          />
+        </div>
       </div>
     );
   }
@@ -208,48 +253,17 @@ export default class DesignForm extends React.Component<Props, State> {
   }
 
   /**
-   * Render a Panel object into it's equivalent user-facing Input field
-   * and corresponding information
+   * Take in a form event and parse the value from it. This value cancel
+   * be of many types of inputs (checkboxes, radio buttons, etc.), so
+   * this method must handle all those cases. After value is parsed set the
+   * local state to update that component's state.
    * 
-   * @param {Panel} panel
-   * @returns {JSX.Element}
+   * @param {React.FormEvent} e
+   * @param {string} label
    * 
    * @memberOf DesignForm
    */
-  public renderInput(panel: Panel, style: RenderStyle): JSX.Element {
-    return (
-      <div
-        id={panel.id}
-        className="formpanel-input-container rendered-panel rendered-input"
-        key={panel.id}
-        style={style}
-      >
-        <div className="input-label-container">
-          <input
-            type="text"
-            value={panel.config.label}
-            disabled
-          />
-        </div>
-        <div className="input-container">
-          <input
-            type="text"
-            value={this.state.form[`${panel.config.label}__${panel.id}`]}
-            onChange={(e: React.FormEvent) => this.updateValue(e, `${panel.config.label}__${panel.id}`)}
-          />
-        </div>
-        <div className="input-description-container">
-          <input
-            type="text"
-            value={panel.config.description}
-            disabled
-          />
-        </div>
-      </div>
-    );
-  }
-
-  public updateValue(e: React.FormEvent, label: string) {
+  public updateValue(e: React.FormEvent, label: string): void {
     e.preventDefault();
     const target = e.target as HTMLSelectElement;
     const form: any = cloneDeep(this.state.form);
@@ -258,6 +272,22 @@ export default class DesignForm extends React.Component<Props, State> {
     } else {
       form[label] = target.value;
     }
+    this.setState({ form });
+  }
+
+  /**
+   * Same as updateValue but for dates - this requires a special case because
+   * material-ui returns a null for the formevent and a Date object for the
+   * value.
+   * 
+   * @param {{}} date
+   * @param {string} label
+   * 
+   * @memberOf DesignForm
+   */
+  public updateDate(date: any, label: string): void {
+    const form: any = cloneDeep(this.state.form);
+    form[label] = date;
     this.setState({ form });
   }
 
