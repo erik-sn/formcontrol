@@ -9,7 +9,7 @@ export interface Props {
   panel: Panel;
   close: (id: string) => void;
   update: (panel: Panel) => ReducerAction;
-  settings: (id: string, event: React.MouseEvent) => void;
+  settings: (id: string, event: React.MouseEvent<{}>) => void;
   disabled: boolean;
 }
 
@@ -43,7 +43,7 @@ export default class Input extends React.Component<Props, State> {
    * 
    * @param {ChangeEvent} e
    */
-  public updateLabel(e: React.FormEvent): void {
+  public updateLabel(e: React.FormEvent<{}>): void {
     const panel = _.cloneDeep(this.state.panel);
     const target = e.target as HTMLSelectElement;
     panel.config.label = target.value;
@@ -56,7 +56,7 @@ export default class Input extends React.Component<Props, State> {
    * 
    * @param {ChangeEvent} e
    */
-  public updateDescription(e: React.FormEvent): void {
+  public updateDescription(e: React.FormEvent<{}>): void {
     const panel = _.cloneDeep(this.state.panel);
     const target = e.target as HTMLSelectElement;
     panel.config.description = target.value;

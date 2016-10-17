@@ -1,3 +1,4 @@
+import * as mocha from "mocha";  // import required once in project to satisfy TypeScript compiler
 
 import { expect } from "chai";
 import { shallow } from "enzyme";

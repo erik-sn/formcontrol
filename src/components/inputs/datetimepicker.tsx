@@ -5,8 +5,7 @@ import TimePicker from "material-ui/TimePicker";
 import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
 import * as React from "react";
 
-import { Panel, ReducerAction } from "../../../src/utils/interfaces";
-import Icon from "../utility/icon";
+import { Panel } from "../../../src/utils/interfaces";
 
 export interface Props {
   panel: Panel;

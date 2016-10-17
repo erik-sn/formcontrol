@@ -11,7 +11,7 @@ import { RouterContext, match } from "react-router";
 import { Provider } from "react-redux";
 
 import reducers from "./src/reducers/root";
-import routes from "./src/routes/";
+import routes from "./src/routes";
 
 
 let server: any;
@@ -23,17 +23,8 @@ app.use(compression()); // compress compatible files for quicker client load tim
 app.use(logger("dev")); // log content
 
 // Set path to public assets
-app.use("/static", express.static("static"));
 app.use("/static", express.static("dist"));
 
-/**
- * For every request send the URL to React Router The router will return the content that should be 
- * delivered to the user. If the URL does not match any route, a 404 will be returned. 
- * 
- * React renders the component that should be returned in string format, and that string is served to the
- * client in an html form with static resources attached to it. After this page is loaded, any links o
- * routing that takes place will be handled purely by the javascript in react router.
- */
 app.use("*", (req: any, res: any) => {
   match({ routes, location: req.originalUrl }, (error, redirectLocation, renderProps) => {
     if (error) {
@@ -70,11 +61,12 @@ server.listen(PORT, () => {
  * @param {string} html - react component to be rendered
  * @return {string} full html page
  */
-function renderFullPage(html: string) {
+function renderFullPage(html: string): string {
   return `
     <!doctype html>
     <html>
       <head>
+        <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
         <link rel="stylesheet" href="/static/bundle.min.css">
       </head>
       <body id="app-body">

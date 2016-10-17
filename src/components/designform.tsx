@@ -101,7 +101,7 @@ export class DesignForm extends React.Component<Props, State> {
     this.props.showModal(<Modal message={message} response={response} />);
   }
 
-  public showSettings(id: string, event: React.MouseEvent): void {
+  public showSettings(id: string, event: React.MouseEvent<{}>): void {
     const x = event.clientX;
     const y = event.clientY;
     const settings = { id, x, y, show: !this.state.settings.show };

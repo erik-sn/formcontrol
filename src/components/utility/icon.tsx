@@ -7,7 +7,7 @@ export interface Props {
   size: any;
   id: string;
   style?: Object;
-  onClick: (id: string, event: React.MouseEvent) => void;
+  onClick: (id: string, event: React.MouseEvent<{}>) => void;
 }
 
 // From https://dmfrancisco.github.io/react-icons/
@@ -61,7 +61,7 @@ export default class Icon extends React.Component<Props, {}> {
     }
   }
 
-  public click(event: React.MouseEvent): void {
+  public click(event: React.MouseEvent<{}>): void {
     this.props.onClick(this.props.id, event);
   }
 

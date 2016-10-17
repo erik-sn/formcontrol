@@ -27,7 +27,7 @@ export default class PanelSettings extends React.Component<Props, State> {
     this.updatePanel = this.updatePanel.bind(this);
   }
 
-  public updatePanel(event: React.FormEvent) {
+  public updatePanel(event: React.FormEvent<{}>) {
     event.preventDefault();
     const { name, value, type } = event.target as HTMLSelectElement; ;
     let panel: any = this.state.panel;

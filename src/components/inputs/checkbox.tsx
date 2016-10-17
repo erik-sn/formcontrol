@@ -9,7 +9,7 @@ export interface Props {
   disabled: boolean;
   className?: string;
   checked: boolean;
-  onChange: (e: React.MouseEvent, checked: boolean) => void;
+  onChange: (e: React.MouseEvent<{}>, checked: boolean) => void;
 }
 
 export interface State {

@@ -10,7 +10,7 @@ import DateTimePicker from "./datetimepicker";
 export interface Props {
   panel: Panel;
   close: (id: string) => void;
-  settings: (id: string, event: React.MouseEvent) => void;
+  settings: (id: string, event: React.MouseEvent<{}>) => void;
   update: (panel: Panel) => ReducerAction;
   disabled: boolean;
 }
@@ -39,7 +39,7 @@ export default class Input extends React.Component<Props, State> {
    * 
    * @param {ChangeEvent} e
    */
-  public updateLabel(e: React.FormEvent): void {
+  public updateLabel(e: React.FormEvent<{}>): void {
     const panel = _.cloneDeep(this.state.panel);
     const target = e.target as HTMLSelectElement;
     panel.config.label = target.value;

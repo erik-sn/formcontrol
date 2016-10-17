@@ -10,7 +10,7 @@ import Icon from "../utility/icon";
 export interface Props {
   panel: Panel;
   disabled: boolean;
-  onChange: (e: React.MouseEvent, value: string) => void;
+  onChange: (e: React.MouseEvent<{}>, value: string) => void;
   value: string;
 }
 

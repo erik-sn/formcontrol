@@ -27,7 +27,6 @@ describe("DateTime Picker", () => {
         });
 
         it("renders something with correct top-level class", () => {
-          console.log(component.debug());
           expect(component).to.exist;
           expect(component.find("MuiThemeProvider")).to.have.length(1);
           expect(component.find("DatePicker")).to.have.length(1);

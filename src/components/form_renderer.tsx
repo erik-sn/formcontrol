@@ -102,7 +102,7 @@ export default class DesignForm extends React.Component<Props, State> {
         <Checkbox
           /* default is string, expecting boolean */
           checked={this.state.form[`${panel.config.label}__${panel.id}`] === true ? true : false} 
-          onChange={(e: React.MouseEvent) => this.updateValue(e, `${panel.config.label}__${panel.id}`)}
+          onChange={(e: React.MouseEvent<{}>) => this.updateValue(e, `${panel.config.label}__${panel.id}`)}
           panel={panel}
           disabled={false}
         />
@@ -156,7 +156,7 @@ export default class DesignForm extends React.Component<Props, State> {
           <input
             type="text"
             value={this.state.form[`${panel.config.label}__${panel.id}`]}
-            onChange={(e: React.FormEvent) => this.updateValue(e, `${panel.config.label}__${panel.id}`)}
+            onChange={(e: React.FormEvent<{}>) => this.updateValue(e, `${panel.config.label}__${panel.id}`)}
           />
         </div>
         <div className="input-description-container">
@@ -189,7 +189,7 @@ export default class DesignForm extends React.Component<Props, State> {
           <Radio
             panel={panel}
             value={this.state.form[`${panel.config.label}__${panel.id}`]}
-            onChange={(e: React.MouseEvent) => this.updateValue(e, `${panel.config.label}__${panel.id}`)}
+            onChange={(e: React.MouseEvent<Event>) => this.updateValue(e, `${panel.config.label}__${panel.id}`)}
             disabled={false}
           />
         </div>
@@ -236,7 +236,7 @@ export default class DesignForm extends React.Component<Props, State> {
           <select
             className="design-select-field"
             value={this.state.form[`${panel.config.label}__${panel.id}`]}
-            onChange={(e: React.FormEvent) => this.updateValue(e, `${panel.config.label}__${panel.id}`)}
+            onChange={(e: React.FormEvent<EventTarget>) => this.updateValue(e, `${panel.config.label}__${panel.id}`)}
           >
           {options}
           </select>
@@ -263,7 +263,7 @@ export default class DesignForm extends React.Component<Props, State> {
    * 
    * @memberOf DesignForm
    */
-  public updateValue(e: React.FormEvent, label: string): void {
+  public updateValue(e: React.FormEvent<{}>, label: string): void {
     e.preventDefault();
     const target = e.target as HTMLSelectElement;
     const form: any = cloneDeep(this.state.form);

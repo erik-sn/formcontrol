@@ -27,23 +27,23 @@ module.exports = {
     }),
   ],
   module: {
-    loaders: [{
-      test: /\.js$/,
-      loaders: ["babel"],
-      include: path.join(__dirname, "src"),
-    },
-    {
-      test: /\.scss$/,
-      loader: ExtractTextPlugin.extract("css!sass"),
-    },
-    {
-      test: /\.jpe?g$|\.gif$|\.png$/i,
-      loader: "file-loader?name=/img/[name].[ext]",
-    },
-    { test: /\.tsx?$/,
-      loaders: ["react-hot", "babel", "ts-loader"],
-      include: path.join(__dirname, "src"),
-    },
-],
+    loaders: [
+      {
+        test: /\.scss$/,
+        loader: ExtractTextPlugin.extract("css!postcss!sass"),
+      },
+      {
+        test: /\.jpe?g$|\.gif$|\.png$/i,
+        loader: "file-loader?name=/img/[name].[ext]",
+      },
+      { test: /\.ts|.tsx?$/,
+        loaders: ["ts-loader"],
+        include: path.join(__dirname, "src"),
+      },
+    ],
   },
+  resolve: {
+    extensions: ["", ".webpack.js", ".web.js", ".js", ".ts", ".tsx"],
+  },
+  postcss: [ require("autoprefixer") ],
 };

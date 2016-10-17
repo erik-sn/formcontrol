@@ -24,23 +24,24 @@ export default module.exports = {
   ],
   module: {
     loaders: [
-    {
-      loaders: ["style", "css", "sass"],
-      test: /\.scss$/,
-    },
-    {
-      include: path.join(__dirname, "src"),
-      loader: ["react-hot", "babel"],
-      test: /\.js$/,
-    },
-    {
-      include: path.join(__dirname, "src"),
-      loaders: ["react-hot", "ts-loader"],
-      test: /\.tsx?$/,
-    },
+      {
+        loaders: ["style", "css", "postcss", "sass"],
+        test: /\.scss$/,
+      },
+      {
+        include: path.join(__dirname, "src"),
+        loader: ["react-hot", "babel"],
+        test: /\.js$/,
+      },
+      {
+        include: path.join(__dirname, "src"),
+        loaders: ["react-hot", "ts-loader"],
+        test: /\.tsx?$/,
+      },
     ],
   },
   resolve: {
-    extensions: ['', '.webpack.js','.web.js', '.js', '.ts', '.tsx']
+    extensions: ["", ".webpack.js", ".web.js", ".js", ".ts", ".tsx"],
   },
+  postcss: [ require("autoprefixer") ],
 };
