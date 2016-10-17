@@ -2,5 +2,9 @@ app/node_modules
 app/npm-debug.log
 app/dist
 npm-debug.log
+
+api/api/settings.py
+api/venv
+
 .idea
 .vscode
