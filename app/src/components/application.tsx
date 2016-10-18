@@ -1,7 +1,6 @@
-if (process.env.BROWSER) {
-  require("../sass/style.scss");
-}
+import "../sass/style.scss";
 
+import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
 import * as React from "react";
 import { connect } from "react-redux";
 
@@ -34,6 +33,44 @@ export class Application extends React.Component<Props, State> {
     };
   }
 
+  /**
+   * Based on an input string return the corresponding JSX element
+   * 
+   * @param {string} element
+   * @returns {JSX.Element}
+   * 
+   * @memberOf Application
+   */
+  public getInnerComponent(element: string): JSX.Element {
+    switch (element) {
+      case "login":
+        return <Login showLogin={this.props.showLogin} auth={this.props.auth} />;
+      case "form":
+        return <Form />;
+      case "design":
+        return <div className="design-container"><DesignForm /><DesignPanel /></div>;
+      default:
+        throw("This element is not a valid input");
+    }
+  }
+
+  /**
+   * Wrap a retrieved inner component in the MuiThemeProvider to provide
+   * theming support
+   * 
+   * @param {string} element - element's lowercase name
+   * @returns {JSX.Element} - wrapped component
+   * 
+   * @memberOf Application
+   */
+  public getComponent(element: string): JSX.Element {
+    return (
+      <MuiThemeProvider>
+        {this.getInnerComponent(element)}
+      </MuiThemeProvider>
+    );
+  }
+
   public render() {
     const { auth, showLogin } = this.props;
     const { modal } = this.props.display;
@@ -45,11 +82,11 @@ export class Application extends React.Component<Props, State> {
     };
     return (
       <div>
-        {this.props.auth.showLogin ? <Login showLogin={this.props.showLogin} auth={this.props.auth} /> : ""}
+        {this.props.auth.showLogin ? this.getComponent("login") : ""}
         {modal.showModal ? modal.modal : ""}
         <div className="application-container"  >
           <Navbar auth={auth} showLogin={showLogin} />
-          {mode && mode.toLowerCase() === "design" ? design : <Form /> }
+          {mode && mode.toLowerCase() === "design" ? this.getComponent("design") : this.getComponent("form") }
         </div>
       </div>
     );

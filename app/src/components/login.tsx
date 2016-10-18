@@ -1,6 +1,5 @@
 import { AuthReducer, ReducerAction } from "../utils/interfaces";
 import RaisedButton from "material-ui/RaisedButton";
-import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
 import * as React from "react";
 
 export interface Props {
@@ -29,18 +28,14 @@ export default class Login extends React.Component<Props, {}> {
           <div className="message-container">Select a login method:</div>
           <div className="response-container">
             <div className="confirm-container" >
-              <MuiThemeProvider>
                 <RaisedButton className="modal-button confirm-button"  label="Login"/>
-              </MuiThemeProvider>
             </div>
             <div className="deny-container" >
-              <MuiThemeProvider>
                 <RaisedButton
                   onClick={this.toggleLogin}
                   className="modal-button deny-button"
                   label="Cancel"
                 />
-              </MuiThemeProvider>
             </div>
           </div>
         </div>

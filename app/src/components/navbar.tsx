@@ -1,6 +1,5 @@
-if (process.env.BROWSER) {
-  require("../sass/navbar.scss");
-}
+
+import "../sass/navbar.scss";
 
 import { showLogin } from "../actions/actions";
 import { AuthReducer, ReducerAction } from "../utils/interfaces";

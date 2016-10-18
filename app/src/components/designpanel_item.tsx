@@ -1,4 +1,3 @@
-import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
 import DateRange from "material-ui/svg-icons/action/date-range";
 import Input from "material-ui/svg-icons/action/input";
 import TimeRange from "material-ui/svg-icons/device/access-time";
@@ -7,7 +6,6 @@ import DropDownArrow from "material-ui/svg-icons/navigation/arrow-drop-down-circ
 import Cancel from "material-ui/svg-icons/navigation/cancel";
 import CheckBox from "material-ui/svg-icons/toggle/check-box";
 import RadioButton from "material-ui/svg-icons/toggle/radio-button-checked";
-import HardwareVideogameAsset from "material-ui/svg-icons/hardware/videogame-asset";
 import * as React from "react";
 
 
@@ -19,9 +17,7 @@ interface Props {
 const DesignPanelItem: any = (props: Props) => (
   <div onClick={() => props.onClick(props.element)} className="panel-item">
     <div className="panel-item-icon">
-      <MuiThemeProvider>
         {getIcon(props.element)}
-      </MuiThemeProvider>
     </div>
     <div className="panel-item-label" >{props.element}</div>
   </div>
@@ -48,6 +44,6 @@ function getIcon(element: string): JSX.Element {
     case "cancel":
       return <Cancel />;
     default:
-      return <HardwareVideogameAsset />;
+      return <Cancel />;
   }
 }
