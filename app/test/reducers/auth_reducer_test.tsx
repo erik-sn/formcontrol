@@ -11,6 +11,14 @@ describe("Display Reducers" , () => {
     expect(reducer(undefined, { payload: {}, type: types.NULL_ACTION })).to.deep.equal(INITIAL_STATE);
   });
 
+  it("should return the correct value for show login", () => {
+    const trueResult = reducer(INITIAL_STATE, { payload: true, type: types.SHOW_LOGIN });
+    expect(trueResult.showLogin).to.be.true;
+
+    const falseResult = reducer(INITIAL_STATE, { payload: false, type: types.SHOW_LOGIN });
+    expect(falseResult.showLogin).to.be.false;
+  });
+
 });
 
 
