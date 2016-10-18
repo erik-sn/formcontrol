@@ -20,11 +20,14 @@ export const SHOW_MODAL: string = "SHOW_MODAL";
 export const HIDE_MODAL: string = "HIDE_MODAL";
 export const SHOW_PREVIEW: string = "SHOW_PREVIEW";
 
+/**
+ * Auth constants
+ */
+export const SHOW_LOGIN: string = "SHOW_LOGIN";
 
 /**
  * Other
  */
-
 export const AVAILABLE_PANELS = ["input", "select", "radio", "checkbox", "date", "time",
  "submit", "cancel"];
  

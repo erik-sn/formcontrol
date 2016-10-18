@@ -3,6 +3,7 @@
  *********************************************/
 
 export interface ReduxState {
+  auth: AuthReducer;
   design: DesignReducer;
   display: DisplayReducer;
 }
@@ -18,6 +19,11 @@ export interface DisplayReducer {
     showModal: boolean;
     modal: JSX.Element
   };
+}
+
+export interface AuthReducer {
+  user: any;
+  showLogin: boolean;
 }
 
 export interface ReducerAction {

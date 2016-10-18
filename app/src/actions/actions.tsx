@@ -2,6 +2,13 @@ import * as types from "../../src/actions/constants";
 
 import { Panel, ReducerAction  } from "../utils/interfaces";
 
+export function showLogin(show: boolean): ReducerAction {
+  return {
+    payload: show,
+    type: types.SHOW_LOGIN,
+  };
+}
+
 export function addPanel(panel: Panel): ReducerAction {
   return {
     payload: panel,

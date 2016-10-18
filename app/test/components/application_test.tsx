@@ -1,5 +1,3 @@
-import * as mocha from "mocha";  // import required once in project to satisfy TypeScript compiler
-
 import { expect } from "chai";
 import { shallow } from "enzyme";
 import * as React from "react";
@@ -18,12 +16,17 @@ describe("Application" , () => {
       },
       route: {},
       display: {
-        showPreview: false, 
+        showPreview: false,
         modal: {
           showModal: false,
           modal: undefined,
         },
       },
+      auth: {
+        showLogin: false,
+        user: {},
+      },
+      showLogin: () => null,
     };
     const state = {};
 
@@ -77,6 +80,11 @@ describe("Application" , () => {
           modal: undefined,
         },
       },
+      auth: {
+        showLogin: false,
+        user: {},
+      },
+      showLogin: () => null,
     };
     const state = {};
 

@@ -4,7 +4,7 @@ app/dist
 npm-debug.log
 
 api/api/settings.py
-api/venv
+api/venv/
 
 .idea
 .vscode

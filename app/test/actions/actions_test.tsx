@@ -2,6 +2,7 @@ import * as actions from "../../src/actions/actions";
 import * as types from "../../src/actions/constants";
 import * as interfaces from "../../src/utils/interfaces";
 import { expect } from "chai";
+import * as mocha from "mocha";
 import * as React from "react";
 
 import { generatePanels } from "../test_data";

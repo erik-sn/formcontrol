@@ -1,4 +1,6 @@
 import * as jsdom from "jsdom";
+import * as material from "material-ui";
+import * as mocha from "mocha";
 
 declare const global: any;
 const doc = jsdom.jsdom("<!doctype html><html><body></body></html>");
