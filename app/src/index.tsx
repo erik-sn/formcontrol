@@ -1,11 +1,11 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
+import * as material from "material-ui";
 import { Provider } from "react-redux";
 import { Router, browserHistory } from "react-router";
 import * as injectTapEventPlugin from "react-tap-event-plugin";
 import { applyMiddleware, compose, createStore } from "redux";
 import * as thunk from "redux-thunk";
-import * as material from "material-ui";
 
 
 import reducers from "./reducers/root";

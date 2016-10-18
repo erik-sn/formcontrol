@@ -9,6 +9,19 @@ import { generatePanels } from "../test_data";
 
 describe("Actions" , () => {
 
+   describe("Login Actions" , () => {
+
+    it("should return set the correct action in the reducer", () => {
+      const expectedAction = {
+        payload: true,
+        type: types.SHOW_LOGIN,
+      };
+      expect(actions.showLogin(true).type).to.equal(expectedAction.type);
+      expect(actions.showLogin(true).payload).to.equal(expectedAction.payload);
+    });
+
+  });
+
   describe("Design Actions" , () => {
 
     const panels: Array<interfaces.Panel> = generatePanels(["input", "select"]);

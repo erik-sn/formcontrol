@@ -1,6 +1,8 @@
+// This is to fix a bug with ts-node: https://github.com/TypeStrong/ts-node/issues/168
+/// <reference path="../node_modules/@types/mocha/index.d.ts" />
+/// <reference path="../node_modules/@types/material-ui/index.d.ts" />
+
 import * as jsdom from "jsdom";
-import * as material from "material-ui";
-import * as mocha from "mocha";
 
 declare const global: any;
 const doc = jsdom.jsdom("<!doctype html><html><body></body></html>");

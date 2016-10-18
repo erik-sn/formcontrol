@@ -3,7 +3,7 @@ import * as _ from "lodash";
 import * as types from "../actions/constants";
 import { AuthReducer, ReducerAction } from "../utils/interfaces";
 
-const INITIAL_STATE: AuthReducer = {
+export const INITIAL_STATE: AuthReducer = {
   showLogin: false,
   user: {},
 };

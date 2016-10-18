@@ -48,7 +48,7 @@ export class Application extends React.Component<Props, State> {
         {this.props.auth.showLogin ? <Login showLogin={this.props.showLogin} auth={this.props.auth} /> : ""}
         {modal.showModal ? modal.modal : ""}
         <div className="application-container"  >
-          <Navbar auth={auth} showLogin={showLogin}/>
+          <Navbar auth={auth} showLogin={showLogin} />
           {mode && mode.toLowerCase() === "design" ? design : <Form /> }
         </div>
       </div>

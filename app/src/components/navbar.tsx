@@ -9,9 +9,6 @@ import * as React from "react";
 export interface Props {
   auth: AuthReducer;
   showLogin: (show: boolean) => ReducerAction;
-  params: {
-    mode: string;
-  };
 }
 export interface State {
 }

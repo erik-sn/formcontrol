@@ -10,9 +10,6 @@ describe("Navbar" , () => {
   describe("Navbar" , () => {
     let component: any;
     const props: Props = {
-      params: {
-        mode: "design",
-      },
       auth: {
         showLogin: false,
         user: {},
