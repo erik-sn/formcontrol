@@ -9,6 +9,13 @@ export function showLogin(show: boolean): ReducerAction {
   };
 }
 
+export function basicLogin(username: string, password: string): ReducerAction {
+  return {
+    payload: undefined,
+    type: types.BASIC_LOGIN,
+  };
+}
+
 export function addPanel(panel: Panel): ReducerAction {
   return {
     payload: panel,

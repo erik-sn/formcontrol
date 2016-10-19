@@ -27,7 +27,7 @@ describe("Design Panel Item" , () => {
   });
 
   it("contains an icon", () => {
-    expect(component.find("MuiThemeProvider")).to.have.length(1);
+    expect(component.find(".panel-item-icon").text()).to.contain("<");
   });
 
   it("returns the element text on click", () => {

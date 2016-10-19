@@ -1,3 +1,25 @@
-.login-container {
-  position: absolute;
+.login__container {
+  display: flex !important;
+  flex-direction: column;
+
+  .login__basic-auth-container {
+    flex: 1 1 auto;
+  }
+
+  .login__button-container {
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+
+    .login__confirm-container {
+      padding: 10px;
+    }
+
+    .login__deny-container {
+      padding: 10px;
+    }
+  }
 }
+

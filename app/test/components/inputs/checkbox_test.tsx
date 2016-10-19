@@ -1,8 +1,8 @@
-
 import { expect } from "chai";
 import { shallow } from "enzyme";
 import * as React from "react";
 import * as sinon from "sinon";
+import * as mocha from "mocha";
 
 import Checkbox, { Props } from "../../../src/components/inputs/checkbox";
 import * as interfaces from "../../../src/utils/interfaces";
@@ -21,7 +21,7 @@ let onChange: any;
 describe("Checkbox" , () => {
 
   beforeEach(() => {
-    onChange = sinon.spy(() => console.log("test"));
+    onChange = sinon.spy(() => "test");
     component = shallow(<Checkbox onChange={onChange} {...props} />);
   });
 

@@ -1,6 +1,6 @@
 
 import { expect } from "chai";
-import { mount } from "enzyme";
+import { mount, shallow } from "enzyme";
 import * as React from "react";
 import * as sinon from "sinon";
 
@@ -39,7 +39,7 @@ describe("Design Panel" , () => {
     beforeEach(() => {
       showPreview = sinon.spy();
       props.showPreview = showPreview;
-      component = mount(<DesignPanel {...props} {...state} />);
+      component = shallow(<DesignPanel {...props} {...state} />);
     });
 
     it("renders something", () => {
@@ -68,7 +68,6 @@ describe("Design Panel" , () => {
       expect(showPreview.callCount).to.equal(2);
       expect(component.state(["showPreviewButton"])).to.be.false;
       expect(component.find("#design-panel-preview").text()).to.equal("Preview");
-
     });
 
     it("Calls clearAllPanels on click", () => {

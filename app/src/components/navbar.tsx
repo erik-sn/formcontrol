@@ -1,5 +1,6 @@
-
-import "../sass/navbar.scss";
+if (process.env.BROWSER) {
+  require("../sass/navbar.scss");
+}
 
 import { showLogin } from "../actions/actions";
 import { AuthReducer, ReducerAction } from "../utils/interfaces";
@@ -31,7 +32,13 @@ export default class Navbar extends React.Component<Props, State> {
         <div className="navbar-inner-container" id="navbar-icon-container">Icon</div>
         <div className="navbar-inner-container" id="navbar-title-container">Form Control</div>
         <div className="navbar-inner-container navbar-button" id="navbar-settings-container">Settings</div>
-        <div className="navbar-inner-container navbar-button" id="navbar-login-container" onClick={this.toggleLogin} >Login</div>
+        <div
+          className="navbar-inner-container navbar-button"
+          id="navbar-login-container"
+          onClick={this.toggleLogin}
+        >
+          Login
+        </div>
       </div>
     );
   }

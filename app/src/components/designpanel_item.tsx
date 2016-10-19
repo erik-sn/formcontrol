@@ -14,7 +14,7 @@ interface Props {
   element: string;
  }
 
-const DesignPanelItem: any = (props: Props) => (
+const DesignPanelItem = (props: Props): JSX.Element => (
   <div onClick={() => props.onClick(props.element)} className="panel-item">
     <div className="panel-item-icon">
         {getIcon(props.element)}

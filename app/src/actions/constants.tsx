@@ -24,6 +24,7 @@ export const SHOW_PREVIEW: string = "SHOW_PREVIEW";
  * Auth constants
  */
 export const SHOW_LOGIN: string = "SHOW_LOGIN";
+export const BASIC_LOGIN: string = "BASIC_LOGIN";
 
 /**
  * Other

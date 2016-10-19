@@ -1,13 +1,14 @@
 import { expect } from "chai";
 import { shallow } from "enzyme";
 import * as React from "react";
-import * as mocha from "mocha";
+import * as sinon from "sinon";
 
 import Navbar, { Props } from "../../src/components/navbar";
 
 describe("Navbar" , () => {
 
   describe("Navbar" , () => {
+    let showLogin: any;
     let component: any;
     const props: Props = {
       auth: {
@@ -20,7 +21,8 @@ describe("Navbar" , () => {
 
 
     beforeEach(() => {
-      component = shallow(<Navbar  {...props} />);
+      showLogin = sinon.spy();
+      component = shallow(<Navbar {...props} showLogin={showLogin}  />);
     });
 
     it("renders something", () => {
@@ -34,6 +36,12 @@ describe("Navbar" , () => {
       expect(component.find("#navbar-title-container")).to.have.length(1);
       expect(component.find("#navbar-settings-container")).to.have.length(1);
       expect(component.find("#navbar-login-container")).to.have.length(1);
+    });
+
+    it("calls the showLogin function on login click", () => {
+      expect(showLogin.callCount).to.equal(0);
+      component.find("#navbar-login-container").simulate("click");
+      expect(showLogin.callCount).to.equal(1);
     });
 
 
