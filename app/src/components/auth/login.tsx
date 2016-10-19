@@ -30,7 +30,8 @@ export default class Login extends React.Component<Props, State> {
       username: "",
       password: "",
     };
-    this.toggleLogin = this.toggleLogin.bind(this);
+    this.confirm = this.confirm.bind(this);
+    this.deny = this.deny.bind(this);
     this.onInputChange = this.onInputChange.bind(this);
   }
 
@@ -42,13 +43,14 @@ export default class Login extends React.Component<Props, State> {
     this.setState(newState);
   }
 
-  public toggleLogin() {
+  public deny() {
     const { auth, showLogin } = this.props;
     showLogin(!auth.showLogin);
   }
 
-  public login() {
+  public confirm() {
     const { username, password } = this.state;
+    this.props.basicLogin(username, password);
   }
 
   public render() {
@@ -64,14 +66,14 @@ export default class Login extends React.Component<Props, State> {
             <div className="login__button-container">
               <div className="login__confirm-container" >
                   <RaisedButton
-                    onClick={this.login}
+                    onClick={this.confirm}
                     className="modal-button confirm-button"
                     label="Login"
                   />
               </div>
               <div className="login__deny-container" >
                   <RaisedButton
-                    onClick={this.toggleLogin}
+                    onClick={this.deny}
                     className="modal-button deny-button"
                     label="Cancel"
                   />

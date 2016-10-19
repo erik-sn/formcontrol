@@ -10,6 +10,7 @@ describe("Auth - Login" , () => {
 
   let component: any;
   let showLogin: any;
+  let basicLogin: any;
 
   const props: Props = {
     auth: {
@@ -17,11 +18,13 @@ describe("Auth - Login" , () => {
       user: {},
     },
     showLogin: () => undefined,
+    basicLogin: () => undefined,
   };
 
   beforeEach(() => {
     showLogin = sinon.spy();
-    component = shallow(<Login {...props} showLogin={showLogin} />);
+    basicLogin = sinon.spy();
+    component = shallow(<Login {...props} showLogin={showLogin} basicLogin={basicLogin} />);
   });
 
   it("renders component and correct hiearchy", () => {
@@ -35,10 +38,17 @@ describe("Auth - Login" , () => {
     expect(component.find(".header-container")).to.have.length(1);
   });
 
-  it("calls the showLogin function on confirm click", () => {
+  it("calls the showLogin function on deny click", () => {
     expect(showLogin.callCount).to.equal(0);
     component.find(".login__deny-container RaisedButton").simulate("click");
     expect(showLogin.callCount).to.equal(1);
   });
+
+  it("calls the basicLogin function on confirm click", () => {
+    expect(basicLogin.callCount).to.equal(0);
+    component.find(".login__confirm-container RaisedButton").simulate("click");
+    expect(basicLogin.callCount).to.equal(1);
+  });
+
 
 });

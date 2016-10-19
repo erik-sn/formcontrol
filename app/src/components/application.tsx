@@ -6,7 +6,7 @@ import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
 import * as React from "react";
 import { connect } from "react-redux";
 
-import { showLogin } from "../actions/actions";
+import { basicLogin, showLogin } from "../actions/actions";
 import { AuthReducer, DisplayReducer, ReducerAction, ReduxState } from "../utils/interfaces";
 import Login from "./auth/login";
 import DesignForm from "./designform";
@@ -20,6 +20,7 @@ export interface Props {
   display: DisplayReducer;
   auth: AuthReducer;
   showLogin: (show: boolean) => ReducerAction;
+  basicLogin: (username: string, password: string) => ReducerAction;
 }
 
 export interface State {
@@ -46,7 +47,13 @@ export class Application extends React.Component<Props, State> {
   public getInnerComponent(element: string): JSX.Element {
     switch (element) {
       case "login":
-        return <Login showLogin={this.props.showLogin} auth={this.props.auth} />;
+        return (
+          <Login
+            basicLogin={this.props.basicLogin}
+            showLogin={this.props.showLogin}
+            auth={this.props.auth}
+          />
+        );
       case "form":
         return <Form />;
       case "design":
@@ -100,4 +107,4 @@ const mapStateToProps = (state: ReduxState) => ({
   display: state.display,
 });
 
-export default connect(mapStateToProps, { showLogin })(Application);
+export default connect(mapStateToProps, { basicLogin, showLogin })(Application);

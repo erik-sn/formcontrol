@@ -7,7 +7,7 @@
   "scripts": {
     "dev": "ts-node server.ts",
     "test:watch": "npm run test -- --watch",
-    "test": "mocha --compilers ts:ts-node/register,tsx:ts-node/register --require ./test/test_helper.tsx --recursive ./test/actions",
+    "test": "mocha --compilers ts:ts-node/register,tsx:ts-node/register --require ./test/test_helper.tsx --recursive ./test",
     "build": "webpack -p --config webpack.production.config.ts --progress --profile --colors",
     "start": "nodemon server.production.tsx --exec ts-node"
   },

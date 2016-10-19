@@ -27,6 +27,7 @@ describe("Application" , () => {
         user: {},
       },
       showLogin: () => null,
+      basicLogin: () => null,
     };
     const state = {};
 
@@ -85,6 +86,7 @@ describe("Application" , () => {
         user: {},
       },
       showLogin: () => null,
+      basicLogin: () => null,
     };
     const state = {};
 
