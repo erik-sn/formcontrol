@@ -2,7 +2,6 @@ import * as actions from "../../src/actions/actions";
 import * as types from "../../src/actions/constants";
 import * as interfaces from "../../src/utils/interfaces";
 import { expect } from "chai";
-import * as mocha from "mocha";
 import * as React from "react";
 
 import { generatePanels } from "../test_data";
@@ -11,13 +10,22 @@ describe("Actions" , () => {
 
    describe("Login Actions" , () => {
 
-    it("should return set the correct action in the reducer", () => {
+    it("showLogin should return set the correct action in the reducer", () => {
       const expectedAction = {
         payload: true,
         type: types.SHOW_LOGIN,
       };
       expect(actions.showLogin(true).type).to.equal(expectedAction.type);
       expect(actions.showLogin(true).payload).to.equal(expectedAction.payload);
+    });
+
+    it("showRegister should return set the correct action in the reducer", () => {
+      const expectedAction = {
+        payload: true,
+        type: types.SHOW_REGISTER,
+      };
+      expect(actions.showRegister(true).type).to.equal(expectedAction.type);
+      expect(actions.showRegister(true).payload).to.equal(expectedAction.payload);
     });
 
   });

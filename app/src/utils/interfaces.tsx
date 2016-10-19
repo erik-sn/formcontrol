@@ -24,6 +24,7 @@ export interface DisplayReducer {
 export interface AuthReducer {
   user: any;
   showLogin: boolean;
+  showRegister: boolean;
 }
 
 export interface ReducerAction {

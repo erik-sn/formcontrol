@@ -5,30 +5,33 @@ import * as sinon from "sinon";
 
 import { Application, Props } from "../../src/components/application";
 
+const defaultProps: Props = {
+  params: {
+    mode: "input",
+  },
+  route: {},
+  display: {
+    showPreview: false,
+    modal: {
+      showModal: false,
+      modal: undefined,
+    },
+  },
+  auth: {
+    showLogin: false,
+    showRegister: false,
+    user: {},
+  },
+  showLogin: () => null,
+  showRegister: () => null,
+  basicLogin: () => null,
+};
 
 describe("Application" , () => {
 
   describe("Application in design mode" , () => {
     let component: any;
-    const props: Props = {
-      params: {
-        mode: "design",
-      },
-      route: {},
-      display: {
-        showPreview: false,
-        modal: {
-          showModal: false,
-          modal: undefined,
-        },
-      },
-      auth: {
-        showLogin: false,
-        user: {},
-      },
-      showLogin: () => null,
-      basicLogin: () => null,
-    };
+    const props: Props = defaultProps;
     const state = {};
 
 
@@ -69,25 +72,7 @@ describe("Application" , () => {
 
   describe("Application in input mode" , () => {
     let component: any;
-    const props: Props = {
-      params: {
-        mode: "input",
-      },
-      route: {},
-      display: {
-        showPreview: false,
-        modal: {
-          showModal: false,
-          modal: undefined,
-        },
-      },
-      auth: {
-        showLogin: false,
-        user: {},
-      },
-      showLogin: () => null,
-      basicLogin: () => null,
-    };
+    const props: Props = defaultProps;
     const state = {};
 
 

@@ -9,6 +9,13 @@ export function showLogin(show: boolean): ReducerAction {
   };
 }
 
+export function showRegister(show: boolean): ReducerAction {
+  return {
+    payload: show,
+    type: types.SHOW_REGISTER,
+  };
+}
+
 export function basicLogin(username: string, password: string): ReducerAction {
   return {
     payload: undefined,

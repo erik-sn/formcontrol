@@ -12,6 +12,7 @@ import Basic from "./basic";
 export interface Props {
   auth: AuthReducer;
   showLogin: (show: boolean) => ReducerAction;
+  showRegister: (show: boolean) => ReducerAction;
   basicLogin: (username: string, password: string) => ReducerAction;
 }
 

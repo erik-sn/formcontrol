@@ -47,6 +47,15 @@ function randLayout(): interfaces.Layout {
   };
 }
 
+/**
+ * Props constants for tests
+ */
+
+export const AuthDefault: any = {
+  showLogin: false,
+  showRegister: false,
+  user: {},
+};
 
 
 /**

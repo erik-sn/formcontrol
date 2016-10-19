@@ -5,7 +5,7 @@ import * as sinon from "sinon";
 import * as mocha from "mocha";
 
 import Login, { Props } from "../../../src/components/auth/login";
-
+import { AuthDefault } from "../../test_data";
 describe("Auth - Login" , () => {
 
   let component: any;
@@ -13,12 +13,10 @@ describe("Auth - Login" , () => {
   let basicLogin: any;
 
   const props: Props = {
-    auth: {
-      showLogin: false,
-      user: {},
-    },
-    showLogin: () => undefined,
-    basicLogin: () => undefined,
+    auth: AuthDefault,
+    showLogin: (show: boolean) => undefined,
+    showRegister: (show: boolean) => undefined,
+    basicLogin: (username: string, password: string) => undefined,
   };
 
   beforeEach(() => {

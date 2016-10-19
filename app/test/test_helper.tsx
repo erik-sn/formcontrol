@@ -1,7 +1,3 @@
-// This is to fix a bug with ts-node: https://github.com/TypeStrong/ts-node/issues/168
-/// <reference path="../node_modules/@types/material-ui/index.d.ts" />
-/// <reference path="../node_modules/@types/mocha/index.d.ts" />
-
 import * as jsdom from "jsdom";
 
 declare const global: any;

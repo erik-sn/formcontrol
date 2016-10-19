@@ -6,7 +6,7 @@ import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
 import * as React from "react";
 import { connect } from "react-redux";
 
-import { basicLogin, showLogin } from "../actions/actions";
+import { basicLogin, showLogin, showRegister } from "../actions/actions";
 import { AuthReducer, DisplayReducer, ReducerAction, ReduxState } from "../utils/interfaces";
 import Login from "./auth/login";
 import DesignForm from "./designform";
@@ -20,6 +20,7 @@ export interface Props {
   display: DisplayReducer;
   auth: AuthReducer;
   showLogin: (show: boolean) => ReducerAction;
+  showRegister: (show: boolean) => ReducerAction;
   basicLogin: (username: string, password: string) => ReducerAction;
 }
 
@@ -51,9 +52,13 @@ export class Application extends React.Component<Props, State> {
           <Login
             basicLogin={this.props.basicLogin}
             showLogin={this.props.showLogin}
+            showRegister={this.props.showRegister}
             auth={this.props.auth}
           />
         );
+      case "register":
+        console.log('Showing Register!');
+        return undefined;
       case "form":
         return <Form />;
       case "design":
@@ -92,6 +97,7 @@ export class Application extends React.Component<Props, State> {
     return (
       <div>
         {this.props.auth.showLogin ? this.getComponent("login") : ""}
+        {this.props.auth.showRegister ? this.getComponent("register") : ""}
         {modal.showModal ? modal.modal : ""}
         <div className="application-container"  >
           <Navbar auth={auth} showLogin={showLogin} />
@@ -107,4 +113,4 @@ const mapStateToProps = (state: ReduxState) => ({
   display: state.display,
 });
 
-export default connect(mapStateToProps, { basicLogin, showLogin })(Application);
+export default connect(mapStateToProps, { basicLogin, showLogin, showRegister })(Application);

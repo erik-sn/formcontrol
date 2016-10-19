@@ -4,6 +4,7 @@ import * as React from "react";
 import * as sinon from "sinon";
 
 import Navbar, { Props } from "../../src/components/navbar";
+import { AuthDefault } from "../test_data";
 
 describe("Navbar" , () => {
 
@@ -11,10 +12,7 @@ describe("Navbar" , () => {
     let showLogin: any;
     let component: any;
     const props: Props = {
-      auth: {
-        showLogin: false,
-        user: {},
-      },
+      auth: AuthDefault,
       showLogin: () => null,
     };
     const state = {};
