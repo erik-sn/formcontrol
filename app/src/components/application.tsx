@@ -58,7 +58,7 @@ export class Application extends React.Component<Props, State> {
         );
       case "register":
         console.log('Showing Register!');
-        return undefined;
+        return <div><h1>Register</h1></div>;
       case "form":
         return <Form />;
       case "design":

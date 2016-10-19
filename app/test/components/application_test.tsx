@@ -1,5 +1,6 @@
 import { expect } from "chai";
 import { shallow } from "enzyme";
+import { cloneDeep } from "lodash";
 import * as React from "react";
 import * as sinon from "sinon";
 
@@ -31,11 +32,13 @@ describe("Application" , () => {
 
   describe("Application in design mode" , () => {
     let component: any;
-    const props: Props = defaultProps;
+    const props: Props = cloneDeep(defaultProps);
+    props.params.mode = "design";
     const state = {};
 
 
     beforeEach(() => {
+      console.log(props)
       component = shallow(<Application {...props} />);
     });
 
@@ -44,8 +47,8 @@ describe("Application" , () => {
     });
 
     it("has design components", () => {
-      expect(component.find("Connect(DesignPanel)")).to.have.length(1);
-      expect(component.find("Connect(DesignForm)")).to.have.length(1);
+      console.log(component.debug())
+      expect(component.find(".design-container")).to.have.length(1);
     });
 
     it("has a navbar", () => {
@@ -72,7 +75,8 @@ describe("Application" , () => {
 
   describe("Application in input mode" , () => {
     let component: any;
-    const props: Props = defaultProps;
+    const props: Props = cloneDeep(defaultProps);
+    props.params.mode = "input";
     const state = {};
 
 
@@ -81,8 +85,7 @@ describe("Application" , () => {
     });
 
     it("does NOT have design components", () => {
-      expect(component.find("DesignPanel")).to.have.length(0);
-      expect(component.find("DesignForm")).to.have.length(0);
+      expect(component.find(".design-container")).to.have.length(0);
     });
 
     it("renders something", () => {

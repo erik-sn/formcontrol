@@ -33,6 +33,7 @@ export default class Login extends React.Component<Props, State> {
     };
     this.confirm = this.confirm.bind(this);
     this.deny = this.deny.bind(this);
+    this.register = this.register.bind(this);
     this.onInputChange = this.onInputChange.bind(this);
   }
 
@@ -52,6 +53,11 @@ export default class Login extends React.Component<Props, State> {
   public confirm() {
     const { username, password } = this.state;
     this.props.basicLogin(username, password);
+  }
+
+  public register() {
+    this.props.showLogin(false);
+    this.props.showRegister(true);
   }
 
   public render() {
@@ -79,6 +85,14 @@ export default class Login extends React.Component<Props, State> {
                     label="Cancel"
                   />
               </div>
+            </div>
+            <div className="login__show-register">
+              <h5>or register</h5>
+              <RaisedButton
+                onClick={this.register}
+                className="modal-button register-button"
+                label="Register"
+              />
             </div>
           </div>
         </div>
