@@ -38,7 +38,6 @@ describe("Application" , () => {
 
 
     beforeEach(() => {
-      console.log(props)
       component = shallow(<Application {...props} />);
     });
 
@@ -47,7 +46,6 @@ describe("Application" , () => {
     });
 
     it("has design components", () => {
-      console.log(component.debug())
       expect(component.find(".design-container")).to.have.length(1);
     });
 

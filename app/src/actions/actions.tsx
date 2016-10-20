@@ -23,6 +23,14 @@ export function basicLogin(username: string, password: string): ReducerAction {
   };
 }
 
+export function register(username: string, password: string): ReducerAction {
+  console.log("Registering: ", username, password)
+  return {
+    payload: undefined,
+    type: types.REGISTER,
+  };
+}
+
 export function addPanel(panel: Panel): ReducerAction {
   return {
     payload: panel,

@@ -6,13 +6,14 @@ import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
 import * as React from "react";
 import { connect } from "react-redux";
 
-import { basicLogin, showLogin, showRegister } from "../actions/actions";
+import { basicLogin, showLogin, register, showRegister } from "../actions/actions";
 import { AuthReducer, DisplayReducer, ReducerAction, ReduxState } from "../utils/interfaces";
 import Login from "./auth/login";
 import DesignForm from "./designform";
 import DesignPanel from "./designpanel";
 import Form from "./form";
 import Navbar from "./navbar";
+import Register from "./auth/register";
 
 export interface Props {
   params: { mode: string };
@@ -22,6 +23,7 @@ export interface Props {
   showLogin: (show: boolean) => ReducerAction;
   showRegister: (show: boolean) => ReducerAction;
   basicLogin: (username: string, password: string) => ReducerAction;
+  register: (username: string, password: string) => ReducerAction;
 }
 
 export interface State {
@@ -57,8 +59,13 @@ export class Application extends React.Component<Props, State> {
           />
         );
       case "register":
-        console.log('Showing Register!');
-        return <div><h1>Register</h1></div>;
+        return (
+          <Register
+            register={this.props.register}
+            showRegister={this.props.showRegister}
+            auth={this.props.auth}
+          />
+        );
       case "form":
         return <Form />;
       case "design":
@@ -113,4 +120,4 @@ const mapStateToProps = (state: ReduxState) => ({
   display: state.display,
 });
 
-export default connect(mapStateToProps, { basicLogin, showLogin, showRegister })(Application);
+export default connect(mapStateToProps, { basicLogin, showLogin, register, showRegister })(Application);

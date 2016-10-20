@@ -15,6 +15,7 @@ const Basic = (props: Props): JSX.Element => {
       <div className="login__username-container">
         <TextField
           name="username"
+          hintText="username or email address..."
           value={props.username}
           onChange={props.handleChange}
         />
@@ -23,6 +24,7 @@ const Basic = (props: Props): JSX.Element => {
         <TextField
           name="password"
           type="password"
+          hintText="password..."
           value={props.password}
           onChange={props.handleChange}
         />

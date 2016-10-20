@@ -26,6 +26,7 @@ export const SHOW_PREVIEW: string = "SHOW_PREVIEW";
 export const SHOW_LOGIN: string = "SHOW_LOGIN";
 export const SHOW_REGISTER: string = "SHOW_REGISTER";
 export const BASIC_LOGIN: string = "BASIC_LOGIN";
+export const REGISTER: string = "REGISTER";
 
 /**
  * Other
