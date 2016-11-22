@@ -1,6 +1,5 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
-import * as material from "material-ui";
 import { Provider } from "react-redux";
 import { Router, browserHistory } from "react-router";
 import * as injectTapEventPlugin from "react-tap-event-plugin";
@@ -24,7 +23,7 @@ injectTapEventPlugin();
 // const createStoreWithMiddleware: any = applyMiddleware(thunk.default)(createStore);
 // Redux Dev Tool configuration
 const store = createStore(reducers, compose(
-  applyMiddleware(thunk.default), window.devToolsExtension ? window.devToolsExtension() : f => f
+  applyMiddleware(thunk.default), window.devToolsExtension ? window.devToolsExtension() : (f: any) => f
 ));
 
 ReactDOM.render(

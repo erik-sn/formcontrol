@@ -2,7 +2,6 @@ import { expect } from "chai";
 import { shallow } from "enzyme";
 import { cloneDeep } from "lodash";
 import * as React from "react";
-import * as sinon from "sinon";
 
 import { Application, Props } from "../../src/components/application";
 
@@ -26,6 +25,7 @@ const defaultProps: Props = {
   showLogin: () => null,
   showRegister: () => null,
   basicLogin: () => null,
+  register: () => null,
 };
 
 describe("Application" , () => {

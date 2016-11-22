@@ -1,7 +1,8 @@
-import * as React from "react";
 import { isEqual } from "lodash";
+import * as uuid from "node-uuid";
+import * as React from "react";
 import { connect } from "react-redux";
-const uuid = require("node-uuid");
+// const uuid = require("node-uuid");
 
 import { addPanel, clearPanels, hideModal, savePanels, showModal, showPreview } from "../actions/actions";
 import { AVAILABLE_PANELS } from "../actions/constants";

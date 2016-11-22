@@ -6,14 +6,14 @@ import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
 import * as React from "react";
 import { connect } from "react-redux";
 
-import { basicLogin, showLogin, register, showRegister } from "../actions/actions";
+import { basicLogin, register, showLogin, showRegister } from "../actions/actions";
 import { AuthReducer, DisplayReducer, ReducerAction, ReduxState } from "../utils/interfaces";
 import Login from "./auth/login";
+import Register from "./auth/register";
 import DesignForm from "./designform";
 import DesignPanel from "./designpanel";
 import Form from "./form";
 import Navbar from "./navbar";
-import Register from "./auth/register";
 
 export interface Props {
   params: { mode: string };

@@ -1,6 +1,7 @@
 app/node_modules
 app/npm-debug.log
 app/dist
+app/yarn-error.log
 npm-debug.log
 
 api/api/settings.py
