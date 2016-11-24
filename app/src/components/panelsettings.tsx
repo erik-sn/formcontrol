@@ -90,7 +90,6 @@ export default class PanelSettings extends React.Component<Props, State> {
           </div>
         </div>
           <textarea className="panel-settings-options" name="options" type="text" placeholder="Enter options separated by commas" value={optionsText} onChange={this.updatePanel} />
-
       </div>
     );
   }

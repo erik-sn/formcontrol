@@ -9,13 +9,13 @@ import * as _ from "lodash";
 import * as React from "react";
 import { connect } from "react-redux";
 
-import PanelSettings from "./panelsettings";
 import {  hideModal, removePanel, showModal, updatePanel, updatePanels  } from "../actions/actions";
 import { DesignReducer, Layout, Panel, ReducerAction, ReduxState } from "../utils/interfaces";
 import Renderer from "./form_renderer";
 import Button from "./inputs/button";
 import Input from "./inputs/input";
 import InputSmall from "./inputs/input_small";
+import PanelSettings from "./panelsettings";
 import GridWrapper from "./utility/gridwrapper";
 import Modal from "./utility/modal";
 

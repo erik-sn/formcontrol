@@ -5,15 +5,14 @@ if (process.env.BROWSER) {
 import { cloneDeep, isEqual } from "lodash";
 import * as React from "react";
 
-import { Panel } from "../utils/interfaces";
+import * as interfaces from "../utils/interfaces";
 import Checkbox from "./inputs/checkbox";
 import DateTimePicker from "./inputs/datetimepicker";
 import Radio from "./inputs/radio";
-import * as interfaces from "../utils/interfaces";
 
 export interface Props {
-  panels: Array<Panel>;
-  update: (panel: Panel) => interfaces.ReducerAction;
+  panels: Array<interfaces.Panel>;
+  update: (panel: interfaces.Panel) => interfaces.ReducerAction;
 }
 
 export interface State {
@@ -41,14 +40,14 @@ export default class DesignForm extends React.Component<Props, State> {
   }
 
   public componentDidMount() {
-    const form: {} = this.props.panels.reduce((prev: any, panel: Panel) => {
+    const form: {} = this.props.panels.reduce((prev: any, panel: interfaces.Panel) => {
       prev[`${panel.config.label}__${panel.id}`] = "";
       return prev;
     }, {});
     this.setState({ form });
   }
 
-  public renderPanels(panels: Array<Panel>): Array<JSX.Element> {
+  public renderPanels(panels: Array<interfaces.Panel>): Array<JSX.Element> {
     return this.props.panels.map(panel => {
       const style: RenderStyle = {
         width: `calc(${panel.layout.w * 9.90}% - ${20}px)`,
@@ -78,7 +77,7 @@ export default class DesignForm extends React.Component<Props, State> {
     });
   }
 
-  public renderButton(panel: Panel, style: RenderStyle, label: string): JSX.Element {
+  public renderButton(panel: interfaces.Panel, style: RenderStyle, label: string): JSX.Element {
     return(
       <div
         id={panel.id}
@@ -91,7 +90,7 @@ export default class DesignForm extends React.Component<Props, State> {
     );
   }
 
-  public renderCheckbox(panel: Panel, style: RenderStyle): JSX.Element {
+  public renderCheckbox(panel: interfaces.Panel, style: RenderStyle): JSX.Element {
     return(
       <div
         id={panel.id}
@@ -110,7 +109,7 @@ export default class DesignForm extends React.Component<Props, State> {
     );
   }
 
-  public renderDatePicker(panel: Panel, style: RenderStyle): JSX.Element {
+  public renderDatePicker(panel: interfaces.Panel, style: RenderStyle): JSX.Element {
     return(
       <div
         id={panel.id}
@@ -137,7 +136,7 @@ export default class DesignForm extends React.Component<Props, State> {
    * 
    * @memberOf DesignForm
    */
-  public renderInput(panel: Panel, style: RenderStyle): JSX.Element {
+  public renderInput(panel: interfaces.Panel, style: RenderStyle): JSX.Element {
     return (
       <div
         id={panel.id}
@@ -170,7 +169,7 @@ export default class DesignForm extends React.Component<Props, State> {
     );
   }
 
-  public renderRadio(panel: Panel, style: RenderStyle): JSX.Element {
+  public renderRadio(panel: interfaces.Panel, style: RenderStyle): JSX.Element {
     return (
       <div
         id={panel.id}
@@ -208,12 +207,12 @@ export default class DesignForm extends React.Component<Props, State> {
    * Render a Panel object into it's equivalent user-facing Input field
    * and corresponding information
    * 
-   * @param {Panel} panel
+   * @param {interfaces.Panel} panel
    * @returns {JSX.Element}
    * 
    * @memberOf DesignForm
    */
-  public renderSelect(panel: Panel, style: RenderStyle): JSX.Element {
+  public renderSelect(panel: interfaces.Panel, style: RenderStyle): JSX.Element {
     // manually set component heights/widths and positioning based on 10 col grid
     const options = panel.config.options.map((option: string, index: number) => (
       <option key={index} value={option}>{option}</option>

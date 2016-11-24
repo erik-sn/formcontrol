@@ -62,7 +62,6 @@ export default class Login extends React.Component<Props, State> {
 
   public render() {
     const { username, password } = this.state;
-    const { auth } = this.props;
     return (
       <div>
         <div className="modal-container">
