@@ -1,8 +1,7 @@
-import { isEqual } from "lodash";
+import { cloneDeep, isEqual } from "lodash";
 import * as uuid from "node-uuid";
 import * as React from "react";
 import { connect } from "react-redux";
-// const uuid = require("node-uuid");
 
 import { addPanel, clearPanels, hideModal, savePanels, showModal, showPreview } from "../actions/actions";
 import { AVAILABLE_PANELS } from "../actions/constants";
@@ -65,7 +64,7 @@ export class DesignPanel extends React.Component<Props, State> {
     const { showModal, hideModal, clearPanels, panels } = this.props;
     // don't allow creating new panels when in preview mode
     if (this.state.showPreviewButton) {
-      const errors: IErrors = _.cloneDeep(this.defaultErrors);
+      const errors: IErrors = cloneDeep(this.defaultErrors);
       errors.clearPanel = "Cannot clear panels while in prieview mode";
       this.setState({ errors });
       return;

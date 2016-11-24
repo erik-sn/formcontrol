@@ -7,6 +7,7 @@ export default module.exports = {
   entry: [
     "webpack-dev-server/client?http://localhost:3000",
     "webpack/hot/only-dev-server",
+    "react-hot-loader/patch",
     "./src/index.tsx",
   ],
   output: {
@@ -30,12 +31,12 @@ export default module.exports = {
       },
       {
         include: path.join(__dirname, "src"),
-        loader: ["react-hot", "babel"],
+        loader: ["babel"],
         test: /\.js$/,
       },
       {
         include: path.join(__dirname, "src"),
-        loaders: ["react-hot", "ts-loader"],
+        loaders: ["ts-loader"],
         test: /\.tsx?$/,
       },
     ],
